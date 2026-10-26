@@ -4,10 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LIBYA FLEX | Premium Sportswear</title>
+<title>LIBYA FLEX | Premium Football</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
+
+/* =========================
+   RESET
+========================= */
 
 *{
     margin:0;
@@ -15,25 +22,14 @@
     box-sizing:border-box;
 }
 
-:root{
-    --cyan:#16d9e3;
-    --cyan2:#00aeb9;
-    --black:#050607;
-    --dark:#0b0e10;
-    --card:#101416;
-    --line:rgba(255,255,255,.09);
-    --text:#f5f7f8;
-    --muted:#899197;
-}
-
 html{
     scroll-behavior:smooth;
 }
 
 body{
+    background:#080909;
+    color:#f4f0e8;
     font-family:'Cairo',Arial,sans-serif;
-    background:#050607;
-    color:var(--text);
     overflow-x:hidden;
 }
 
@@ -42,755 +38,1157 @@ a{
     text-decoration:none;
 }
 
-button,input{
+button,
+input{
     font-family:inherit;
 }
 
-button{
-    cursor:pointer;
+/* =========================
+   VARIABLES
+========================= */
+
+:root{
+    --black:#070808;
+    --black2:#0d0e0f;
+    --card:#111313;
+    --card2:#151718;
+
+    --gold:#d6c09a;
+    --gold2:#f0dfbd;
+    --cream:#f5eee1;
+
+    --cyan:#19d5e5;
+
+    --white:#ffffff;
+    --muted:#929292;
+
+    --border:rgba(214,192,154,.16);
 }
 
-/* ===== TOP BAR ===== */
+/* =========================
+   TOP BAR
+========================= */
 
 .topbar{
-    background:linear-gradient(90deg,#08bfc9,#1be4ed,#08bfc9);
-    color:#001719;
+    background:
+    linear-gradient(90deg,#0b0b0b,#171513,#0b0b0b);
+
+    border-bottom:1px solid var(--border);
+
+    color:var(--gold2);
+
     text-align:center;
-    padding:8px 15px;
+
+    padding:9px 15px;
+
     font-size:12px;
-    font-weight:800;
+    font-weight:600;
+
+    letter-spacing:.3px;
 }
 
-/* ===== NAVBAR ===== */
+/* =========================
+   HEADER
+========================= */
 
 header{
     position:sticky;
     top:0;
     z-index:1000;
-    background:rgba(5,6,7,.88);
+
+    background:rgba(7,8,8,.92);
+
     backdrop-filter:blur(18px);
-    border-bottom:1px solid var(--line);
+
+    border-bottom:1px solid rgba(255,255,255,.06);
 }
 
 .nav{
-    height:78px;
     max-width:1450px;
+
     margin:auto;
-    padding:0 5%;
+
+    min-height:82px;
+
+    padding:0 35px;
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
+
     gap:30px;
 }
 
+/* LOGO */
+
 .logo{
-    font-size:27px;
-    font-weight:900;
-    letter-spacing:1.5px;
-    white-space:nowrap;
+    display:flex;
+    flex-direction:column;
+
+    line-height:1;
+
+    min-width:190px;
 }
 
-.logo span{
-    color:var(--cyan);
+.logo-main{
+    font-family:'Playfair Display',serif;
+
+    font-size:31px;
+
+    font-weight:700;
+
+    letter-spacing:4px;
+
+    color:var(--cream);
 }
+
+.logo-main span{
+    color:var(--gold);
+}
+
+.logo-sub{
+    margin-top:7px;
+
+    font-size:8px;
+
+    letter-spacing:5px;
+
+    color:#8f887d;
+
+    text-align:center;
+}
+
+/* NAV LINKS */
 
 .navlinks{
     display:flex;
+
+    align-items:center;
+
     gap:30px;
+
     list-style:none;
-    font-size:14px;
-    font-weight:700;
 }
 
 .navlinks a{
-    color:#b9c0c4;
-    transition:.25s;
+    position:relative;
+
+    color:#bcb9b2;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    transition:.3s;
 }
 
 .navlinks a:hover{
-    color:var(--cyan);
+    color:var(--gold2);
 }
 
-.nav-actions{
+.navlinks a:after{
+    content:"";
+
+    position:absolute;
+
+    bottom:-9px;
+    right:0;
+
+    width:0;
+    height:1px;
+
+    background:var(--gold);
+
+    transition:.3s;
+}
+
+.navlinks a:hover:after{
+    width:100%;
+}
+
+/* HEADER ACTIONS */
+
+.actions{
     display:flex;
+
     align-items:center;
+
     gap:10px;
 }
 
-.icon-btn{
+.action{
     width:43px;
     height:43px;
-    border:1px solid var(--line);
-    background:#0c1012;
-    color:white;
+
+    border:1px solid rgba(255,255,255,.09);
+
     border-radius:50%;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
-    font-size:18px;
-    transition:.25s;
+
+    color:#ddd;
+
+    background:#0c0d0d;
+
+    cursor:pointer;
+
+    transition:.3s;
+
     position:relative;
 }
 
-.icon-btn:hover{
-    border-color:var(--cyan);
-    color:var(--cyan);
+.action:hover{
+    border-color:var(--gold);
+
+    color:var(--gold2);
+
     transform:translateY(-2px);
 }
 
 .cart-count{
     position:absolute;
-    top:-4px;
+
+    top:-3px;
     right:-3px;
-    background:var(--cyan);
-    color:#001719;
+
     width:17px;
     height:17px;
+
     border-radius:50%;
+
+    background:var(--gold);
+
+    color:#090909;
+
     font-size:10px;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
-    font-weight:900;
+
+    font-weight:800;
 }
 
-/* ===== HERO ===== */
+/* =========================
+   HERO
+========================= */
 
 .hero{
-    min-height:calc(100vh - 115px);
-    max-width:1500px;
-    margin:auto;
     position:relative;
-    display:flex;
-    align-items:center;
+
+    min-height:720px;
+
     overflow:hidden;
-    padding:90px 7%;
+
+    display:flex;
+
+    align-items:center;
+
     background:
-    radial-gradient(circle at 80% 40%,rgba(22,217,227,.13),transparent 32%),
-    radial-gradient(circle at 10% 90%,rgba(22,217,227,.07),transparent 30%);
+    radial-gradient(
+        circle at 75% 45%,
+        rgba(214,192,154,.13),
+        transparent 28%
+    ),
+
+    linear-gradient(
+        115deg,
+        #050606 0%,
+        #0c0d0d 50%,
+        #171411 100%
+    );
 }
+
+/* Decorative circles */
 
 .hero:before{
     content:"";
+
     position:absolute;
-    width:600px;
-    height:600px;
-    border:1px solid rgba(22,217,227,.12);
+
+    width:700px;
+    height:700px;
+
     border-radius:50%;
-    right:-180px;
-    top:50%;
-    transform:translateY(-50%);
+
+    right:-280px;
+    top:-250px;
+
+    border:1px solid rgba(214,192,154,.13);
+
+    box-shadow:
+    0 0 100px rgba(214,192,154,.04);
+
+    opacity:.8;
 }
 
 .hero:after{
     content:"";
+
     position:absolute;
-    width:430px;
-    height:430px;
-    border:1px solid rgba(255,255,255,.05);
+
+    width:500px;
+    height:500px;
+
     border-radius:50%;
-    right:-95px;
-    top:50%;
-    transform:translateY(-50%);
+
+    left:-280px;
+    bottom:-280px;
+
+    border:1px solid rgba(214,192,154,.08);
 }
 
+/* HERO CONTENT */
+
 .hero-content{
-    max-width:680px;
+    width:100%;
+
+    max-width:1450px;
+
+    margin:auto;
+
+    padding:80px 7%;
+
     position:relative;
+
     z-index:2;
 }
 
-.eyebrow{
+.hero-label{
     display:inline-flex;
+
     align-items:center;
-    gap:9px;
-    padding:7px 13px;
-    border:1px solid rgba(22,217,227,.3);
-    background:rgba(22,217,227,.06);
-    border-radius:30px;
-    color:var(--cyan);
-    font-size:11px;
-    font-weight:800;
+
+    gap:10px;
+
+    color:var(--gold);
+
+    font-size:12px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
     margin-bottom:25px;
 }
 
-.eyebrow span{
-    width:6px;
-    height:6px;
-    border-radius:50%;
-    background:var(--cyan);
-    box-shadow:0 0 12px var(--cyan);
+.hero-label:before{
+    content:"";
+
+    width:35px;
+
+    height:1px;
+
+    background:var(--gold);
 }
 
 .hero h1{
-    font-size:clamp(55px,8vw,105px);
-    line-height:.95;
-    font-weight:900;
-    letter-spacing:-4px;
-    margin-bottom:27px;
+    font-family:'Playfair Display',serif;
+
+    font-size:clamp(58px,8vw,115px);
+
+    line-height:.9;
+
+    font-weight:700;
+
+    letter-spacing:-3px;
+
+    max-width:850px;
 }
 
-.hero h1 span{
-    color:var(--cyan);
+.hero h1 .gold{
+    color:var(--gold);
 }
 
-.hero p{
-    color:#9ba4a9;
+.hero h1 .outline{
+    color:transparent;
+
+    -webkit-text-stroke:1px rgba(245,238,225,.55);
+}
+
+.hero-description{
     max-width:600px;
-    font-size:16px;
+
+    color:#aaa9a4;
+
     line-height:2;
-    margin-bottom:32px;
+
+    font-size:15px;
+
+    margin-top:35px;
 }
 
 .hero-buttons{
     display:flex;
+
     gap:12px;
+
+    margin-top:35px;
+
     flex-wrap:wrap;
 }
 
 .btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    min-height:52px;
-    padding:0 27px;
-    border-radius:8px;
+    padding:15px 27px;
+
+    border-radius:3px;
+
     border:1px solid transparent;
-    font-size:14px;
+
+    font-size:13px;
+
     font-weight:800;
-    transition:.25s;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
 }
 
 .btn-primary{
-    background:var(--cyan);
-    color:#001719;
+    background:var(--gold);
+
+    color:#080808;
 }
 
 .btn-primary:hover{
+    background:var(--gold2);
+
     transform:translateY(-3px);
-    box-shadow:0 12px 35px rgba(22,217,227,.22);
+
+    box-shadow:0 15px 35px rgba(214,192,154,.14);
 }
 
 .btn-outline{
-    border-color:var(--line);
-    background:#0d1113;
-    color:white;
+    border-color:rgba(214,192,154,.35);
+
+    color:var(--cream);
+
+    background:rgba(255,255,255,.02);
 }
 
 .btn-outline:hover{
-    border-color:var(--cyan);
-    color:var(--cyan);
+    border-color:var(--gold);
+
+    color:var(--gold2);
 }
 
-/* HERO VISUAL */
+/* HERO STATS */
 
-.hero-product{
-    position:absolute;
-    left:8%;
-    bottom:10%;
-    width:310px;
-    height:390px;
-    background:
-    linear-gradient(145deg,#111719,#080a0b);
-    border:1px solid var(--line);
-    border-radius:22px;
-    transform:rotate(-6deg);
+.hero-stats{
     display:flex;
-    align-items:center;
-    justify-content:center;
-    box-shadow:0 40px 100px rgba(0,0,0,.6);
+
+    gap:45px;
+
+    margin-top:60px;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    padding-top:25px;
+
+    max-width:600px;
 }
 
-.hero-product:before{
-    content:"LIBYA";
-    position:absolute;
-    top:28px;
-    left:25px;
-    color:#fff;
-    font-size:11px;
-    letter-spacing:3px;
-    font-weight:900;
+.stat strong{
+    display:block;
+
+    font-family:'Playfair Display',serif;
+
+    color:var(--cream);
+
+    font-size:23px;
 }
 
-.hero-product:after{
-    content:"FLEX";
-    position:absolute;
-    top:44px;
-    left:25px;
-    color:var(--cyan);
-    font-size:11px;
-    letter-spacing:3px;
-    font-weight:900;
+.stat span{
+    color:#777;
+
+    font-size:10px;
 }
 
-.jersey{
-    width:170px;
-    height:220px;
-    background:linear-gradient(145deg,#1b2528,#071012);
-    clip-path:polygon(20% 0,38% 10%,62% 10%,80% 0,100% 18%,82% 35%,76% 100%,24% 100%,18% 35%,0 18%);
-    border:1px solid rgba(22,217,227,.3);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:var(--cyan);
-    font-size:22px;
-    font-weight:900;
-}
-
-/* ===== TRUST ===== */
-
-.trust{
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-    background:#080b0d;
-}
-
-.trust-grid{
-    max-width:1400px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-}
-
-.trust-item{
-    padding:27px 20px;
-    text-align:center;
-    border-left:1px solid var(--line);
-}
-
-.trust-item:last-child{
-    border-left:0;
-}
-
-.trust-icon{
-    color:var(--cyan);
-    font-size:22px;
-    margin-bottom:7px;
-}
-
-.trust-item h3{
-    font-size:13px;
-    margin-bottom:3px;
-}
-
-.trust-item p{
-    color:#697277;
-    font-size:11px;
-}
-
-/* ===== SECTIONS ===== */
+/* =========================
+   SECTIONS
+========================= */
 
 section{
-    padding:95px 6%;
-}
+    max-width:1450px;
 
-.container{
-    max-width:1400px;
     margin:auto;
+
+    padding:100px 7%;
 }
 
 .section-head{
     display:flex;
+
     align-items:end;
+
     justify-content:space-between;
-    margin-bottom:38px;
+
+    margin-bottom:45px;
+
     gap:20px;
 }
 
-.section-title small{
-    color:var(--cyan);
-    font-size:11px;
-    font-weight:900;
-    letter-spacing:2px;
+.section-label{
+    color:var(--gold);
+
+    font-size:10px;
+
+    letter-spacing:3px;
+
+    font-weight:800;
+
+    margin-bottom:10px;
 }
 
-.section-title h2{
-    font-size:38px;
-    margin-top:6px;
-    letter-spacing:-1px;
+.section-head h2{
+    font-family:'Playfair Display',serif;
+
+    font-size:43px;
+
+    color:var(--cream);
 }
 
-.section-title p{
-    color:#727b80;
-    margin-top:5px;
+.section-head p{
+    color:#777;
+
     font-size:13px;
+
+    margin-top:8px;
 }
 
 .view-all{
-    color:var(--cyan);
-    font-size:13px;
-    font-weight:800;
+    color:var(--gold);
+
+    font-size:12px;
+
+    border-bottom:1px solid rgba(214,192,154,.4);
+
+    padding-bottom:5px;
 }
 
-/* ===== CATEGORIES ===== */
+/* =========================
+   CATEGORIES
+========================= */
 
 .categories{
     display:grid;
+
     grid-template-columns:repeat(4,1fr);
+
     gap:15px;
 }
 
 .category{
-    height:190px;
-    border:1px solid var(--line);
-    border-radius:14px;
-    overflow:hidden;
+    min-height:220px;
+
+    padding:25px;
+
     position:relative;
-    background:
-    radial-gradient(circle at 70% 30%,rgba(22,217,227,.12),transparent 30%),
-    linear-gradient(145deg,#111719,#080a0b);
+
+    overflow:hidden;
+
     display:flex;
+
     flex-direction:column;
+
     justify-content:flex-end;
-    padding:24px;
-    transition:.35s;
+
+    border:1px solid var(--border);
+
+    background:
+    linear-gradient(
+        145deg,
+        #181918,
+        #0c0d0d
+    );
+
+    transition:.4s;
 }
 
 .category:before{
     content:"";
+
     position:absolute;
-    inset:0;
-    background:linear-gradient(transparent 30%,rgba(0,0,0,.85));
+
+    width:180px;
+    height:180px;
+
+    border-radius:50%;
+
+    background:rgba(214,192,154,.05);
+
+    top:-80px;
+    left:-60px;
 }
 
 .category:hover{
     transform:translateY(-7px);
-    border-color:rgba(22,217,227,.45);
-    box-shadow:0 20px 50px rgba(0,0,0,.35);
-}
 
-.category-content{
-    position:relative;
-    z-index:1;
+    border-color:rgba(214,192,154,.45);
+
+    box-shadow:
+    0 25px 60px rgba(0,0,0,.35);
 }
 
 .category-number{
-    color:var(--cyan);
+    position:absolute;
+
+    top:20px;
+    right:22px;
+
+    color:#555;
+
     font-size:11px;
-    font-weight:900;
-    margin-bottom:8px;
+
+    letter-spacing:2px;
+}
+
+.category-icon{
+    color:var(--gold);
+
+    font-size:30px;
+
+    margin-bottom:auto;
 }
 
 .category h3{
-    font-size:21px;
+    font-size:18px;
+
+    color:#f3eee5;
 }
 
-/* ===== PRODUCTS ===== */
+.category span{
+    color:#777;
+
+    font-size:11px;
+
+    margin-top:4px;
+}
+
+/* =========================
+   PRODUCTS
+========================= */
 
 .products{
     display:grid;
+
     grid-template-columns:repeat(4,1fr);
+
     gap:18px;
 }
 
 .product{
-    background:#0c1012;
-    border:1px solid var(--line);
-    border-radius:14px;
-    overflow:hidden;
+    background:#101212;
+
+    border:1px solid rgba(255,255,255,.06);
+
     position:relative;
-    transition:.3s;
+
+    overflow:hidden;
+
+    transition:.4s;
 }
 
 .product:hover{
     transform:translateY(-6px);
-    border-color:rgba(22,217,227,.3);
+
+    border-color:rgba(214,192,154,.28);
+
+    box-shadow:0 25px 60px rgba(0,0,0,.35);
 }
 
 .product-image{
-    height:320px;
-    background:
-    radial-gradient(circle at 50% 40%,rgba(22,217,227,.12),transparent 35%),
-    linear-gradient(145deg,#171d20,#090b0c);
+    height:330px;
+
     position:relative;
+
+    overflow:hidden;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
+    background:
+    radial-gradient(
+        circle at center,
+        #272725,
+        #111212 65%
+    );
 }
 
-.product-image .jersey{
-    width:145px;
-    height:190px;
-}
+.product-image:after{
+    content:"LIBYA FLEX";
 
-.wishlist{
     position:absolute;
-    top:14px;
-    left:14px;
-    width:37px;
-    height:37px;
-    border-radius:50%;
-    background:rgba(0,0,0,.45);
-    border:1px solid var(--line);
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
 
-.wishlist:hover{
-    color:var(--cyan);
-    border-color:var(--cyan);
-}
+    bottom:20px;
 
-.product-badge{
-    position:absolute;
-    top:15px;
-    right:15px;
-    background:var(--cyan);
-    color:#001719;
-    padding:5px 10px;
-    border-radius:4px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    color:rgba(214,192,154,.13);
+
     font-size:10px;
+
+    letter-spacing:5px;
+
+    white-space:nowrap;
+}
+
+.product-placeholder{
+    font-size:70px;
+
+    filter:grayscale(1);
+
+    opacity:.75;
+
+    transition:.4s;
+}
+
+.product:hover .product-placeholder{
+    transform:scale(1.08);
+
+    opacity:1;
+}
+
+.badge{
+    position:absolute;
+
+    top:14px;
+    right:14px;
+
+    z-index:2;
+
+    padding:6px 10px;
+
+    background:var(--gold);
+
+    color:#080808;
+
+    font-size:9px;
+
     font-weight:900;
+
+    letter-spacing:.5px;
 }
 
 .product-info{
-    padding:19px;
+    padding:21px;
 }
 
-.product-brand{
-    color:#657075;
-    font-size:10px;
-    font-weight:800;
-    letter-spacing:1px;
-    margin-bottom:6px;
+.product-category{
+    color:#777;
+
+    font-size:9px;
+
+    letter-spacing:1.5px;
+
+    text-transform:uppercase;
 }
 
 .product-info h3{
+    color:#eee;
+
     font-size:15px;
-    margin-bottom:12px;
-}
 
-.price-row{
-    display:flex;
-    align-items:center;
-    gap:9px;
-}
-
-.price{
-    color:white;
-    font-size:17px;
-    font-weight:900;
-}
-
-.old-price{
-    color:#626a6e;
-    text-decoration:line-through;
-    font-size:12px;
+    margin:7px 0 13px;
 }
 
 .product-bottom{
     display:flex;
-    gap:8px;
-    margin-top:15px;
-}
 
-.add-cart{
-    flex:1;
-    border:0;
-    background:#151b1e;
-    color:white;
-    padding:11px;
-    border-radius:7px;
-    font-size:12px;
-    font-weight:800;
-    transition:.25s;
-}
-
-.add-cart:hover{
-    background:var(--cyan);
-    color:#001719;
-}
-
-/* ===== PROMO ===== */
-
-.promo{
-    padding-top:20px;
-}
-
-.promo-box{
-    min-height:360px;
-    border-radius:20px;
-    padding:65px;
-    display:flex;
     align-items:center;
+
+    justify-content:space-between;
+}
+
+.price{
+    color:var(--gold2);
+
+    font-family:'Playfair Display',serif;
+
+    font-size:20px;
+
+    font-weight:700;
+}
+
+.old{
+    color:#666;
+
+    font-size:11px;
+
+    text-decoration:line-through;
+
+    margin-right:5px;
+}
+
+.add{
+    width:38px;
+    height:38px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(214,192,154,.3);
+
+    background:transparent;
+
+    color:var(--gold);
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-size:18px;
+}
+
+.add:hover{
+    background:var(--gold);
+
+    color:#080808;
+}
+
+/* =========================
+   PREMIUM BANNER
+========================= */
+
+.luxury-banner{
+    max-width:1450px;
+
+    margin:30px auto 100px;
+
+    width:86%;
+
+    min-height:350px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
     position:relative;
+
     overflow:hidden;
-    border:1px solid rgba(22,217,227,.18);
+
     background:
-    radial-gradient(circle at 80% 50%,rgba(22,217,227,.18),transparent 30%),
-    linear-gradient(110deg,#101719,#060809);
+    radial-gradient(
+        circle,
+        rgba(214,192,154,.12),
+        transparent 55%
+    ),
+    #101111;
+
+    border:1px solid rgba(214,192,154,.18);
 }
 
-.promo-box:after{
-    content:"FLEX";
+.luxury-banner:before,
+.luxury-banner:after{
+    content:"";
+
     position:absolute;
-    right:-20px;
-    font-size:220px;
-    line-height:1;
-    font-weight:900;
-    color:rgba(255,255,255,.025);
+
+    width:250px;
+    height:250px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(214,192,154,.12);
 }
 
-.promo-content{
+.luxury-banner:before{
+    right:-120px;
+    top:-100px;
+}
+
+.luxury-banner:after{
+    left:-120px;
+    bottom:-100px;
+}
+
+.banner-content{
     position:relative;
+
     z-index:2;
 }
 
-.promo-content small{
-    color:var(--cyan);
-    font-weight:900;
+.banner-content small{
+    color:var(--gold);
+
+    letter-spacing:4px;
+
+    font-size:9px;
 }
 
-.promo-content h2{
-    font-size:48px;
-    margin:12px 0;
+.banner-content h2{
+    font-family:'Playfair Display',serif;
+
+    font-size:58px;
+
+    margin:15px 0;
+
+    color:var(--cream);
 }
 
-.promo-content p{
-    color:#858f94;
+.banner-content p{
+    color:#858585;
+
+    font-size:13px;
+
     margin-bottom:25px;
 }
 
-/* ===== REVIEWS ===== */
+/* =========================
+   REVIEWS
+========================= */
 
 .reviews{
     display:grid;
+
     grid-template-columns:repeat(3,1fr);
+
     gap:18px;
 }
 
 .review{
-    background:#0c1012;
-    border:1px solid var(--line);
-    padding:27px;
-    border-radius:14px;
+    background:#101212;
+
+    border:1px solid rgba(255,255,255,.06);
+
+    padding:30px;
+
+    position:relative;
+}
+
+.review:before{
+    content:"“";
+
+    position:absolute;
+
+    top:8px;
+    left:20px;
+
+    font-family:Georgia;
+
+    font-size:70px;
+
+    color:rgba(214,192,154,.12);
 }
 
 .stars{
-    color:var(--cyan);
-    letter-spacing:3px;
-    margin-bottom:15px;
+    color:var(--gold);
+
+    letter-spacing:4px;
+
+    font-size:12px;
+
+    margin-bottom:20px;
 }
 
 .review p{
-    color:#a0a8ac;
-    font-size:13px;
+    color:#aaa;
+
     line-height:1.9;
+
+    font-size:13px;
 }
 
-.review-author{
-    margin-top:20px;
+.reviewer{
     display:flex;
+
     align-items:center;
+
     gap:10px;
+
+    margin-top:25px;
 }
 
 .avatar{
-    width:36px;
-    height:36px;
+    width:35px;
+    height:35px;
+
     border-radius:50%;
-    background:#192125;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
-    color:var(--cyan);
-    font-weight:900;
+
+    background:#202121;
+
+    color:var(--gold);
+
+    font-size:12px;
 }
 
-.review-author small{
-    color:#697276;
+.reviewer strong{
+    font-size:12px;
 }
 
-/* ===== NEWSLETTER ===== */
+.reviewer span{
+    display:block;
+
+    color:#666;
+
+    font-size:9px;
+}
+
+/* =========================
+   NEWSLETTER
+========================= */
 
 .newsletter{
     background:
-    radial-gradient(circle at center,rgba(22,217,227,.18),transparent 40%),
-    #071012;
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
+    linear-gradient(
+        110deg,
+        #151412,
+        #0d0e0e
+    );
+
+    border-top:1px solid var(--border);
+
+    border-bottom:1px solid var(--border);
+
+    max-width:none;
+
     text-align:center;
 }
 
 .newsletter h2{
-    font-size:34px;
+    font-family:'Playfair Display',serif;
+
+    font-size:42px;
+
+    color:var(--cream);
 }
 
 .newsletter p{
-    color:#7f898e;
-    margin:8px 0 25px;
+    color:#777;
+
+    margin:10px 0 25px;
+
+    font-size:13px;
 }
 
 .newsletter-form{
-    max-width:480px;
-    margin:auto;
     display:flex;
-    gap:8px;
+
+    justify-content:center;
+
+    max-width:500px;
+
+    margin:auto;
 }
 
-.newsletter-form input{
+.newsletter input{
     flex:1;
+
     min-width:0;
-    background:#0d1315;
-    border:1px solid var(--line);
+
+    background:#090a0a;
+
+    border:1px solid rgba(214,192,154,.2);
+
     color:white;
-    padding:15px;
-    border-radius:7px;
+
+    padding:14px 18px;
+
     outline:none;
 }
 
-.newsletter-form input:focus{
-    border-color:var(--cyan);
-}
-
-.newsletter-form button{
+.newsletter button{
     border:0;
-    background:var(--cyan);
-    color:#001719;
-    padding:0 23px;
-    border-radius:7px;
-    font-weight:900;
+
+    background:var(--gold);
+
+    color:#080808;
+
+    padding:0 25px;
+
+    font-weight:800;
+
+    cursor:pointer;
 }
 
-/* ===== FOOTER ===== */
+/* =========================
+   FOOTER
+========================= */
 
 footer{
-    background:#030405;
-    padding:70px 6% 25px;
-    border-top:1px solid var(--line);
+    background:#050606;
+
+    border-top:1px solid rgba(255,255,255,.06);
+
+    padding:70px 7% 25px;
 }
 
 .footer-grid{
-    max-width:1400px;
+    max-width:1450px;
+
     margin:auto;
+
     display:grid;
+
     grid-template-columns:2fr 1fr 1fr 1fr;
+
     gap:50px;
 }
 
 .footer-logo{
-    font-size:28px;
-    font-weight:900;
+    font-family:'Playfair Display',serif;
+
+    font-size:30px;
+
+    letter-spacing:4px;
+
+    color:var(--cream);
 }
 
 .footer-logo span{
-    color:var(--cyan);
+    color:var(--gold);
 }
 
 .footer-about{
-    color:#667075;
-    font-size:13px;
-    line-height:2;
+    color:#666;
+
     max-width:350px;
-    margin-top:15px;
+
+    line-height:1.9;
+
+    font-size:12px;
+
+    margin-top:18px;
 }
 
 footer h3{
-    font-size:13px;
-    color:white;
-    margin-bottom:18px;
+    color:var(--gold);
+
+    font-size:12px;
+
+    margin-bottom:20px;
+
+    letter-spacing:1px;
 }
 
 footer ul{
@@ -798,82 +1196,64 @@ footer ul{
 }
 
 footer li{
-    color:#687276;
-    font-size:12px;
-    margin-bottom:10px;
+    color:#777;
+
+    font-size:11px;
+
+    margin-bottom:12px;
+
+    cursor:pointer;
+
     transition:.2s;
 }
 
 footer li:hover{
-    color:var(--cyan);
+    color:var(--cream);
 }
 
 .copyright{
-    max-width:1400px;
-    margin:55px auto 0;
+    max-width:1450px;
+
+    margin:60px auto 0;
+
     padding-top:22px;
-    border-top:1px solid var(--line);
+
+    border-top:1px solid rgba(255,255,255,.06);
+
     text-align:center;
-    color:#4e565a;
-    font-size:11px;
+
+    color:#444;
+
+    font-size:10px;
 }
 
-/* ===== SEARCH PANEL ===== */
-
-.search-panel{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.85);
-    backdrop-filter:blur(15px);
-    z-index:2000;
-    display:none;
-    align-items:flex-start;
-    justify-content:center;
-    padding:100px 20px;
-}
-
-.search-panel.active{
-    display:flex;
-}
-
-.search-box{
-    width:min(700px,100%);
-}
-
-.search-box input{
-    width:100%;
-    background:#111618;
-    border:1px solid var(--cyan);
-    color:white;
-    padding:20px;
-    border-radius:12px;
-    outline:none;
-    font-size:18px;
-}
-
-.close-search{
-    margin-top:15px;
-    background:#111618;
-    color:white;
-    border:1px solid var(--line);
-    padding:10px 20px;
-    border-radius:7px;
-}
-
-/* ===== CART ===== */
+/* =========================
+   CART PANEL
+========================= */
 
 .cart-panel{
     position:fixed;
+
     top:0;
-    right:-420px;
-    width:min(420px,92vw);
+    right:-400px;
+
+    width:380px;
+
+    max-width:90%;
+
     height:100vh;
-    background:#0a0e10;
-    z-index:2001;
-    border-left:1px solid var(--line);
-    padding:25px;
-    transition:.35s;
-    box-shadow:-20px 0 60px rgba(0,0,0,.5);
+
+    z-index:2000;
+
+    background:#101212;
+
+    border-left:1px solid rgba(214,192,154,.18);
+
+    box-shadow:-20px 0 70px rgba(0,0,0,.5);
+
+    transition:.4s;
+
+    padding:30px;
 }
 
 .cart-panel.active{
@@ -882,53 +1262,84 @@ footer li:hover{
 
 .cart-header{
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     padding-bottom:20px;
-    border-bottom:1px solid var(--line);
+
+    border-bottom:1px solid rgba(255,255,255,.07);
+}
+
+.cart-header h2{
+    font-family:'Playfair Display',serif;
 }
 
 .close-cart{
-    width:38px;
-    height:38px;
-    border:1px solid var(--line);
-    background:#111618;
-    color:white;
-    border-radius:50%;
+    background:none;
+
+    border:0;
+
+    color:#aaa;
+
+    font-size:25px;
+
+    cursor:pointer;
 }
 
 .cart-empty{
     text-align:center;
-    color:#687276;
-    padding:100px 20px;
+
+    color:#666;
+
+    margin-top:100px;
+
+    font-size:13px;
 }
 
-.cart-empty-icon{
-    font-size:45px;
-    margin-bottom:15px;
+/* OVERLAY */
+
+.overlay{
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.65);
+
+    z-index:1500;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.3s;
 }
 
-/* ===== MOBILE ===== */
+.overlay.active{
+    opacity:1;
+
+    pointer-events:auto;
+}
+
+/* =========================
+   MOBILE
+========================= */
 
 .mobile-menu{
     display:none;
 }
 
-@media(max-width:1000px){
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1050px){
 
     .navlinks{
         display:none;
     }
 
-    .mobile-menu{
-        display:flex;
-    }
-
-    .hero-product{
-        opacity:.25;
-        left:-80px;
-    }
-
     .categories{
         grid-template-columns:repeat(2,1fr);
     }
@@ -937,111 +1348,93 @@ footer li:hover{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .footer-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
 }
 
-@media(max-width:600px){
-
-    .topbar{
-        font-size:10px;
-    }
+@media(max-width:700px){
 
     .nav{
-        height:67px;
         padding:0 18px;
+
+        min-height:70px;
     }
 
-    .logo{
-        font-size:21px;
+    .logo-main{
+        font-size:23px;
     }
 
-    .nav-actions{
-        gap:6px;
+    .logo-sub{
+        font-size:6px;
     }
 
-    .icon-btn{
+    .actions{
+        gap:5px;
+    }
+
+    .action{
         width:37px;
         height:37px;
-        font-size:15px;
     }
 
     .hero{
         min-height:650px;
-        padding:70px 24px;
-        align-items:flex-start;
+    }
+
+    .hero-content{
+        padding:70px 7%;
     }
 
     .hero h1{
-        font-size:58px;
-        letter-spacing:-3px;
+        font-size:62px;
+
+        letter-spacing:-2px;
     }
 
-    .hero p{
+    .hero-description{
         font-size:13px;
-        line-height:1.9;
     }
 
-    .hero-product{
-        width:220px;
-        height:290px;
-        left:-70px;
-        bottom:20px;
-    }
-
-    .trust-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .trust-item{
-        padding:20px 8px;
-        border-bottom:1px solid var(--line);
+    .hero-stats{
+        gap:20px;
     }
 
     section{
-        padding:65px 18px;
+        padding:70px 6%;
     }
 
     .section-head{
-        align-items:flex-start;
-        flex-direction:column;
+        display:block;
     }
 
-    .section-title h2{
-        font-size:28px;
+    .section-head h2{
+        font-size:34px;
+    }
+
+    .view-all{
+        display:inline-block;
+
+        margin-top:15px;
     }
 
     .categories{
-        grid-template-columns:repeat(2,1fr);
-        gap:10px;
+        grid-template-columns:1fr 1fr;
     }
 
     .category{
-        height:145px;
-        padding:17px;
-    }
-
-    .category h3{
-        font-size:15px;
+        min-height:170px;
     }
 
     .products{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:1fr 1fr;
+
         gap:10px;
     }
 
     .product-image{
-        height:190px;
-    }
-
-    .product-image .jersey{
-        width:95px;
-        height:130px;
+        height:210px;
     }
 
     .product-info{
-        padding:13px;
+        padding:14px;
     }
 
     .product-info h3{
@@ -1049,91 +1442,173 @@ footer li:hover{
     }
 
     .price{
-        font-size:14px;
-    }
-
-    .add-cart{
-        padding:9px 4px;
-        font-size:10px;
-    }
-
-    .promo-box{
-        padding:35px 25px;
-        min-height:320px;
-    }
-
-    .promo-content h2{
-        font-size:34px;
+        font-size:17px;
     }
 
     .reviews{
         grid-template-columns:1fr;
     }
 
-    .newsletter-form{
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+
+        gap:35px;
+    }
+
+    .luxury-banner{
+        width:88%;
+    }
+
+    .banner-content h2{
+        font-size:43px;
+    }
+
+}
+
+@media(max-width:450px){
+
+    .topbar{
+        font-size:10px;
+    }
+
+    .hero h1{
+        font-size:50px;
+    }
+
+    .hero-buttons{
         flex-direction:column;
     }
 
-    .newsletter-form button{
+    .btn{
+        width:100%;
+    }
+
+    .categories{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .category{
+        min-height:145px;
+
+        padding:17px;
+    }
+
+    .category h3{
+        font-size:14px;
+    }
+
+    .product-image{
+        height:180px;
+    }
+
+    .product-placeholder{
+        font-size:48px;
+    }
+
+    .newsletter-form{
+        flex-direction:column;
+
+        gap:8px;
+    }
+
+    .newsletter input{
+        width:100%;
+    }
+
+    .newsletter button{
         padding:14px;
     }
 
     .footer-grid{
-        grid-template-columns:1fr 1fr;
-        gap:35px 20px;
+        grid-template-columns:1fr;
     }
+
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- TOP BAR -->
+<!-- =========================
+     TOP BAR
+========================= -->
+
 <div class="topbar">
-🚚 توصيل لجميع مناطق ليبيا &nbsp; • &nbsp; الدفع عند الاستلام &nbsp; • &nbsp; استبدال وإرجاع بسهولة
+🚚 توصيل لجميع مناطق ليبيا &nbsp; • &nbsp;
+الدفع عند الاستلام &nbsp; • &nbsp;
+استبدال وإرجاع بسهولة
 </div>
 
-<!-- NAVIGATION -->
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
+
 <nav class="nav">
 
-<div class="logo">
+<a href="#" class="logo">
+
+<div class="logo-main">
 LIBYA <span>FLEX</span>
 </div>
 
+<div class="logo-sub">
+FOOTBALL • PERFORMANCE • STYLE
+</div>
+
+</a>
+
+
 <ul class="navlinks">
+
 <li><a href="#">الرئيسية</a></li>
+
 <li><a href="#categories">المجموعات</a></li>
+
 <li><a href="#new">الجديد</a></li>
+
 <li><a href="#best">الأكثر مبيعاً</a></li>
+
 <li><a href="#reviews">آراء العملاء</a></li>
+
 <li><a href="#contact">تواصل معنا</a></li>
+
 </ul>
 
-<div class="nav-actions">
 
-<button class="icon-btn mobile-menu">☰</button>
+<div class="actions">
 
-<button class="icon-btn" onclick="openSearch()">
+<button class="action" aria-label="بحث">
 ⌕
 </button>
 
-<button class="icon-btn">
+<button class="action" aria-label="المفضلة">
 ♡
 </button>
 
-<button class="icon-btn" onclick="openCart()">
+<button class="action" id="cartBtn" aria-label="السلة">
+
 🛒
-<span class="cart-count" id="cartCount">0</span>
+
+<span class="cart-count" id="cartCount">
+0
+</span>
+
 </button>
 
 </div>
 
 </nav>
+
 </header>
 
 
-<!-- HERO -->
+<!-- =========================
+     HERO
+========================= -->
 
 <main>
 
@@ -1141,357 +1616,422 @@ LIBYA <span>FLEX</span>
 
 <div class="hero-content">
 
-<div class="eyebrow">
-<span></span>
-LIBYA FLEX PREMIUM COLLECTION
+<div class="hero-label">
+LIBYA FLEX — PREMIUM COLLECTION
 </div>
 
 <h1>
-MOVE.<br>
-<span>FLEX.</span><br>
-WIN.
+
+MOVE.
+
+<br>
+
+<span class="gold">FLEX.</span>
+
+<br>
+
+<span class="outline">WIN.</span>
+
 </h1>
 
-<p>
+
+<p class="hero-description">
+
 اكتشف مجموعة LIBYA FLEX الجديدة.
-ملابس رياضية مصممة للأداء، بجودة عالية
-وتصميم عصري مستوحى من روح الرياضة في ليبيا.
+قمصان كرة قدم، ملابس تدريب وتصاميم مختارة بعناية
+لعشاق اللعبة في ليبيا.
+
 </p>
 
+
 <div class="hero-buttons">
+
 <a href="#new" class="btn btn-primary">
-تسوق الآن
+تسوق المجموعة
+→
 </a>
 
 <a href="#categories" class="btn btn-outline">
-استكشف المجموعة
+استكشف التصنيفات
 </a>
-</div>
 
 </div>
 
-<div class="hero-product">
-<div class="jersey">
-LF
+
+<div class="hero-stats">
+
+<div class="stat">
+
+<strong>2026</strong>
+
+<span>COLLECTION</span>
+
 </div>
+
+
+<div class="stat">
+
+<strong>100%</strong>
+
+<span>QUALITY</span>
+
+</div>
+
+
+<div class="stat">
+
+<strong>24/7</strong>
+
+<span>SUPPORT</span>
+
+</div>
+
+</div>
+
 </div>
 
 </section>
 
 
-<!-- TRUST -->
-
-<div class="trust">
-
-<div class="trust-grid">
-
-<div class="trust-item">
-<div class="trust-icon">🚚</div>
-<h3>توصيل داخل ليبيا</h3>
-<p>إلى جميع المدن والمناطق</p>
-</div>
-
-<div class="trust-item">
-<div class="trust-icon">✓</div>
-<h3>دفع عند الاستلام</h3>
-<p>ادفع عند وصول طلبك</p>
-</div>
-
-<div class="trust-item">
-<div class="trust-icon">↻</div>
-<h3>استبدال سهل</h3>
-<p>خدمة عملاء متوفرة</p>
-</div>
-
-<div class="trust-item">
-<div class="trust-icon">◆</div>
-<h3>جودة Premium</h3>
-<p>اختيارات رياضية مميزة</p>
-</div>
-
-</div>
-
-</div>
-
-
-<!-- CATEGORIES -->
+<!-- =========================
+     CATEGORIES
+========================= -->
 
 <section id="categories">
 
-<div class="container">
-
 <div class="section-head">
 
-<div class="section-title">
-<small>EXPLORE</small>
-<h2>تسوق حسب المجموعة</h2>
-<p>اكتشف المجموعة المناسبة لك</p>
+<div>
+
+<div class="section-label">
+SHOP BY CATEGORY
 </div>
 
-<a href="#new" class="view-all">عرض الكل ←</a>
+<h2>
+اختر أسلوبك
+</h2>
+
+<p>
+مجموعة مختارة لعشاق كرة القدم والستايل الرياضي.
+</p>
+
+</div>
+
+<a href="#" class="view-all">
+عرض الكل →
+</a>
 
 </div>
 
 
 <div class="categories">
 
-<a href="#new" class="category">
-<div class="category-content">
-<div class="category-number">01</div>
-<h3>قمصان كرة القدم</h3>
+
+<a href="#" class="category">
+
+<span class="category-number">
+01
+</span>
+
+<div class="category-icon">
+⚽
 </div>
+
+<h3>
+قمصان كرة القدم
+</h3>
+
+<span>
+Football Jerseys
+</span>
+
 </a>
 
-<a href="#new" class="category">
-<div class="category-content">
-<div class="category-number">02</div>
-<h3>Player Version</h3>
+
+<a href="#" class="category">
+
+<span class="category-number">
+02
+</span>
+
+<div class="category-icon">
+✦
 </div>
+
+<h3>
+Player Version
+</h3>
+
+<span>
+Professional Fit
+</span>
+
 </a>
 
-<a href="#new" class="category">
-<div class="category-content">
-<div class="category-number">03</div>
-<h3>Fan Version</h3>
+
+<a href="#" class="category">
+
+<span class="category-number">
+03
+</span>
+
+<div class="category-icon">
+◈
 </div>
+
+<h3>
+Retro Collection
+</h3>
+
+<span>
+Classic Football
+</span>
+
 </a>
 
-<a href="#new" class="category">
-<div class="category-content">
-<div class="category-number">04</div>
-<h3>المنتخبات</h3>
+
+<a href="#" class="category">
+
+<span class="category-number">
+04
+</span>
+
+<div class="category-icon">
+◆
 </div>
+
+<h3>
+Training Wear
+</h3>
+
+<span>
+Performance
+</span>
+
 </a>
 
-<a href="#new" class="category">
-<div class="category-content">
-<div class="category-number">05</div>
-<h3>Retro Collection</h3>
-</div>
-</a>
-
-<a href="#new" class="category">
-<div class="category-content">
-<div class="category-number">06</div>
-<h3>Kids</h3>
-</div>
-</a>
-
-<a href="#new" class="category">
-<div class="category-content">
-<div class="category-number">07</div>
-<h3>Shorts</h3>
-</div>
-</a>
-
-<a href="#new" class="category">
-<div class="category-content">
-<div class="category-number">08</div>
-<h3>Training Wear</h3>
-</div>
-</a>
-
-</div>
 
 </div>
 
 </section>
 
 
-<!-- NEW PRODUCTS -->
+<!-- =========================
+     NEW PRODUCTS
+========================= -->
 
 <section id="new">
 
-<div class="container">
-
 <div class="section-head">
 
-<div class="section-title">
-<small>NEW ARRIVALS</small>
-<h2>وصل حديثاً</h2>
-<p>أحدث منتجات LIBYA FLEX</p>
+<div>
+
+<div class="section-label">
+NEW ARRIVALS
 </div>
 
-<a href="#" class="view-all">عرض الكل ←</a>
+<h2>
+وصل حديثاً
+</h2>
+
+<p>
+أحدث القطع المختارة من LIBYA FLEX.
+</p>
+
+</div>
+
+<a href="#" class="view-all">
+عرض المجموعة →
+</a>
 
 </div>
 
 
 <div class="products">
 
-<!-- PRODUCT 1 -->
 
 <div class="product">
 
+<span class="badge">
+NEW
+</span>
+
 <div class="product-image">
 
-<span class="product-badge">جديد</span>
-
-<button class="wishlist" onclick="toggleWish(this)">
-♡
-</button>
-
-<div class="jersey">
-LF
+<div class="product-placeholder">
+⚽
 </div>
 
 </div>
 
 <div class="product-info">
 
-<div class="product-brand">LIBYA FLEX</div>
-
-<h3>Premium Football Jersey</h3>
-
-<div class="price-row">
-<span class="price">149 LYD</span>
+<div class="product-category">
+Football Jersey
 </div>
+
+<h3>
+Premium Football Jersey
+</h3>
 
 <div class="product-bottom">
-<button class="add-cart" onclick="addCart('Premium Football Jersey',149)">
-أضف للسلة
+
+<div class="price">
+149 LYD
+</div>
+
+<button class="add">
++
 </button>
+
 </div>
 
 </div>
+
 </div>
 
-
-<!-- PRODUCT 2 -->
 
 <div class="product">
 
+<span class="badge">
+NEW
+</span>
+
 <div class="product-image">
 
-<span class="product-badge">جديد</span>
-
-<button class="wishlist" onclick="toggleWish(this)">
-♡
-</button>
-
-<div class="jersey">
-LF
+<div class="product-placeholder">
+👕
 </div>
 
 </div>
 
 <div class="product-info">
 
-<div class="product-brand">LIBYA FLEX</div>
-
-<h3>Training Performance</h3>
-
-<div class="price-row">
-<span class="price">119 LYD</span>
+<div class="product-category">
+Training
 </div>
+
+<h3>
+LIBYA FLEX Performance
+</h3>
 
 <div class="product-bottom">
-<button class="add-cart" onclick="addCart('Training Performance',119)">
-أضف للسلة
+
+<div class="price">
+119 LYD
+</div>
+
+<button class="add">
++
 </button>
+
 </div>
 
 </div>
+
 </div>
 
-
-<!-- PRODUCT 3 -->
 
 <div class="product">
 
 <div class="product-image">
 
-<button class="wishlist" onclick="toggleWish(this)">
-♡
-</button>
-
-<div class="jersey">
-LF
+<div class="product-placeholder">
+👟
 </div>
 
 </div>
 
 <div class="product-info">
 
-<div class="product-brand">LIBYA FLEX</div>
-
-<h3>Sports Collection</h3>
-
-<div class="price-row">
-<span class="price">179 LYD</span>
+<div class="product-category">
+Sports
 </div>
+
+<h3>
+Premium Sports Collection
+</h3>
 
 <div class="product-bottom">
-<button class="add-cart" onclick="addCart('Sports Collection',179)">
-أضف للسلة
+
+<div class="price">
+179 LYD
+</div>
+
+<button class="add">
++
 </button>
+
 </div>
 
 </div>
+
 </div>
 
-
-<!-- PRODUCT 4 -->
 
 <div class="product">
 
 <div class="product-image">
 
-<button class="wishlist" onclick="toggleWish(this)">
-♡
-</button>
-
-<div class="jersey">
-LF
+<div class="product-placeholder">
+🧢
 </div>
 
 </div>
 
 <div class="product-info">
 
-<div class="product-brand">LIBYA FLEX</div>
-
-<h3>Premium Cap</h3>
-
-<div class="price-row">
-<span class="price">65 LYD</span>
+<div class="product-category">
+Accessories
 </div>
+
+<h3>
+LIBYA FLEX Signature Cap
+</h3>
 
 <div class="product-bottom">
-<button class="add-cart" onclick="addCart('Premium Cap',65)">
-أضف للسلة
+
+<div class="price">
+65 LYD
+</div>
+
+<button class="add">
++
 </button>
+
 </div>
 
 </div>
-</div>
 
 </div>
+
 
 </div>
 
 </section>
 
 
-<!-- PROMO -->
+<!-- =========================
+     PREMIUM BANNER
+========================= -->
 
-<section class="promo">
+<div class="luxury-banner">
 
-<div class="container">
+<div class="banner-content">
 
-<div class="promo-box">
+<small>
+LIBYA FLEX
+</small>
 
-<div class="promo-content">
-
-<small>LIBYA FLEX EXCLUSIVE</small>
-
-<h2>Built for<br>the game.</h2>
+<h2>
+Built for the Game.
+</h2>
 
 <p>
-أداء أفضل. تصميم أقوى. حضور مختلف.
+Designed for those who live football.
 </p>
 
-<a href="#best" class="btn btn-primary">
+<a href="#new" class="btn btn-primary">
 اكتشف المجموعة
 </a>
 
@@ -1499,100 +2039,87 @@ LF
 
 </div>
 
-</div>
 
-</section>
-
-
-<!-- BEST SELLERS -->
+<!-- =========================
+     BEST SELLERS
+========================= -->
 
 <section id="best">
 
-<div class="container">
-
 <div class="section-head">
 
-<div class="section-title">
-<small>BEST SELLERS</small>
-<h2>الأكثر مبيعاً</h2>
-<p>اختيارات مجتمع LIBYA FLEX</p>
+<div>
+
+<div class="section-label">
+BEST SELLERS
 </div>
 
-<a href="#" class="view-all">عرض الكل ←</a>
+<h2>
+الأكثر مبيعاً
+</h2>
+
+<p>
+اختيارات مجتمع LIBYA FLEX.
+</p>
+
+</div>
+
+<a href="#" class="view-all">
+عرض الكل →
+</a>
 
 </div>
 
 
 <div class="products">
 
+
 <div class="product">
+
+<span class="badge">
+BEST SELLER
+</span>
 
 <div class="product-image">
 
-<span class="product-badge">الأكثر مبيعاً</span>
-
-<button class="wishlist" onclick="toggleWish(this)">
-♡
-</button>
-
-<div class="jersey">
-LF
+<div class="product-placeholder">
+⚽
 </div>
 
 </div>
 
 <div class="product-info">
 
-<div class="product-brand">LIBYA FLEX</div>
-
-<h3>Football Jersey</h3>
-
-<div class="price-row">
-<span class="price">139 LYD</span>
-<span class="old-price">169 LYD</span>
+<div class="product-category">
+Football
 </div>
+
+<h3>
+Premium Football Jersey
+</h3>
 
 <div class="product-bottom">
-<button class="add-cart" onclick="addCart('Football Jersey',139)">
-أضف للسلة
+
+<div>
+
+<span class="price">
+139 LYD
+</span>
+
+<span class="old">
+169 LYD
+</span>
+
+</div>
+
+<button class="add">
++
 </button>
-</div>
 
-</div>
-</div>
-
-
-<div class="product">
-
-<div class="product-image">
-
-<button class="wishlist" onclick="toggleWish(this)">
-♡
-</button>
-
-<div class="jersey">
-LF
 </div>
 
 </div>
 
-<div class="product-info">
-
-<div class="product-brand">LIBYA FLEX</div>
-
-<h3>Performance T-Shirt</h3>
-
-<div class="price-row">
-<span class="price">89 LYD</span>
-</div>
-
-<div class="product-bottom">
-<button class="add-cart" onclick="addCart('Performance T-Shirt',89)">
-أضف للسلة
-</button>
-</div>
-
-</div>
 </div>
 
 
@@ -1600,33 +2127,36 @@ LF
 
 <div class="product-image">
 
-<button class="wishlist" onclick="toggleWish(this)">
-♡
-</button>
-
-<div class="jersey">
-LF
+<div class="product-placeholder">
+👕
 </div>
 
 </div>
 
 <div class="product-info">
 
-<div class="product-brand">LIBYA FLEX</div>
-
-<h3>Football Collection</h3>
-
-<div class="price-row">
-<span class="price">159 LYD</span>
+<div class="product-category">
+Performance
 </div>
+
+<h3>
+Performance T-Shirt
+</h3>
 
 <div class="product-bottom">
-<button class="add-cart" onclick="addCart('Football Collection',159)">
-أضف للسلة
+
+<div class="price">
+89 LYD
+</div>
+
+<button class="add">
++
 </button>
+
 </div>
 
 </div>
+
 </div>
 
 
@@ -1634,54 +2164,103 @@ LF
 
 <div class="product-image">
 
-<button class="wishlist" onclick="toggleWish(this)">
-♡
-</button>
-
-<div class="jersey">
-LF
+<div class="product-placeholder">
+🥅
 </div>
 
 </div>
 
 <div class="product-info">
 
-<div class="product-brand">LIBYA FLEX</div>
-
-<h3>Training Set</h3>
-
-<div class="price-row">
-<span class="price">199 LYD</span>
+<div class="product-category">
+Football
 </div>
+
+<h3>
+Football Collection
+</h3>
 
 <div class="product-bottom">
-<button class="add-cart" onclick="addCart('Training Set',199)">
-أضف للسلة
+
+<div class="price">
+159 LYD
+</div>
+
+<button class="add">
++
 </button>
+
 </div>
 
 </div>
+
+</div>
+
+
+<div class="product">
+
+<div class="product-image">
+
+<div class="product-placeholder">
+🏃
 </div>
 
 </div>
+
+<div class="product-info">
+
+<div class="product-category">
+Training
+</div>
+
+<h3>
+Training Set
+</h3>
+
+<div class="product-bottom">
+
+<div class="price">
+199 LYD
+</div>
+
+<button class="add">
++
+</button>
+
+</div>
+
+</div>
+
+</div>
+
 
 </div>
 
 </section>
 
 
-<!-- REVIEWS -->
+<!-- =========================
+     REVIEWS
+========================= -->
 
 <section id="reviews">
 
-<div class="container">
-
 <div class="section-head">
 
-<div class="section-title">
-<small>COMMUNITY</small>
-<h2>آراء العملاء</h2>
-<p>تجارب من مجتمع LIBYA FLEX</p>
+<div>
+
+<div class="section-label">
+OUR COMMUNITY
+</div>
+
+<h2>
+ماذا يقول عملاؤنا؟
+</h2>
+
+<p>
+تجارب من مجتمع LIBYA FLEX.
+</p>
+
 </div>
 
 </div>
@@ -1689,21 +2268,36 @@ LF
 
 <div class="reviews">
 
+
 <div class="review">
 
-<div class="stars">★★★★★</div>
+<div class="stars">
+★★★★★
+</div>
 
 <p>
-جودة ممتازة والتوصيل كان سريع جداً.
-الخامة أفضل مما توقعت.
+الجودة ممتازة والتصميم شكله فخم جداً.
+التوصيل كان سريع والتجربة كلها ممتازة.
 </p>
 
-<div class="review-author">
-<div class="avatar">م</div>
-<div>
-<strong>محمد</strong><br>
-<small>عميل موثوق</small>
+<div class="reviewer">
+
+<div class="avatar">
+م
 </div>
+
+<div>
+
+<strong>
+محمد
+</strong>
+
+<span>
+Verified Customer
+</span>
+
+</div>
+
 </div>
 
 </div>
@@ -1711,19 +2305,33 @@ LF
 
 <div class="review">
 
-<div class="stars">★★★★★</div>
+<div class="stars">
+★★★★★
+</div>
 
 <p>
-التصميم والخامة ممتازين.
+الخامة ممتازة والمقاس جاء مضبوط.
 أكيد بنطلب مرة ثانية.
 </p>
 
-<div class="review-author">
-<div class="avatar">أ</div>
-<div>
-<strong>أحمد</strong><br>
-<small>عميل موثوق</small>
+<div class="reviewer">
+
+<div class="avatar">
+أ
 </div>
+
+<div>
+
+<strong>
+أحمد
+</strong>
+
+<span>
+Verified Customer
+</span>
+
+</div>
+
 </div>
 
 </div>
@@ -1731,48 +2339,62 @@ LF
 
 <div class="review">
 
-<div class="stars">★★★★★</div>
+<div class="stars">
+★★★★★
+</div>
 
 <p>
-أفضل شيء عجبني هو تنوع المقاسات
-والتصاميم والجودة.
+أكثر شيء عجبني هو شكل الموقع والمنتجات.
+تحس إنك تشتري من براند حقيقي.
 </p>
 
-<div class="review-author">
-<div class="avatar">ع</div>
+<div class="reviewer">
+
+<div class="avatar">
+ع
+</div>
+
 <div>
-<strong>عمر</strong><br>
-<small>عميل موثوق</small>
-</div>
-</div>
+
+<strong>
+عمر
+</strong>
+
+<span>
+Verified Customer
+</span>
 
 </div>
 
 </div>
+
+</div>
+
 
 </div>
 
 </section>
 
 
-<!-- NEWSLETTER -->
+<!-- =========================
+     NEWSLETTER
+========================= -->
 
 <section class="newsletter">
 
-<div class="container">
-
-<h2>ابقَ في FLEX</h2>
+<h2>
+Stay in the Game.
+</h2>
 
 <p>
-اشترك للحصول على أخبار المنتجات والعروض الجديدة.
+اشترك للحصول على المنتجات الجديدة والعروض الخاصة.
 </p>
 
-<form class="newsletter-form" onsubmit="subscribe(event)">
+<form class="newsletter-form">
 
 <input
 type="email"
 placeholder="البريد الإلكتروني"
-required
 >
 
 <button type="submit">
@@ -1781,18 +2403,19 @@ required
 
 </form>
 
-</div>
-
 </section>
 
 </main>
 
 
-<!-- FOOTER -->
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer id="contact">
 
 <div class="footer-grid">
+
 
 <div>
 
@@ -1801,9 +2424,8 @@ LIBYA <span>FLEX</span>
 </div>
 
 <p class="footer-about">
-علامة رياضية ليبية تجمع بين الأداء،
-الجودة والتصميم العصري.
-مصممة للرياضيين وعشاق كرة القدم في ليبيا.
+علامة رياضية ليبية تجمع بين الجودة،
+الأداء والتصميم العصري لعشاق كرة القدم.
 </p>
 
 </div>
@@ -1811,13 +2433,28 @@ LIBYA <span>FLEX</span>
 
 <div>
 
-<h3>المتجر</h3>
+<h3>
+المتجر
+</h3>
 
 <ul>
-<li>جميع المنتجات</li>
-<li>الجديد</li>
-<li>الأكثر مبيعاً</li>
-<li>العروض</li>
+
+<li>
+جميع المنتجات
+</li>
+
+<li>
+الجديد
+</li>
+
+<li>
+الأكثر مبيعاً
+</li>
+
+<li>
+العروض
+</li>
+
 </ul>
 
 </div>
@@ -1825,13 +2462,28 @@ LIBYA <span>FLEX</span>
 
 <div>
 
-<h3>خدمة العملاء</h3>
+<h3>
+خدمة العملاء
+</h3>
 
 <ul>
-<li>تواصل معنا</li>
-<li>دليل المقاسات</li>
-<li>الشحن والتوصيل</li>
-<li>الإرجاع والاستبدال</li>
+
+<li>
+تواصل معنا
+</li>
+
+<li>
+دليل المقاسات
+</li>
+
+<li>
+الشحن والتوصيل
+</li>
+
+<li>
+الإرجاع والاستبدال
+</li>
+
 </ul>
 
 </div>
@@ -1839,69 +2491,70 @@ LIBYA <span>FLEX</span>
 
 <div>
 
-<h3>تابعنا</h3>
+<h3>
+تابعنا
+</h3>
 
 <ul>
-<li>Instagram</li>
-<li>Facebook</li>
-<li>TikTok</li>
-<li>WhatsApp</li>
+
+<li>
+Instagram
+</li>
+
+<li>
+Facebook
+</li>
+
+<li>
+TikTok
+</li>
+
+<li>
+WhatsApp
+</li>
+
 </ul>
 
 </div>
+
 
 </div>
 
 
 <div class="copyright">
+
 © 2026 LIBYA FLEX — جميع الحقوق محفوظة
+
 </div>
 
 </footer>
 
 
-<!-- SEARCH -->
-
-<div class="search-panel" id="searchPanel">
-
-<div class="search-box">
-
-<input
-id="searchInput"
-type="text"
-placeholder="ابحث عن منتج..."
->
-
-<button class="close-search" onclick="closeSearch()">
-إغلاق
-</button>
-
-</div>
-
-</div>
-
-
 <!-- CART -->
+
+<div class="overlay" id="overlay"></div>
 
 <div class="cart-panel" id="cartPanel">
 
 <div class="cart-header">
 
-<h2>سلة المشتريات</h2>
+<h2>
+سلة التسوق
+</h2>
 
-<button class="close-cart" onclick="closeCart()">
+<button class="close-cart" id="closeCart">
 ×
 </button>
 
 </div>
 
-<div id="cartItems" class="cart-empty">
+<div class="cart-empty">
 
-<div class="cart-empty-icon">🛒</div>
+🛒
 
-<p>
-السلة فارغة حالياً
-</p>
+<br><br>
+
+السلة فارغة حالياً.
 
 </div>
 
@@ -1910,234 +2563,98 @@ placeholder="ابحث عن منتج..."
 
 <script>
 
-let cartCount = 0;
+/* =========================
+   CART
+========================= */
 
-let cartItems = [];
+const cartBtn =
+document.getElementById("cartBtn");
 
+const cartPanel =
+document.getElementById("cartPanel");
 
-/* SEARCH */
+const closeCart =
+document.getElementById("closeCart");
 
-function openSearch(){
+const overlay =
+document.getElementById("overlay");
 
-    document
-    .getElementById("searchPanel")
-    .classList
-    .add("active");
+const cartCount =
+document.getElementById("cartCount");
 
-    setTimeout(function(){
-
-        document
-        .getElementById("searchInput")
-        .focus();
-
-    },100);
-
-}
+let count = 0;
 
 
-function closeSearch(){
+cartBtn.addEventListener("click",()=>{
 
-    document
-    .getElementById("searchPanel")
-    .classList
-    .remove("active");
+cartPanel.classList.add("active");
 
-}
+overlay.classList.add("active");
 
-
-/* CART */
-
-function openCart(){
-
-    document
-    .getElementById("cartPanel")
-    .classList
-    .add("active");
-
-}
+});
 
 
-function closeCart(){
+closeCart.addEventListener("click",()=>{
 
-    document
-    .getElementById("cartPanel")
-    .classList
-    .remove("active");
+cartPanel.classList.remove("active");
 
-}
+overlay.classList.remove("active");
+
+});
+
+
+overlay.addEventListener("click",()=>{
+
+cartPanel.classList.remove("active");
+
+overlay.classList.remove("active");
+
+});
 
 
 /* ADD TO CART */
 
-function addCart(name,price){
+document.querySelectorAll(".add").forEach(button=>{
 
-    cartCount++;
+button.addEventListener("click",()=>{
 
-    cartItems.push({
-        name:name,
-        price:price
-    });
+count++;
 
-    document
-    .getElementById("cartCount")
-    .textContent = cartCount;
+cartCount.textContent=count;
 
-    updateCart();
+button.innerHTML="✓";
 
-    openCart();
+button.style.background="#d6c09a";
 
-}
+button.style.color="#080808";
 
+setTimeout(()=>{
 
-function updateCart(){
+button.innerHTML="+";
 
-    const box =
-    document.getElementById("cartItems");
+button.style.background="";
 
-    if(cartItems.length === 0){
+button.style.color="";
 
-        box.innerHTML = `
-        <div class="cart-empty">
-        <div class="cart-empty-icon">🛒</div>
-        <p>السلة فارغة حالياً</p>
-        </div>
-        `;
+},1000);
 
-        return;
-    }
+});
 
-
-    let html = "";
-
-    cartItems.forEach(function(item,index){
-
-        html += `
-
-        <div style="
-        padding:18px 0;
-        border-bottom:1px solid rgba(255,255,255,.08);
-        display:flex;
-        justify-content:space-between;
-        gap:10px;
-        ">
-
-        <div>
-
-        <strong style="font-size:13px">
-        ${item.name}
-        </strong>
-
-        <div style="
-        color:#16d9e3;
-        margin-top:5px;
-        font-weight:800;
-        font-size:13px;
-        ">
-        ${item.price} LYD
-        </div>
-
-        </div>
-
-        <button
-        onclick="removeCart(${index})"
-        style="
-        background:none;
-        border:0;
-        color:#777;
-        font-size:18px;
-        "
-        >
-        ×
-        </button>
-
-        </div>
-
-        `;
-
-    });
-
-
-    html += `
-
-    <div style="
-    margin-top:25px;
-    display:flex;
-    justify-content:space-between;
-    font-weight:900;
-    ">
-
-    <span>عدد المنتجات</span>
-
-    <span style="color:#16d9e3">
-    ${cartItems.length}
-    </span>
-
-    </div>
-
-    `;
-
-    box.innerHTML = html;
-
-}
-
-
-function removeCart(index){
-
-    cartItems.splice(index,1);
-
-    cartCount--;
-
-    document
-    .getElementById("cartCount")
-    .textContent = cartCount;
-
-    updateCart();
-
-}
-
-
-/* WISHLIST */
-
-function toggleWish(button){
-
-    if(button.textContent.trim() === "♡"){
-
-        button.textContent = "♥";
-        button.style.color = "#16d9e3";
-
-    }else{
-
-        button.textContent = "♡";
-        button.style.color = "white";
-
-    }
-
-}
+});
 
 
 /* NEWSLETTER */
 
-function subscribe(event){
+document
+.querySelector(".newsletter-form")
+.addEventListener("submit",(e)=>{
 
-    event.preventDefault();
+e.preventDefault();
 
-    alert("تم الاشتراك بنجاح في LIBYA FLEX ✓");
-
-}
-
-
-/* ESCAPE */
-
-document.addEventListener("keydown",function(event){
-
-    if(event.key === "Escape"){
-
-        closeSearch();
-        closeCart();
-
-    }
+alert("تم الاشتراك بنجاح في LIBYA FLEX ✦");
 
 });
+
 
 </script>
 
