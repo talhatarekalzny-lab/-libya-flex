@@ -2,12 +2,11 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>LIBYA FLEX | Admin Dashboard</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>LIBYA FLEX — Private Admin</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
 
 *{
     margin:0;
@@ -16,43 +15,31 @@
 }
 
 :root{
-    --black:#050607;
-    --dark:#0a0d10;
-    --panel:#0e1216;
-    --panel2:#11161b;
-    --line:rgba(255,255,255,.08);
-
-    --champagne:#e8dcc5;
-    --champagne2:#cbb990;
-
-    --cyan:#16d9e3;
-    --cyan2:#00aeb9;
-
-    --white:#f7f7f5;
-    --muted:#858d96;
-
-    --green:#35d07f;
-    --red:#ff5c67;
-    --orange:#f3a93b;
-}
-
-html{
-    scroll-behavior:smooth;
+    --bg:#050607;
+    --panel:#0b0e11;
+    --panel2:#101419;
+    --line:rgba(255,255,255,.075);
+    --gold:#e6d5b3;
+    --gold2:#bca47b;
+    --cyan:#15d9e3;
+    --white:#f5f3ee;
+    --muted:#7d858d;
+    --green:#35d083;
+    --red:#ff5964;
+    --orange:#f1a63b;
 }
 
 body{
-    font-family:'Cairo','Inter',Arial,sans-serif;
     background:
-        radial-gradient(circle at 80% 0%,rgba(22,217,227,.06),transparent 25%),
-        radial-gradient(circle at 10% 90%,rgba(232,220,197,.04),transparent 25%),
-        var(--black);
+    radial-gradient(circle at 15% 10%,rgba(230,213,179,.055),transparent 25%),
+    radial-gradient(circle at 90% 70%,rgba(21,217,227,.045),transparent 25%),
+    var(--bg);
     color:var(--white);
+    font-family:Cairo,Arial,sans-serif;
     min-height:100vh;
 }
 
-button,
-input,
-select{
+button,input,select{
     font-family:inherit;
 }
 
@@ -60,485 +47,498 @@ button{
     cursor:pointer;
 }
 
-a{
-    text-decoration:none;
-    color:inherit;
+.hidden{
+    display:none!important;
 }
 
-/* =========================
-   LAYOUT
-========================= */
+/* LOGIN */
+
+.login{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.login-box{
+    width:100%;
+    max-width:430px;
+    padding:42px;
+    border:1px solid var(--line);
+    border-radius:25px;
+    background:
+    linear-gradient(145deg,
+    rgba(255,255,255,.045),
+    rgba(255,255,255,.012));
+    box-shadow:0 30px 100px rgba(0,0,0,.55);
+    text-align:center;
+}
+
+.login-logo{
+    font-family:Georgia,serif;
+    font-size:42px;
+    letter-spacing:4px;
+    color:var(--gold);
+}
+
+.login-sub{
+    color:#777;
+    font-size:10px;
+    letter-spacing:4px;
+    margin-bottom:35px;
+}
+
+.login-box h2{
+    font-size:23px;
+    margin-bottom:7px;
+}
+
+.login-box p{
+    color:var(--muted);
+    font-size:12px;
+    margin-bottom:25px;
+}
+
+.field{
+    text-align:right;
+    margin-bottom:15px;
+}
+
+.field label{
+    display:block;
+    color:#9da4aa;
+    font-size:11px;
+    margin-bottom:7px;
+}
+
+.field input,
+.field select,
+.field textarea{
+    width:100%;
+    background:#07090b;
+    border:1px solid var(--line);
+    color:white;
+    border-radius:12px;
+    padding:13px;
+    outline:none;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+    border-color:rgba(21,217,227,.45);
+}
+
+.login-btn{
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--gold),var(--gold2));
+    color:#090909;
+    font-weight:800;
+    margin-top:8px;
+}
+
+.login-note{
+    color:#555;
+    font-size:9px;
+    margin-top:20px;
+}
+
+/* APP */
 
 .app{
-    display:flex;
     min-height:100vh;
 }
 
-/* =========================
-   SIDEBAR
-========================= */
-
 .sidebar{
-    width:265px;
-    background:
-        linear-gradient(180deg,#080a0c,#0b0f13);
-    border-left:1px solid var(--line);
     position:fixed;
     right:0;
     top:0;
     bottom:0;
+    width:270px;
+    background:rgba(8,10,12,.96);
+    backdrop-filter:blur(20px);
+    border-left:1px solid var(--line);
+    padding:24px 17px;
     z-index:50;
-    padding:25px 18px;
     display:flex;
     flex-direction:column;
 }
 
 .brand{
-    padding:10px 12px 30px;
+    padding:8px 12px 25px;
     border-bottom:1px solid var(--line);
     margin-bottom:20px;
 }
 
-.brand-logo{
+.brand-main{
     font-family:Georgia,serif;
-    font-size:34px;
-    font-weight:bold;
+    color:var(--gold);
+    font-size:32px;
     letter-spacing:3px;
-    color:var(--champagne);
 }
 
-.brand-name{
-    font-size:12px;
-    letter-spacing:5px;
-    color:#aaa;
-    margin-top:-4px;
+.brand-small{
+    color:#666;
+    font-size:9px;
+    letter-spacing:4px;
 }
 
 .brand-line{
+    width:65px;
     height:1px;
-    width:75px;
-    background:var(--champagne);
-    margin-top:12px;
+    background:var(--gold);
+    margin-top:10px;
 }
 
-/* NAV */
-
-.nav-title{
-    color:#59616a;
-    font-size:10px;
-    font-weight:800;
+.nav-label{
+    color:#4f565c;
+    font-size:9px;
     letter-spacing:2px;
-    padding:0 13px;
-    margin:12px 0 8px;
+    margin:13px 12px 7px;
 }
 
-.nav-item{
-    display:flex;
-    align-items:center;
-    gap:13px;
-    padding:13px 14px;
-    border-radius:12px;
-    color:#8e969e;
-    margin-bottom:5px;
-    transition:.25s;
-    font-size:14px;
-    font-weight:600;
-}
-
-.nav-item:hover{
-    background:rgba(255,255,255,.04);
-    color:white;
-}
-
-.nav-item.active{
-    background:
-        linear-gradient(135deg,
-        rgba(232,220,197,.14),
-        rgba(22,217,227,.06));
-    color:var(--champagne);
-    border:1px solid rgba(232,220,197,.10);
-    box-shadow:0 10px 35px rgba(0,0,0,.2);
-}
-
-.nav-icon{
-    width:24px;
-    text-align:center;
-    font-size:18px;
-}
-
-.sidebar-bottom{
-    margin-top:auto;
-    border-top:1px solid var(--line);
-    padding-top:15px;
-}
-
-.admin-profile{
+.nav{
     display:flex;
     align-items:center;
     gap:12px;
-    padding:10px;
-}
-
-.avatar{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    background:
-        linear-gradient(135deg,var(--champagne),#7c6e55);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#111;
-    font-weight:900;
-}
-
-.admin-info strong{
-    display:block;
-    font-size:13px;
-}
-
-.admin-info span{
-    font-size:11px;
-    color:var(--muted);
-}
-
-/* =========================
-   MAIN
-========================= */
-
-.main{
-    width:calc(100% - 265px);
-    margin-right:265px;
-    padding:25px 32px 50px;
-}
-
-/* TOPBAR */
-
-.topbar{
-    height:72px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-    margin-bottom:25px;
-}
-
-.page-title h1{
-    font-size:25px;
-    font-weight:800;
-}
-
-.page-title p{
-    color:var(--muted);
+    padding:12px 13px;
+    border-radius:12px;
+    color:#858d94;
     font-size:12px;
-    margin-top:3px;
+    margin-bottom:4px;
+    transition:.2s;
+    border:1px solid transparent;
 }
 
-.top-actions{
+.nav:hover{
+    color:white;
+    background:rgba(255,255,255,.035);
+}
+
+.nav.active{
+    color:var(--gold);
+    background:
+    linear-gradient(135deg,
+    rgba(230,213,179,.11),
+    rgba(21,217,227,.035));
+    border-color:rgba(230,213,179,.09);
+}
+
+.nav-icon{
+    width:23px;
+    text-align:center;
+    font-size:16px;
+}
+
+.admin-bottom{
+    margin-top:auto;
+    padding-top:15px;
+    border-top:1px solid var(--line);
+}
+
+.admin{
     display:flex;
     align-items:center;
     gap:10px;
 }
 
+.avatar{
+    width:39px;
+    height:39px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--gold),#756344);
+    color:#080808;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
+    font-size:11px;
+}
+
+.admin strong{
+    display:block;
+    font-size:11px;
+}
+
+.admin span{
+    color:#666;
+    font-size:9px;
+}
+
+/* MAIN */
+
+.main{
+    margin-right:270px;
+    padding:25px 32px 50px;
+}
+
+.topbar{
+    height:65px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:25px;
+}
+
+.title h1{
+    font-size:24px;
+}
+
+.title p{
+    color:#697178;
+    font-size:10px;
+}
+
+.top-actions{
+    display:flex;
+    gap:9px;
+    align-items:center;
+}
+
 .search{
-    width:250px;
-    height:44px;
-    background:rgba(255,255,255,.035);
+    width:240px;
+    height:42px;
+    background:#0b0f12;
     border:1px solid var(--line);
-    border-radius:12px;
+    border-radius:11px;
     color:white;
-    padding:0 15px;
+    padding:0 13px;
     outline:none;
 }
 
-.search:focus{
-    border-color:rgba(22,217,227,.5);
-}
-
-.icon-button{
-    width:44px;
-    height:44px;
+.icon{
+    width:42px;
+    height:42px;
     border:1px solid var(--line);
-    background:rgba(255,255,255,.035);
-    color:#ccc;
-    border-radius:12px;
-    font-size:17px;
+    background:#0b0f12;
+    color:#aaa;
+    border-radius:11px;
 }
 
-.icon-button:hover{
-    color:var(--champagne);
-    border-color:rgba(232,220,197,.3);
-}
+/* WELCOME */
 
-/* =========================
-   HERO ADMIN
-========================= */
-
-.dashboard-hero{
-    position:relative;
-    overflow:hidden;
+.welcome{
     min-height:190px;
+    border:1px solid var(--line);
     border-radius:22px;
     padding:32px;
-    margin-bottom:24px;
-
+    margin-bottom:20px;
+    position:relative;
+    overflow:hidden;
     background:
-        radial-gradient(circle at 80% 50%,rgba(232,220,197,.12),transparent 30%),
-        radial-gradient(circle at 15% 80%,rgba(22,217,227,.10),transparent 30%),
-        linear-gradient(135deg,#11161b,#090b0d);
-
-    border:1px solid var(--line);
+    radial-gradient(circle at 80% 50%,rgba(230,213,179,.11),transparent 28%),
+    radial-gradient(circle at 15% 90%,rgba(21,217,227,.08),transparent 30%),
+    linear-gradient(135deg,#101419,#080a0c);
 }
 
-.dashboard-hero:after{
-    content:"LF";
+.welcome:after{
+    content:"LIBYA";
     position:absolute;
-    left:30px;
-    top:-50px;
+    left:-20px;
+    top:-45px;
     font-family:Georgia,serif;
-    font-size:220px;
+    font-size:170px;
     font-weight:bold;
-    color:rgba(232,220,197,.025);
-    pointer-events:none;
+    color:rgba(255,255,255,.018);
 }
 
-.hero-content{
+.welcome-content{
     position:relative;
     z-index:2;
 }
 
-.hero-kicker{
+.kicker{
     color:var(--cyan);
-    font-size:11px;
+    font-size:9px;
     letter-spacing:3px;
-    font-weight:800;
-    margin-bottom:7px;
+    font-weight:bold;
 }
 
-.dashboard-hero h2{
+.welcome h2{
     font-size:28px;
-    margin-bottom:8px;
+    margin:7px 0;
 }
 
-.dashboard-hero p{
-    color:#8f969d;
-    font-size:13px;
-    max-width:550px;
+.welcome p{
+    color:#858d94;
+    font-size:12px;
 }
 
 .date{
-    display:inline-flex;
-    margin-top:20px;
-    padding:7px 13px;
+    display:inline-block;
+    margin-top:18px;
+    padding:6px 12px;
     border:1px solid var(--line);
     border-radius:30px;
-    color:#aaa;
-    font-size:11px;
+    color:#777;
+    font-size:9px;
 }
 
-/* =========================
-   STATS
-========================= */
+/* STATS */
 
 .stats{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:16px;
-    margin-bottom:24px;
+    gap:14px;
+    margin-bottom:20px;
 }
 
 .stat{
     background:
-        linear-gradient(145deg,
-        rgba(255,255,255,.045),
-        rgba(255,255,255,.018));
-
+    linear-gradient(145deg,
+    rgba(255,255,255,.04),
+    rgba(255,255,255,.012));
     border:1px solid var(--line);
-    border-radius:18px;
-    padding:20px;
-    position:relative;
-    overflow:hidden;
+    border-radius:17px;
+    padding:18px;
 }
 
-.stat:before{
-    content:"";
-    position:absolute;
-    width:100px;
-    height:100px;
-    border-radius:50%;
-    background:var(--cyan);
-    opacity:.035;
-    left:-30px;
-    bottom:-35px;
-}
-
-.stat-top{
+.stat-head{
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    margin-bottom:18px;
+    align-items:center;
+    margin-bottom:15px;
 }
 
 .stat-icon{
-    width:40px;
-    height:40px;
-    border-radius:12px;
+    width:38px;
+    height:38px;
     display:flex;
     align-items:center;
     justify-content:center;
-    background:rgba(255,255,255,.04);
-    border:1px solid var(--line);
+    border-radius:11px;
+    background:rgba(255,255,255,.035);
 }
 
-.stat-change{
-    font-size:10px;
+.change{
     color:var(--green);
-    background:rgba(53,208,127,.08);
-    padding:5px 8px;
-    border-radius:20px;
+    font-size:9px;
 }
 
 .stat h3{
-    font-size:27px;
-    font-weight:800;
+    font-size:23px;
 }
 
 .stat p{
-    color:var(--muted);
-    font-size:11px;
-    margin-top:2px;
+    color:#697178;
+    font-size:10px;
 }
 
-/* =========================
-   GRID
-========================= */
+/* GRID */
 
-.content-grid{
+.grid{
     display:grid;
-    grid-template-columns:1.45fr .75fr;
-    gap:20px;
-    margin-bottom:20px;
+    grid-template-columns:1.5fr .75fr;
+    gap:18px;
+    margin-bottom:18px;
 }
 
 .card{
     background:
-        linear-gradient(145deg,
-        rgba(255,255,255,.035),
-        rgba(255,255,255,.012));
-
+    linear-gradient(145deg,
+    rgba(255,255,255,.035),
+    rgba(255,255,255,.012));
     border:1px solid var(--line);
     border-radius:18px;
     overflow:hidden;
 }
 
 .card-head{
-    padding:20px 22px;
-    border-bottom:1px solid var(--line);
+    padding:18px 20px;
     display:flex;
-    align-items:center;
     justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid var(--line);
 }
 
 .card-head h3{
-    font-size:15px;
+    font-size:14px;
 }
 
-.card-head p{
-    font-size:10px;
-    color:var(--muted);
-    margin-top:3px;
+.card-head span{
+    color:#666f76;
+    font-size:9px;
 }
 
-.view-all{
-    color:var(--cyan);
-    font-size:11px;
-}
+/* CHART */
 
-/* =========================
-   SALES CHART
-========================= */
-
-.chart-area{
+.chart{
+    height:270px;
     padding:25px;
-    height:280px;
     display:flex;
     align-items:end;
     gap:12px;
 }
 
-.chart-column{
+.column{
     flex:1;
     height:100%;
     display:flex;
     flex-direction:column;
     justify-content:end;
     align-items:center;
-    gap:9px;
+    gap:8px;
 }
 
 .bar{
     width:100%;
-    max-width:42px;
-    border-radius:8px 8px 3px 3px;
-    background:
-        linear-gradient(180deg,
-        var(--cyan),
-        rgba(22,217,227,.18));
-
-    box-shadow:0 0 20px rgba(22,217,227,.08);
-    min-height:15px;
+    max-width:40px;
+    min-height:12px;
+    border-radius:8px 8px 2px 2px;
+    background:linear-gradient(180deg,var(--cyan),rgba(21,217,227,.12));
     transition:.3s;
 }
 
 .bar:hover{
+    transform:translateY(-5px);
     filter:brightness(1.25);
-    transform:translateY(-4px);
 }
 
-.chart-label{
-    font-size:9px;
-    color:#707880;
+.day{
+    color:#626a71;
+    font-size:8px;
 }
 
-/* =========================
-   QUICK ACTIONS
-========================= */
+/* QUICK */
 
-.quick-actions{
-    padding:20px;
+.quick-grid{
+    padding:18px;
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:10px;
+    gap:9px;
 }
 
 .quick{
     border:1px solid var(--line);
-    background:rgba(255,255,255,.025);
+    background:#0b0f12;
     color:#ddd;
-    padding:16px 12px;
-    border-radius:13px;
-    text-align:center;
-    transition:.25s;
+    padding:15px 8px;
+    border-radius:12px;
+    transition:.2s;
 }
 
 .quick:hover{
-    border-color:rgba(232,220,197,.25);
+    border-color:rgba(230,213,179,.3);
     transform:translateY(-2px);
 }
 
-.quick span{
+.quick b{
     display:block;
-    font-size:21px;
-    margin-bottom:6px;
+    color:var(--gold);
+    font-size:18px;
+    margin-bottom:5px;
 }
 
 .quick small{
-    color:#777;
+    color:#747c83;
+    font-size:9px;
 }
 
-/* =========================
-   TABLE
-========================= */
+/* TABLE */
 
 .table-wrap{
     overflow-x:auto;
@@ -550,134 +550,74 @@ table{
 }
 
 th{
-    color:#666f77;
-    font-size:10px;
-    font-weight:700;
+    color:#555e65;
+    font-size:9px;
     text-align:right;
-    padding:14px 20px;
+    padding:13px 18px;
     border-bottom:1px solid var(--line);
 }
 
 td{
-    padding:16px 20px;
-    border-bottom:1px solid rgba(255,255,255,.045);
-    font-size:12px;
-    color:#c5c9cd;
+    padding:14px 18px;
+    color:#b9bec3;
+    font-size:10px;
+    border-bottom:1px solid rgba(255,255,255,.04);
 }
 
 tr:last-child td{
     border-bottom:0;
 }
 
-.product-cell{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.product-thumb{
-    width:42px;
-    height:42px;
-    border-radius:10px;
-    background:
-        linear-gradient(135deg,#242a30,#111417);
-    border:1px solid var(--line);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:19px;
-}
-
-.product-name strong{
-    display:block;
-    color:#eee;
-    font-size:12px;
-}
-
-.product-name span{
-    color:#666f77;
-    font-size:9px;
-}
-
 .status{
-    display:inline-flex;
-    align-items:center;
-    gap:5px;
     padding:5px 9px;
     border-radius:20px;
-    font-size:9px;
-    font-weight:700;
+    font-size:8px;
 }
 
-.status:before{
-    content:"";
-    width:5px;
-    height:5px;
-    border-radius:50%;
-}
-
-.status.success{
-    background:rgba(53,208,127,.08);
+.done{
     color:var(--green);
+    background:rgba(53,208,131,.08);
 }
 
-.status.success:before{
-    background:var(--green);
-}
-
-.status.pending{
-    background:rgba(243,169,59,.08);
+.pending{
     color:var(--orange);
+    background:rgba(241,166,59,.08);
 }
 
-.status.pending:before{
-    background:var(--orange);
-}
-
-.status.cancel{
-    background:rgba(255,92,103,.08);
+.cancelled{
     color:var(--red);
+    background:rgba(255,89,100,.08);
 }
 
-.status.cancel:before{
-    background:var(--red);
-}
+/* LOWER */
 
-/* =========================
-   LOWER GRID
-========================= */
-
-.lower-grid{
+.lower{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:20px;
+    gap:18px;
 }
 
-/* =========================
-   STOCK
-========================= */
-
-.stock-list{
-    padding:8px 20px;
+.stock{
+    padding:8px 18px;
 }
 
-.stock-item{
+.stock-row{
     display:flex;
     align-items:center;
-    gap:12px;
-    padding:14px 0;
+    gap:11px;
+    padding:13px 0;
     border-bottom:1px solid rgba(255,255,255,.04);
 }
 
-.stock-item:last-child{
+.stock-row:last-child{
     border-bottom:0;
 }
 
-.stock-image{
-    width:45px;
-    height:45px;
+.stock-img{
+    width:42px;
+    height:42px;
     border-radius:10px;
-    background:#161b20;
+    background:#151a1f;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -688,97 +628,63 @@ tr:last-child td{
 }
 
 .stock-info strong{
-    font-size:11px;
     display:block;
+    font-size:10px;
 }
 
 .stock-info span{
-    color:#69727a;
-    font-size:9px;
-}
-
-.stock-number{
-    text-align:left;
-}
-
-.stock-number strong{
-    display:block;
-    font-size:13px;
-}
-
-.stock-number span{
+    color:#626a70;
     font-size:8px;
-    color:#777;
 }
 
 .progress{
-    height:4px;
-    background:#20262b;
-    border-radius:10px;
-    margin-top:7px;
-    overflow:hidden;
+    height:3px;
+    background:#20252a;
+    border-radius:20px;
+    margin-top:6px;
 }
 
-.progress-bar{
+.progress div{
     height:100%;
-    border-radius:10px;
-    background:linear-gradient(90deg,var(--cyan),var(--champagne));
+    border-radius:20px;
+    background:linear-gradient(90deg,var(--cyan),var(--gold));
 }
 
-/* =========================
-   NOTIFICATIONS
-========================= */
+/* MOBILE */
 
-.notifications{
-    padding:8px 20px;
-}
-
-.notification{
-    display:flex;
-    gap:12px;
-    padding:15px 0;
-    border-bottom:1px solid rgba(255,255,255,.04);
-}
-
-.notification:last-child{
-    border-bottom:0;
-}
-
-.notification-icon{
-    width:36px;
-    height:36px;
-    flex-shrink:0;
-    border-radius:10px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:rgba(22,217,227,.07);
-    color:var(--cyan);
-}
-
-.notification strong{
-    font-size:11px;
-    display:block;
-    margin-bottom:3px;
-}
-
-.notification p{
-    color:#6e777f;
-    font-size:9px;
-    line-height:1.6;
-}
-
-/* =========================
-   MOBILE HEADER
-========================= */
-
-.mobile-header{
+.mobile{
     display:none;
+    position:fixed;
+    top:0;
+    right:0;
+    left:0;
+    height:60px;
+    background:rgba(5,6,7,.94);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid var(--line);
+    z-index:40;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 14px;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+.mobile-logo{
+    color:var(--gold);
+    font-family:Georgia,serif;
+    font-size:21px;
+    letter-spacing:2px;
+}
+
+.menu{
+    width:40px;
+    height:40px;
+    border-radius:10px;
+    border:1px solid var(--line);
+    background:#0d1115;
+    color:white;
+}
+
+/* RESPONSIVE */
 
 @media(max-width:1100px){
 
@@ -786,11 +692,8 @@ tr:last-child td{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .content-grid{
-        grid-template-columns:1fr;
-    }
-
-    .lower-grid{
+    .grid,
+    .lower{
         grid-template-columns:1fr;
     }
 }
@@ -799,52 +702,20 @@ tr:last-child td{
 
     .sidebar{
         transform:translateX(100%);
-        transition:.3s;
+        transition:.25s;
     }
 
     .sidebar.open{
         transform:translateX(0);
     }
 
-    .main{
-        width:100%;
-        margin-right:0;
-        padding:15px;
-        padding-top:75px;
-    }
-
-    .mobile-header{
+    .mobile{
         display:flex;
-        position:fixed;
-        top:0;
-        right:0;
-        left:0;
-        height:62px;
-        z-index:40;
-        align-items:center;
-        justify-content:space-between;
-        padding:0 15px;
-
-        background:rgba(5,6,7,.92);
-        backdrop-filter:blur(15px);
-        border-bottom:1px solid var(--line);
     }
 
-    .mobile-logo{
-        font-family:Georgia,serif;
-        color:var(--champagne);
-        font-size:22px;
-        letter-spacing:2px;
-    }
-
-    .menu-button{
-        width:40px;
-        height:40px;
-        border-radius:10px;
-        border:1px solid var(--line);
-        background:#101419;
-        color:white;
-        font-size:19px;
+    .main{
+        margin-right:0;
+        padding:80px 14px 30px;
     }
 
     .topbar{
@@ -855,84 +726,46 @@ tr:last-child td{
         display:none;
     }
 
-    .dashboard-hero{
+    .welcome{
         padding:25px;
     }
 
-    .dashboard-hero h2{
-        font-size:23px;
-    }
-
-    .stats{
-        gap:10px;
-    }
-
-    .stat{
-        padding:15px;
-    }
-
-    .stat h3{
+    .welcome h2{
         font-size:22px;
     }
 
-    .stat-icon{
-        width:34px;
-        height:34px;
+    .stats{
+        gap:9px;
     }
 
-    .chart-area{
-        gap:6px;
-        padding:18px;
+    .stat{
+        padding:14px;
     }
 
-    th,
-    td{
-        padding:13px 12px;
-        white-space:nowrap;
+    .stat h3{
+        font-size:19px;
     }
 }
 
 @media(max-width:500px){
 
-    .page-title h1{
-        font-size:21px;
-    }
-
-    .page-title p{
-        font-size:10px;
-    }
-
-    .top-actions .icon-button{
-        width:39px;
-        height:39px;
-    }
-
     .stats{
         grid-template-columns:1fr 1fr;
     }
 
-    .stat p{
-        font-size:9px;
+    .top-actions .icon{
+        width:38px;
+        height:38px;
     }
 
-    .dashboard-hero{
-        min-height:180px;
-    }
-
-    .dashboard-hero h2{
-        font-size:21px;
-    }
-
-    .quick-actions{
-        padding:15px;
-    }
-
-    .card-head{
+    .chart{
+        height:220px;
+        gap:6px;
         padding:17px;
     }
 
-    .chart-area{
-        height:230px;
+    .quick-grid{
+        padding:14px;
     }
 }
 </style>
@@ -940,197 +773,265 @@ tr:last-child td{
 
 <body>
 
-<!-- MOBILE HEADER -->
+<!-- LOGIN -->
 
-<div class="mobile-header">
+<section class="login" id="login">
 
-    <button class="menu-button" onclick="toggleMenu()">
-        ☰
-    </button>
+<div class="login-box">
 
-    <div class="mobile-logo">
-        LIBYA FLEX
-    </div>
+<div class="login-logo">
+LF
+</div>
 
-    <button class="menu-button">
-        ◉
-    </button>
+<div class="login-sub">
+LIBYA FLEX PRIVATE ADMIN
+</div>
+
+<h2>
+تسجيل دخول الإدارة
+</h2>
+
+<p>
+هذه المنطقة خاصة بإدارة متجر LIBYA FLEX
+</p>
+
+<div class="field">
+<label>اسم المستخدم</label>
+<input id="username" type="text" placeholder="Admin">
+</div>
+
+<div class="field">
+<label>كلمة المرور</label>
+<input id="password" type="password" placeholder="••••••••">
+</div>
+
+<button class="login-btn" onclick="login()">
+دخول إلى لوحة التحكم
+</button>
+
+<div class="login-note">
+Private Management Area • LIBYA FLEX
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ADMIN APP -->
+
+<div class="app hidden" id="app">
+
+<!-- MOBILE -->
+
+<div class="mobile">
+
+<button class="menu" onclick="toggleSidebar()">
+☰
+</button>
+
+<div class="mobile-logo">
+LIBYA FLEX
+</div>
+
+<button class="menu">
+◉
+</button>
 
 </div>
 
 
-<div class="app">
-
-<!-- =========================
-     SIDEBAR
-========================= -->
+<!-- SIDEBAR -->
 
 <aside class="sidebar" id="sidebar">
 
-    <div class="brand">
+<div class="brand">
 
-        <div class="brand-logo">
-            LF
-        </div>
+<div class="brand-main">
+LF
+</div>
 
-        <div class="brand-name">
-            LIBYA FLEX
-        </div>
+<div class="brand-small">
+LIBYA FLEX
+</div>
 
-        <div class="brand-line"></div>
+<div class="brand-line"></div>
 
-    </div>
-
-
-    <div class="nav-title">
-        MAIN MENU
-    </div>
-
-    <a class="nav-item active" href="#">
-        <span class="nav-icon">⌂</span>
-        <span>لوحة التحكم</span>
-    </a>
-
-    <a class="nav-item" href="#">
-        <span class="nav-icon">◈</span>
-        <span>الطلبات</span>
-    </a>
-
-    <a class="nav-item" href="#">
-        <span class="nav-icon">▣</span>
-        <span>المنتجات</span>
-    </a>
-
-    <a class="nav-item" href="#">
-        <span class="nav-icon">♙</span>
-        <span>العملاء</span>
-    </a>
+</div>
 
 
-    <div class="nav-title">
-        STORE
-    </div>
+<div class="nav-label">
+OVERVIEW
+</div>
 
-    <a class="nav-item" href="#">
-        <span class="nav-icon">✦</span>
-        <span>المجموعات</span>
-    </a>
+<a class="nav active" href="#">
+<span class="nav-icon">⌂</span>
+لوحة التحكم
+</a>
 
-    <a class="nav-item" href="#">
-        <span class="nav-icon">%</span>
-        <span>العروض والكوبونات</span>
-    </a>
+<a class="nav" href="#">
+<span class="nav-icon">◈</span>
+الطلبات
+</a>
 
-    <a class="nav-item" href="#">
-        <span class="nav-icon">▤</span>
-        <span>المخزون</span>
-    </a>
+<a class="nav" href="#">
+<span class="nav-icon">▣</span>
+المنتجات
+</a>
 
-
-    <div class="nav-title">
-        SYSTEM
-    </div>
-
-    <a class="nav-item" href="#">
-        <span class="nav-icon">⚙</span>
-        <span>الإعدادات</span>
-    </a>
-
-    <a class="nav-item" href="#">
-        <span class="nav-icon">↗</span>
-        <span>فتح المتجر</span>
-    </a>
+<a class="nav" href="#">
+<span class="nav-icon">♙</span>
+العملاء
+</a>
 
 
-    <div class="sidebar-bottom">
+<div class="nav-label">
+STORE MANAGEMENT
+</div>
 
-        <div class="admin-profile">
+<a class="nav" href="#">
+<span class="nav-icon">✦</span>
+التصنيفات
+</a>
 
-            <div class="avatar">
-                LF
-            </div>
+<a class="nav" href="#">
+<span class="nav-icon">%</span>
+الكوبونات والعروض
+</a>
 
-            <div class="admin-info">
-                <strong>LIBYA FLEX</strong>
-                <span>Administrator</span>
-            </div>
+<a class="nav" href="#">
+<span class="nav-icon">▤</span>
+المخزون
+</a>
 
-        </div>
+<a class="nav" href="#">
+<span class="nav-icon">★</span>
+التقييمات
+</a>
 
-    </div>
+
+<div class="nav-label">
+WEBSITE
+</div>
+
+<a class="nav" href="#">
+<span class="nav-icon">⌘</span>
+الصفحة الرئيسية
+</a>
+
+<a class="nav" href="#">
+<span class="nav-icon">◉</span>
+البنرات
+</a>
+
+<a class="nav" href="#">
+<span class="nav-icon">A</span>
+النصوص والمحتوى
+</a>
+
+
+<div class="nav-label">
+SYSTEM
+</div>
+
+<a class="nav" href="#">
+<span class="nav-icon">⚙</span>
+إعدادات المتجر
+</a>
+
+<a class="nav" href="#">
+<span class="nav-icon">♙</span>
+صلاحيات المستخدمين
+</a>
+
+
+<div class="admin-bottom">
+
+<div class="admin">
+
+<div class="avatar">
+LF
+</div>
+
+<div>
+<strong>
+LIBYA FLEX
+</strong>
+
+<span>
+Super Administrator
+</span>
+</div>
+
+</div>
+
+</div>
 
 </aside>
 
 
-<!-- =========================
-     MAIN
-========================= -->
+<!-- MAIN -->
 
 <main class="main">
 
-
-<!-- TOPBAR -->
-
 <div class="topbar">
 
-    <div class="page-title">
+<div class="title">
 
-        <h1>
-            لوحة التحكم
-        </h1>
+<h1>
+لوحة التحكم
+</h1>
 
-        <p>
-            نظرة عامة على متجر LIBYA FLEX
-        </p>
+<p>
+مرحباً بك في مركز إدارة LIBYA FLEX
+</p>
 
-    </div>
+</div>
 
+<div class="top-actions">
 
-    <div class="top-actions">
+<input
+class="search"
+placeholder="بحث في لوحة التحكم..."
+>
 
-        <input
-            class="search"
-            type="search"
-            placeholder="بحث في لوحة التحكم..."
-        >
+<button class="icon">
+⌕
+</button>
 
-        <button class="icon-button">
-            ◌
-        </button>
+<button class="icon">
+♧
+</button>
 
-        <button class="icon-button">
-            ♡
-        </button>
-
-    </div>
+</div>
 
 </div>
 
 
-<!-- HERO -->
+<!-- WELCOME -->
 
-<section class="dashboard-hero">
+<section class="welcome">
 
-    <div class="hero-content">
+<div class="welcome-content">
 
-        <div class="hero-kicker">
-            LIBYA FLEX / ADMIN
-        </div>
+<div class="kicker">
+LIBYA FLEX / PRIVATE ADMIN
+</div>
 
-        <h2>
-            أهلاً بك في مركز التحكم
-        </h2>
+<h2>
+مركز التحكم الرئيسي
+</h2>
 
-        <p>
-            كل تفاصيل متجرك في مكان واحد — الطلبات، المنتجات،
-            المبيعات والمخزون.
-        </p>
+<p>
+تحكم في منتجاتك، طلباتك، عملائك، المبيعات،
+المخزون وكل تفاصيل المتجر من مكان واحد.
+</p>
 
-        <div class="date">
-            26 أكتوبر 2026 · Dashboard
-        </div>
+<div class="date">
+26 OCTOBER 2026
+</div>
 
-    </div>
+</div>
 
 </section>
 
@@ -1139,723 +1040,621 @@ tr:last-child td{
 
 <section class="stats">
 
+<div class="stat">
 
-    <div class="stat">
+<div class="stat-head">
 
-        <div class="stat-top">
+<div class="stat-icon">
+💰
+</div>
 
-            <div class="stat-icon">
-                💰
-            </div>
+<span class="change">
++18.4%
+</span>
 
-            <span class="stat-change">
-                +18.4%
-            </span>
+</div>
 
-        </div>
+<h3>
+24,850 LYD
+</h3>
 
-        <h3>
-            24,850 LYD
-        </h3>
+<p>
+إجمالي المبيعات
+</p>
 
-        <p>
-            إجمالي المبيعات
-        </p>
-
-    </div>
-
-
-    <div class="stat">
-
-        <div class="stat-top">
-
-            <div class="stat-icon">
-                🛍
-            </div>
-
-            <span class="stat-change">
-                +12.7%
-            </span>
-
-        </div>
-
-        <h3>
-            184
-        </h3>
-
-        <p>
-            إجمالي الطلبات
-        </p>
-
-    </div>
+</div>
 
 
-    <div class="stat">
+<div class="stat">
 
-        <div class="stat-top">
+<div class="stat-head">
 
-            <div class="stat-icon">
-                ♙
-            </div>
+<div class="stat-icon">
+🛍
+</div>
 
-            <span class="stat-change">
-                +9.3%
-            </span>
+<span class="change">
++12.7%
+</span>
 
-        </div>
+</div>
 
-        <h3>
-            1,284
-        </h3>
+<h3>
+184
+</h3>
 
-        <p>
-            العملاء
-        </p>
+<p>
+إجمالي الطلبات
+</p>
 
-    </div>
+</div>
 
 
-    <div class="stat">
+<div class="stat">
 
-        <div class="stat-top">
+<div class="stat-head">
 
-            <div class="stat-icon">
-                📦
-            </div>
+<div class="stat-icon">
+♙
+</div>
 
-            <span class="stat-change">
-                +5.8%
-            </span>
+<span class="change">
++9.3%
+</span>
 
-        </div>
+</div>
 
-        <h3>
-            96
-        </h3>
+<h3>
+1,284
+</h3>
 
-        <p>
-            المنتجات
-        </p>
+<p>
+العملاء
+</p>
 
-    </div>
+</div>
 
+
+<div class="stat">
+
+<div class="stat-head">
+
+<div class="stat-icon">
+📦
+</div>
+
+<span class="change">
++5.8%
+</span>
+
+</div>
+
+<h3>
+96
+</h3>
+
+<p>
+المنتجات
+</p>
+
+</div>
 
 </section>
 
 
-<!-- CHART + QUICK ACTIONS -->
+<!-- CHART + QUICK -->
 
-<section class="content-grid">
+<section class="grid">
 
+<div class="card">
 
-    <!-- SALES -->
+<div class="card-head">
 
-    <div class="card">
+<div>
 
-        <div class="card-head">
+<h3>
+المبيعات
+</h3>
 
-            <div>
-                <h3>
-                    أداء المبيعات
-                </h3>
+<span>
+آخر 7 أيام
+</span>
 
-                <p>
-                    آخر 7 أيام
-                </p>
-            </div>
+</div>
 
-            <a class="view-all" href="#">
-                التفاصيل ←
-            </a>
+<span>
+LYD
+</span>
 
-        </div>
-
-
-        <div class="chart-area">
-
-            <div class="chart-column">
-                <div class="bar" style="height:38%"></div>
-                <span class="chart-label">سبت</span>
-            </div>
-
-            <div class="chart-column">
-                <div class="bar" style="height:55%"></div>
-                <span class="chart-label">أحد</span>
-            </div>
-
-            <div class="chart-column">
-                <div class="bar" style="height:44%"></div>
-                <span class="chart-label">اثن</span>
-            </div>
-
-            <div class="chart-column">
-                <div class="bar" style="height:72%"></div>
-                <span class="chart-label">ثلا</span>
-            </div>
-
-            <div class="chart-column">
-                <div class="bar" style="height:61%"></div>
-                <span class="chart-label">أرب</span>
-            </div>
-
-            <div class="chart-column">
-                <div class="bar" style="height:86%"></div>
-                <span class="chart-label">خمي</span>
-            </div>
-
-            <div class="chart-column">
-                <div class="bar" style="height:96%"></div>
-                <span class="chart-label">جمع</span>
-            </div>
-
-        </div>
-
-    </div>
+</div>
 
 
-    <!-- QUICK -->
+<div class="chart">
 
-    <div class="card">
+<div class="column">
+<div class="bar" style="height:38%"></div>
+<span class="day">سبت</span>
+</div>
 
-        <div class="card-head">
+<div class="column">
+<div class="bar" style="height:53%"></div>
+<span class="day">أحد</span>
+</div>
 
-            <div>
-                <h3>
-                    إجراءات سريعة
-                </h3>
+<div class="column">
+<div class="bar" style="height:45%"></div>
+<span class="day">اثن</span>
+</div>
 
-                <p>
-                    إدارة المتجر
-                </p>
-            </div>
+<div class="column">
+<div class="bar" style="height:67%"></div>
+<span class="day">ثلا</span>
+</div>
 
-        </div>
+<div class="column">
+<div class="bar" style="height:60%"></div>
+<span class="day">أرب</span>
+</div>
+
+<div class="column">
+<div class="bar" style="height:84%"></div>
+<span class="day">خمي</span>
+</div>
+
+<div class="column">
+<div class="bar" style="height:96%"></div>
+<span class="day">جمع</span>
+</div>
+
+</div>
+
+</div>
 
 
-        <div class="quick-actions">
+<div class="card">
 
-            <button class="quick">
-                <span>＋</span>
-                <small>إضافة منتج</small>
-            </button>
+<div class="card-head">
 
-            <button class="quick">
-                <span>▣</span>
-                <small>الطلبات</small>
-            </button>
+<div>
 
-            <button class="quick">
-                <span>◈</span>
-                <small>المخزون</small>
-            </button>
+<h3>
+إجراءات سريعة
+</h3>
 
-            <button class="quick">
-                <span>%</span>
-                <small>كوبون جديد</small>
-            </button>
+<span>
+إدارة المتجر
+</span>
 
-            <button class="quick">
-                <span>🖼</span>
-                <small>تعديل البانر</small>
-            </button>
+</div>
 
-            <button class="quick">
-                <span>⚙</span>
-                <small>الإعدادات</small>
-            </button>
+</div>
 
-        </div>
 
-    </div>
+<div class="quick-grid">
+
+<button class="quick">
+<b>＋</b>
+<small>إضافة منتج</small>
+</button>
+
+<button class="quick">
+<b>▣</b>
+<small>الطلبات</small>
+</button>
+
+<button class="quick">
+<b>◈</b>
+<small>المخزون</small>
+</button>
+
+<button class="quick">
+<b>%</b>
+<small>كوبون</small>
+</button>
+
+<button class="quick">
+<b>◉</b>
+<small>تعديل الموقع</small>
+</button>
+
+<button class="quick">
+<b>⚙</b>
+<small>الإعدادات</small>
+</button>
+
+</div>
+
+</div>
 
 </section>
 
 
 <!-- ORDERS -->
 
-<section class="card" style="margin-bottom:20px">
+<section class="card" style="margin-bottom:18px">
 
-    <div class="card-head">
+<div class="card-head">
 
-        <div>
-            <h3>
-                أحدث الطلبات
-            </h3>
+<div>
 
-            <p>
-                آخر عمليات الشراء
-            </p>
-        </div>
+<h3>
+أحدث الطلبات
+</h3>
 
-        <a class="view-all" href="#">
-            عرض الكل ←
-        </a>
+<span>
+آخر عمليات الشراء
+</span>
 
-    </div>
+</div>
 
+<span>
+عرض الكل ←
+</span>
 
-    <div class="table-wrap">
+</div>
 
-        <table>
 
-            <thead>
+<div class="table-wrap">
 
-                <tr>
-                    <th>الطلب</th>
-                    <th>العميل</th>
-                    <th>المنتج</th>
-                    <th>المبلغ</th>
-                    <th>الحالة</th>
-                </tr>
+<table>
 
-            </thead>
+<thead>
 
+<tr>
 
-            <tbody>
+<th>
+رقم الطلب
+</th>
 
+<th>
+العميل
+</th>
 
-                <tr>
+<th>
+المنتج
+</th>
 
-                    <td>
-                        #LF-1048
-                    </td>
+<th>
+القيمة
+</th>
 
-                    <td>
-                        محمد
-                    </td>
+<th>
+الحالة
+</th>
 
-                    <td>
+</tr>
 
-                        <div class="product-cell">
+</thead>
 
-                            <div class="product-thumb">
-                                👕
-                            </div>
 
-                            <div class="product-name">
+<tbody>
 
-                                <strong>
-                                    Real Madrid Premium
-                                </strong>
+<tr>
 
-                                <span>
-                                    Player Version
-                                </span>
+<td>
+#LF-1048
+</td>
 
-                            </div>
+<td>
+محمد
+</td>
 
-                        </div>
+<td>
+Real Madrid Premium
+</td>
 
-                    </td>
+<td>
+149 LYD
+</td>
 
-                    <td>
-                        149 LYD
-                    </td>
+<td>
+<span class="status done">
+مكتمل
+</span>
+</td>
 
-                    <td>
-                        <span class="status success">
-                            مكتمل
-                        </span>
-                    </td>
+</tr>
 
-                </tr>
 
+<tr>
 
-                <tr>
+<td>
+#LF-1047
+</td>
 
-                    <td>
-                        #LF-1047
-                    </td>
+<td>
+أحمد
+</td>
 
-                    <td>
-                        أحمد
-                    </td>
+<td>
+Football Jersey
+</td>
 
-                    <td>
+<td>
+139 LYD
+</td>
 
-                        <div class="product-cell">
+<td>
+<span class="status pending">
+قيد التجهيز
+</span>
+</td>
 
-                            <div class="product-thumb">
-                                ⚽
-                            </div>
+</tr>
 
-                            <div class="product-name">
 
-                                <strong>
-                                    Football Jersey
-                                </strong>
+<tr>
 
-                                <span>
-                                    Fan Version
-                                </span>
+<td>
+#LF-1046
+</td>
 
-                            </div>
+<td>
+عمر
+</td>
 
-                        </div>
+<td>
+Training Set
+</td>
 
-                    </td>
+<td>
+199 LYD
+</td>
 
-                    <td>
-                        139 LYD
-                    </td>
+<td>
+<span class="status done">
+تم الشحن
+</span>
+</td>
 
-                    <td>
-                        <span class="status pending">
-                            قيد التجهيز
-                        </span>
-                    </td>
+</tr>
 
-                </tr>
 
+<tr>
 
-                <tr>
+<td>
+#LF-1045
+</td>
 
-                    <td>
-                        #LF-1046
-                    </td>
+<td>
+علي
+</td>
 
-                    <td>
-                        عمر
-                    </td>
+<td>
+LIBYA FLEX Cap
+</td>
 
-                    <td>
+<td>
+65 LYD
+</td>
 
-                        <div class="product-cell">
+<td>
+<span class="status cancelled">
+ملغي
+</span>
+</td>
 
-                            <div class="product-thumb">
-                                👕
-                            </div>
+</tr>
 
-                            <div class="product-name">
+</tbody>
 
-                                <strong>
-                                    Training Set
-                                </strong>
+</table>
 
-                                <span>
-                                    Black Edition
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                    </td>
-
-                    <td>
-                        199 LYD
-                    </td>
-
-                    <td>
-                        <span class="status success">
-                            تم الشحن
-                        </span>
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>
-                        #LF-1045
-                    </td>
-
-                    <td>
-                        علي
-                    </td>
-
-                    <td>
-
-                        <div class="product-cell">
-
-                            <div class="product-thumb">
-                                🧢
-                            </div>
-
-                            <div class="product-name">
-
-                                <strong>
-                                    LIBYA FLEX Cap
-                                </strong>
-
-                                <span>
-                                    Premium
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                    </td>
-
-                    <td>
-                        65 LYD
-                    </td>
-
-                    <td>
-                        <span class="status cancel">
-                            ملغي
-                        </span>
-                    </td>
-
-                </tr>
-
-
-            </tbody>
-
-        </table>
-
-    </div>
+</div>
 
 </section>
 
 
 <!-- LOWER -->
 
-<section class="lower-grid">
+<section class="lower">
 
+<div class="card">
 
-    <!-- STOCK -->
+<div class="card-head">
 
-    <div class="card">
+<div>
 
-        <div class="card-head">
+<h3>
+حالة المخزون
+</h3>
 
-            <div>
-                <h3>
-                    حالة المخزون
-                </h3>
+<span>
+مراقبة المنتجات
+</span>
 
-                <p>
-                    المنتجات التي تحتاج متابعة
-                </p>
-            </div>
+</div>
 
-            <a class="view-all" href="#">
-                المخزون ←
-            </a>
+<span>
+المخزون ←
+</span>
 
-        </div>
+</div>
 
 
-        <div class="stock-list">
+<div class="stock">
 
 
-            <div class="stock-item">
+<div class="stock-row">
 
-                <div class="stock-image">
-                    👕
-                </div>
+<div class="stock-img">
+👕
+</div>
 
-                <div class="stock-info">
+<div class="stock-info">
 
-                    <strong>
-                        Real Madrid Premium
-                    </strong>
+<strong>
+Real Madrid Premium
+</strong>
 
-                    <span>
-                        Player Version
-                    </span>
+<span>
+Player Version
+</span>
 
-                    <div class="progress">
-                        <div
-                            class="progress-bar"
-                            style="width:82%">
-                        </div>
-                    </div>
+<div class="progress">
+<div style="width:82%"></div>
+</div>
 
-                </div>
+</div>
 
-                <div class="stock-number">
+<strong>
+82
+</strong>
 
-                    <strong>
-                        82
-                    </strong>
+</div>
 
-                    <span>
-                        قطعة
-                    </span>
 
-                </div>
+<div class="stock-row">
 
-            </div>
+<div class="stock-img">
+⚽
+</div>
 
+<div class="stock-info">
 
-            <div class="stock-item">
+<strong>
+Football Jersey
+</strong>
 
-                <div class="stock-image">
-                    ⚽
-                </div>
+<span>
+Fan Version
+</span>
 
-                <div class="stock-info">
+<div class="progress">
+<div style="width:54%"></div>
+</div>
 
-                    <strong>
-                        Football Jersey
-                    </strong>
+</div>
 
-                    <span>
-                        Fan Version
-                    </span>
+<strong>
+54
+</strong>
 
-                    <div class="progress">
-                        <div
-                            class="progress-bar"
-                            style="width:54%">
-                        </div>
-                    </div>
+</div>
 
-                </div>
 
-                <div class="stock-number">
+<div class="stock-row">
 
-                    <strong>
-                        54
-                    </strong>
+<div class="stock-img">
+🏃
+</div>
 
-                    <span>
-                        قطعة
-                    </span>
+<div class="stock-info">
 
-                </div>
+<strong>
+Training Set
+</strong>
 
-            </div>
+<span>
+Black Edition
+</span>
 
+<div class="progress">
+<div style="width:23%"></div>
+</div>
 
-            <div class="stock-item">
+</div>
 
-                <div class="stock-image">
-                    🏃
-                </div>
+<strong style="color:var(--orange)">
+23
+</strong>
 
-                <div class="stock-info">
+</div>
 
-                    <strong>
-                        Training Set
-                    </strong>
 
-                    <span>
-                        Black Edition
-                    </span>
+</div>
 
-                    <div class="progress">
-                        <div
-                            class="progress-bar"
-                            style="width:23%">
-                        </div>
-                    </div>
+</div>
 
-                </div>
 
-                <div class="stock-number">
+<div class="card">
 
-                    <strong style="color:var(--orange)">
-                        23
-                    </strong>
+<div class="card-head">
 
-                    <span>
-                        قطعة
-                    </span>
+<div>
 
-                </div>
+<h3>
+تنبيهات الإدارة
+</h3>
 
-            </div>
+<span>
+آخر التحديثات
+</span>
 
+</div>
 
-        </div>
+</div>
 
-    </div>
 
+<div class="stock">
 
-    <!-- NOTIFICATIONS -->
 
-    <div class="card">
+<div class="stock-row">
 
-        <div class="card-head">
+<div class="stock-img">
+⚠
+</div>
 
-            <div>
-                <h3>
-                    التنبيهات
-                </h3>
+<div class="stock-info">
 
-                <p>
-                    آخر التحديثات
-                </p>
-            </div>
+<strong>
+مخزون منخفض
+</strong>
 
-        </div>
+<span>
+Training Set يحتاج لإعادة التخزين
+</span>
 
+</div>
 
-        <div class="notifications">
+</div>
 
 
-            <div class="notification">
+<div class="stock-row">
 
-                <div class="notification-icon">
-                    ⚠
-                </div>
+<div class="stock-img">
+🛍
+</div>
 
-                <div>
+<div class="stock-info">
 
-                    <strong>
-                        مخزون منخفض
-                    </strong>
+<strong>
+طلب جديد
+</strong>
 
-                    <p>
-                        Training Set وصل إلى 23 قطعة فقط.
-                    </p>
+<span>
+تم استلام طلب بقيمة 149 LYD
+</span>
 
-                </div>
+</div>
 
-            </div>
+</div>
 
 
-            <div class="notification">
+<div class="stock-row">
 
-                <div class="notification-icon">
-                    🛍
-                </div>
+<div class="stock-img">
+✦
+</div>
 
-                <div>
+<div class="stock-info">
 
-                    <strong>
-                        طلب جديد
-                    </strong>
+<strong>
+أداء ممتاز
+</strong>
 
-                    <p>
-                        تم استلام طلب جديد بقيمة 149 LYD.
-                    </p>
+<span>
+المبيعات ارتفعت 18.4%
+</span>
 
-                </div>
+</div>
 
-            </div>
+</div>
 
 
-            <div class="notification">
+</div>
 
-                <div class="notification-icon">
-                    ✦
-                </div>
-
-                <div>
-
-                    <strong>
-                        أداء ممتاز
-                    </strong>
-
-                    <p>
-                        المبيعات ارتفعت بنسبة 18.4% هذا الأسبوع.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
+</div>
 
 </section>
 
@@ -1867,12 +1666,40 @@ tr:last-child td{
 
 <script>
 
-function toggleMenu(){
+/* DEMO ADMIN LOGIN
+   سيتم استبداله لاحقاً بـ Authentication حقيقي
+*/
 
-    const sidebar =
-        document.getElementById("sidebar");
+function login(){
 
-    sidebar.classList.toggle("open");
+    const username =
+        document.getElementById("username").value;
+
+    const password =
+        document.getElementById("password").value;
+
+    if(username === "admin" && password === "libyaflex"){
+
+        document.getElementById("login")
+        .classList.add("hidden");
+
+        document.getElementById("app")
+        .classList.remove("hidden");
+
+    }else{
+
+        alert("بيانات الدخول غير صحيحة");
+
+    }
+
+}
+
+
+function toggleSidebar(){
+
+    document
+    .getElementById("sidebar")
+    .classList.toggle("open");
 
 }
 
