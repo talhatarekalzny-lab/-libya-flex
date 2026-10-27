@@ -1,2662 +1,2042 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>LIBYA FLEX | Premium Football</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-
-<style>
-
-/* =========================
-   RESET
-========================= */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    background:#080909;
-    color:#f4f0e8;
-    font-family:'Cairo',Arial,sans-serif;
-    overflow-x:hidden;
-}
-
-a{
-    color:inherit;
-    text-decoration:none;
-}
-
-button,
-input{
-    font-family:inherit;
-}
-
-/* =========================
-   VARIABLES
-========================= */
-
-:root{
-    --black:#070808;
-    --black2:#0d0e0f;
-    --card:#111313;
-    --card2:#151718;
-
-    --gold:#d6c09a;
-    --gold2:#f0dfbd;
-    --cream:#f5eee1;
-
-    --cyan:#19d5e5;
-
-    --white:#ffffff;
-    --muted:#929292;
-
-    --border:rgba(214,192,154,.16);
-}
-
-/* =========================
-   TOP BAR
-========================= */
-
-.topbar{
-    background:
-    linear-gradient(90deg,#0b0b0b,#171513,#0b0b0b);
-
-    border-bottom:1px solid var(--border);
-
-    color:var(--gold2);
-
-    text-align:center;
-
-    padding:9px 15px;
-
-    font-size:12px;
-    font-weight:600;
-
-    letter-spacing:.3px;
-}
-
-/* =========================
-   HEADER
-========================= */
-
-header{
-    position:sticky;
-    top:0;
-    z-index:1000;
-
-    background:rgba(7,8,8,.92);
-
-    backdrop-filter:blur(18px);
-
-    border-bottom:1px solid rgba(255,255,255,.06);
-}
-
-.nav{
-    max-width:1450px;
-
-    margin:auto;
-
-    min-height:82px;
-
-    padding:0 35px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:30px;
-}
-
-/* LOGO */
-
-.logo{
-    display:flex;
-    flex-direction:column;
-
-    line-height:1;
-
-    min-width:190px;
-}
-
-.logo-main{
-    font-family:'Playfair Display',serif;
-
-    font-size:31px;
-
-    font-weight:700;
-
-    letter-spacing:4px;
-
-    color:var(--cream);
-}
-
-.logo-main span{
-    color:var(--gold);
-}
-
-.logo-sub{
-    margin-top:7px;
-
-    font-size:8px;
-
-    letter-spacing:5px;
-
-    color:#8f887d;
-
-    text-align:center;
-}
-
-/* NAV LINKS */
-
-.navlinks{
-    display:flex;
-
-    align-items:center;
-
-    gap:30px;
-
-    list-style:none;
-}
-
-.navlinks a{
-    position:relative;
-
-    color:#bcb9b2;
-
-    font-size:13px;
-
-    font-weight:600;
-
-    transition:.3s;
-}
-
-.navlinks a:hover{
-    color:var(--gold2);
-}
-
-.navlinks a:after{
-    content:"";
-
-    position:absolute;
-
-    bottom:-9px;
-    right:0;
-
-    width:0;
-    height:1px;
-
-    background:var(--gold);
-
-    transition:.3s;
-}
-
-.navlinks a:hover:after{
-    width:100%;
-}
-
-/* HEADER ACTIONS */
-
-.actions{
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-}
-
-.action{
-    width:43px;
-    height:43px;
-
-    border:1px solid rgba(255,255,255,.09);
-
-    border-radius:50%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    color:#ddd;
-
-    background:#0c0d0d;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-    position:relative;
-}
-
-.action:hover{
-    border-color:var(--gold);
-
-    color:var(--gold2);
-
-    transform:translateY(-2px);
-}
-
-.cart-count{
-    position:absolute;
-
-    top:-3px;
-    right:-3px;
-
-    width:17px;
-    height:17px;
-
-    border-radius:50%;
-
-    background:var(--gold);
-
-    color:#090909;
-
-    font-size:10px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-weight:800;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero{
-    position:relative;
-
-    min-height:720px;
-
-    overflow:hidden;
-
-    display:flex;
-
-    align-items:center;
-
-    background:
-    radial-gradient(
-        circle at 75% 45%,
-        rgba(214,192,154,.13),
-        transparent 28%
-    ),
-
-    linear-gradient(
-        115deg,
-        #050606 0%,
-        #0c0d0d 50%,
-        #171411 100%
-    );
-}
-
-/* Decorative circles */
-
-.hero:before{
-    content:"";
-
-    position:absolute;
-
-    width:700px;
-    height:700px;
-
-    border-radius:50%;
-
-    right:-280px;
-    top:-250px;
-
-    border:1px solid rgba(214,192,154,.13);
-
-    box-shadow:
-    0 0 100px rgba(214,192,154,.04);
-
-    opacity:.8;
-}
-
-.hero:after{
-    content:"";
-
-    position:absolute;
-
-    width:500px;
-    height:500px;
-
-    border-radius:50%;
-
-    left:-280px;
-    bottom:-280px;
-
-    border:1px solid rgba(214,192,154,.08);
-}
-
-/* HERO CONTENT */
-
-.hero-content{
-    width:100%;
-
-    max-width:1450px;
-
-    margin:auto;
-
-    padding:80px 7%;
-
-    position:relative;
-
-    z-index:2;
-}
-
-.hero-label{
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    color:var(--gold);
-
-    font-size:12px;
-
-    font-weight:700;
-
-    letter-spacing:2px;
-
-    margin-bottom:25px;
-}
-
-.hero-label:before{
-    content:"";
-
-    width:35px;
-
-    height:1px;
-
-    background:var(--gold);
-}
-
-.hero h1{
-    font-family:'Playfair Display',serif;
-
-    font-size:clamp(58px,8vw,115px);
-
-    line-height:.9;
-
-    font-weight:700;
-
-    letter-spacing:-3px;
-
-    max-width:850px;
-}
-
-.hero h1 .gold{
-    color:var(--gold);
-}
-
-.hero h1 .outline{
-    color:transparent;
-
-    -webkit-text-stroke:1px rgba(245,238,225,.55);
-}
-
-.hero-description{
-    max-width:600px;
-
-    color:#aaa9a4;
-
-    line-height:2;
-
-    font-size:15px;
-
-    margin-top:35px;
-}
-
-.hero-buttons{
-    display:flex;
-
-    gap:12px;
-
-    margin-top:35px;
-
-    flex-wrap:wrap;
-}
-
-.btn{
-    padding:15px 27px;
-
-    border-radius:3px;
-
-    border:1px solid transparent;
-
-    font-size:13px;
-
-    font-weight:800;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:10px;
-}
-
-.btn-primary{
-    background:var(--gold);
-
-    color:#080808;
-}
-
-.btn-primary:hover{
-    background:var(--gold2);
-
-    transform:translateY(-3px);
-
-    box-shadow:0 15px 35px rgba(214,192,154,.14);
-}
-
-.btn-outline{
-    border-color:rgba(214,192,154,.35);
-
-    color:var(--cream);
-
-    background:rgba(255,255,255,.02);
-}
-
-.btn-outline:hover{
-    border-color:var(--gold);
-
-    color:var(--gold2);
-}
-
-/* HERO STATS */
-
-.hero-stats{
-    display:flex;
-
-    gap:45px;
-
-    margin-top:60px;
-
-    border-top:1px solid rgba(255,255,255,.08);
-
-    padding-top:25px;
-
-    max-width:600px;
-}
-
-.stat strong{
-    display:block;
-
-    font-family:'Playfair Display',serif;
-
-    color:var(--cream);
-
-    font-size:23px;
-}
-
-.stat span{
-    color:#777;
-
-    font-size:10px;
-}
-
-/* =========================
-   SECTIONS
-========================= */
-
-section{
-    max-width:1450px;
-
-    margin:auto;
-
-    padding:100px 7%;
-}
-
-.section-head{
-    display:flex;
-
-    align-items:end;
-
-    justify-content:space-between;
-
-    margin-bottom:45px;
-
-    gap:20px;
-}
-
-.section-label{
-    color:var(--gold);
-
-    font-size:10px;
-
-    letter-spacing:3px;
-
-    font-weight:800;
-
-    margin-bottom:10px;
-}
-
-.section-head h2{
-    font-family:'Playfair Display',serif;
-
-    font-size:43px;
-
-    color:var(--cream);
-}
-
-.section-head p{
-    color:#777;
-
-    font-size:13px;
-
-    margin-top:8px;
-}
-
-.view-all{
-    color:var(--gold);
-
-    font-size:12px;
-
-    border-bottom:1px solid rgba(214,192,154,.4);
-
-    padding-bottom:5px;
-}
-
-/* =========================
-   CATEGORIES
-========================= */
-
-.categories{
-    display:grid;
-
-    grid-template-columns:repeat(4,1fr);
-
-    gap:15px;
-}
-
-.category{
-    min-height:220px;
-
-    padding:25px;
-
-    position:relative;
-
-    overflow:hidden;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:flex-end;
-
-    border:1px solid var(--border);
-
-    background:
-    linear-gradient(
-        145deg,
-        #181918,
-        #0c0d0d
-    );
-
-    transition:.4s;
-}
-
-.category:before{
-    content:"";
-
-    position:absolute;
-
-    width:180px;
-    height:180px;
-
-    border-radius:50%;
-
-    background:rgba(214,192,154,.05);
-
-    top:-80px;
-    left:-60px;
-}
-
-.category:hover{
-    transform:translateY(-7px);
-
-    border-color:rgba(214,192,154,.45);
-
-    box-shadow:
-    0 25px 60px rgba(0,0,0,.35);
-}
-
-.category-number{
-    position:absolute;
-
-    top:20px;
-    right:22px;
-
-    color:#555;
-
-    font-size:11px;
-
-    letter-spacing:2px;
-}
-
-.category-icon{
-    color:var(--gold);
-
-    font-size:30px;
-
-    margin-bottom:auto;
-}
-
-.category h3{
-    font-size:18px;
-
-    color:#f3eee5;
-}
-
-.category span{
-    color:#777;
-
-    font-size:11px;
-
-    margin-top:4px;
-}
-
-/* =========================
-   PRODUCTS
-========================= */
-
-.products{
-    display:grid;
-
-    grid-template-columns:repeat(4,1fr);
-
-    gap:18px;
-}
-
-.product{
-    background:#101212;
-
-    border:1px solid rgba(255,255,255,.06);
-
-    position:relative;
-
-    overflow:hidden;
-
-    transition:.4s;
-}
-
-.product:hover{
-    transform:translateY(-6px);
-
-    border-color:rgba(214,192,154,.28);
-
-    box-shadow:0 25px 60px rgba(0,0,0,.35);
-}
-
-.product-image{
-    height:330px;
-
-    position:relative;
-
-    overflow:hidden;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:
-    radial-gradient(
-        circle at center,
-        #272725,
-        #111212 65%
-    );
-}
-
-.product-image:after{
-    content:"LIBYA FLEX";
-
-    position:absolute;
-
-    bottom:20px;
-
-    left:50%;
-
-    transform:translateX(-50%);
-
-    color:rgba(214,192,154,.13);
-
-    font-size:10px;
-
-    letter-spacing:5px;
-
-    white-space:nowrap;
-}
-
-.product-placeholder{
-    font-size:70px;
-
-    filter:grayscale(1);
-
-    opacity:.75;
-
-    transition:.4s;
-}
-
-.product:hover .product-placeholder{
-    transform:scale(1.08);
-
-    opacity:1;
-}
-
-.badge{
-    position:absolute;
-
-    top:14px;
-    right:14px;
-
-    z-index:2;
-
-    padding:6px 10px;
-
-    background:var(--gold);
-
-    color:#080808;
-
-    font-size:9px;
-
-    font-weight:900;
-
-    letter-spacing:.5px;
-}
-
-.product-info{
-    padding:21px;
-}
-
-.product-category{
-    color:#777;
-
-    font-size:9px;
-
-    letter-spacing:1.5px;
-
-    text-transform:uppercase;
-}
-
-.product-info h3{
-    color:#eee;
-
-    font-size:15px;
-
-    margin:7px 0 13px;
-}
-
-.product-bottom{
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-}
-
-.price{
-    color:var(--gold2);
-
-    font-family:'Playfair Display',serif;
-
-    font-size:20px;
-
-    font-weight:700;
-}
-
-.old{
-    color:#666;
-
-    font-size:11px;
-
-    text-decoration:line-through;
-
-    margin-right:5px;
-}
-
-.add{
-    width:38px;
-    height:38px;
-
-    border-radius:50%;
-
-    border:1px solid rgba(214,192,154,.3);
-
-    background:transparent;
-
-    color:var(--gold);
-
-    cursor:pointer;
-
-    transition:.3s;
-
-    font-size:18px;
-}
-
-.add:hover{
-    background:var(--gold);
-
-    color:#080808;
-}
-
-/* =========================
-   PREMIUM BANNER
-========================= */
-
-.luxury-banner{
-    max-width:1450px;
-
-    margin:30px auto 100px;
-
-    width:86%;
-
-    min-height:350px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    text-align:center;
-
-    position:relative;
-
-    overflow:hidden;
-
-    background:
-    radial-gradient(
-        circle,
-        rgba(214,192,154,.12),
-        transparent 55%
-    ),
-    #101111;
-
-    border:1px solid rgba(214,192,154,.18);
-}
-
-.luxury-banner:before,
-.luxury-banner:after{
-    content:"";
-
-    position:absolute;
-
-    width:250px;
-    height:250px;
-
-    border-radius:50%;
-
-    border:1px solid rgba(214,192,154,.12);
-}
-
-.luxury-banner:before{
-    right:-120px;
-    top:-100px;
-}
-
-.luxury-banner:after{
-    left:-120px;
-    bottom:-100px;
-}
-
-.banner-content{
-    position:relative;
-
-    z-index:2;
-}
-
-.banner-content small{
-    color:var(--gold);
-
-    letter-spacing:4px;
-
-    font-size:9px;
-}
-
-.banner-content h2{
-    font-family:'Playfair Display',serif;
-
-    font-size:58px;
-
-    margin:15px 0;
-
-    color:var(--cream);
-}
-
-.banner-content p{
-    color:#858585;
-
-    font-size:13px;
-
-    margin-bottom:25px;
-}
-
-/* =========================
-   REVIEWS
-========================= */
-
-.reviews{
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:18px;
-}
-
-.review{
-    background:#101212;
-
-    border:1px solid rgba(255,255,255,.06);
-
-    padding:30px;
-
-    position:relative;
-}
-
-.review:before{
-    content:"“";
-
-    position:absolute;
-
-    top:8px;
-    left:20px;
-
-    font-family:Georgia;
-
-    font-size:70px;
-
-    color:rgba(214,192,154,.12);
-}
-
-.stars{
-    color:var(--gold);
-
-    letter-spacing:4px;
-
-    font-size:12px;
-
-    margin-bottom:20px;
-}
-
-.review p{
-    color:#aaa;
-
-    line-height:1.9;
-
-    font-size:13px;
-}
-
-.reviewer{
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    margin-top:25px;
-}
-
-.avatar{
-    width:35px;
-    height:35px;
-
-    border-radius:50%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:#202121;
-
-    color:var(--gold);
-
-    font-size:12px;
-}
-
-.reviewer strong{
-    font-size:12px;
-}
-
-.reviewer span{
-    display:block;
-
-    color:#666;
-
-    font-size:9px;
-}
-
-/* =========================
-   NEWSLETTER
-========================= */
-
-.newsletter{
-    background:
-    linear-gradient(
-        110deg,
-        #151412,
-        #0d0e0e
-    );
-
-    border-top:1px solid var(--border);
-
-    border-bottom:1px solid var(--border);
-
-    max-width:none;
-
-    text-align:center;
-}
-
-.newsletter h2{
-    font-family:'Playfair Display',serif;
-
-    font-size:42px;
-
-    color:var(--cream);
-}
-
-.newsletter p{
-    color:#777;
-
-    margin:10px 0 25px;
-
-    font-size:13px;
-}
-
-.newsletter-form{
-    display:flex;
-
-    justify-content:center;
-
-    max-width:500px;
-
-    margin:auto;
-}
-
-.newsletter input{
-    flex:1;
-
-    min-width:0;
-
-    background:#090a0a;
-
-    border:1px solid rgba(214,192,154,.2);
-
-    color:white;
-
-    padding:14px 18px;
-
-    outline:none;
-}
-
-.newsletter button{
-    border:0;
-
-    background:var(--gold);
-
-    color:#080808;
-
-    padding:0 25px;
-
-    font-weight:800;
-
-    cursor:pointer;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-    background:#050606;
-
-    border-top:1px solid rgba(255,255,255,.06);
-
-    padding:70px 7% 25px;
-}
-
-.footer-grid{
-    max-width:1450px;
-
-    margin:auto;
-
-    display:grid;
-
-    grid-template-columns:2fr 1fr 1fr 1fr;
-
-    gap:50px;
-}
-
-.footer-logo{
-    font-family:'Playfair Display',serif;
-
-    font-size:30px;
-
-    letter-spacing:4px;
-
-    color:var(--cream);
-}
-
-.footer-logo span{
-    color:var(--gold);
-}
-
-.footer-about{
-    color:#666;
-
-    max-width:350px;
-
-    line-height:1.9;
-
-    font-size:12px;
-
-    margin-top:18px;
-}
-
-footer h3{
-    color:var(--gold);
-
-    font-size:12px;
-
-    margin-bottom:20px;
-
-    letter-spacing:1px;
-}
-
-footer ul{
-    list-style:none;
-}
-
-footer li{
-    color:#777;
-
-    font-size:11px;
-
-    margin-bottom:12px;
-
-    cursor:pointer;
-
-    transition:.2s;
-}
-
-footer li:hover{
-    color:var(--cream);
-}
-
-.copyright{
-    max-width:1450px;
-
-    margin:60px auto 0;
-
-    padding-top:22px;
-
-    border-top:1px solid rgba(255,255,255,.06);
-
-    text-align:center;
-
-    color:#444;
-
-    font-size:10px;
-}
-
-/* =========================
-   CART PANEL
-========================= */
-
-.cart-panel{
-    position:fixed;
-
-    top:0;
-    right:-400px;
-
-    width:380px;
-
-    max-width:90%;
-
-    height:100vh;
-
-    z-index:2000;
-
-    background:#101212;
-
-    border-left:1px solid rgba(214,192,154,.18);
-
-    box-shadow:-20px 0 70px rgba(0,0,0,.5);
-
-    transition:.4s;
-
-    padding:30px;
-}
-
-.cart-panel.active{
-    right:0;
-}
-
-.cart-header{
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding-bottom:20px;
-
-    border-bottom:1px solid rgba(255,255,255,.07);
-}
-
-.cart-header h2{
-    font-family:'Playfair Display',serif;
-}
-
-.close-cart{
-    background:none;
-
-    border:0;
-
-    color:#aaa;
-
-    font-size:25px;
-
-    cursor:pointer;
-}
-
-.cart-empty{
-    text-align:center;
-
-    color:#666;
-
-    margin-top:100px;
-
-    font-size:13px;
-}
-
-/* OVERLAY */
-
-.overlay{
-    position:fixed;
-
-    inset:0;
-
-    background:rgba(0,0,0,.65);
-
-    z-index:1500;
-
-    opacity:0;
-
-    pointer-events:none;
-
-    transition:.3s;
-}
-
-.overlay.active{
-    opacity:1;
-
-    pointer-events:auto;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-.mobile-menu{
-    display:none;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:1050px){
-
-    .navlinks{
-        display:none;
-    }
-
-    .categories{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .products{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-}
-
-@media(max-width:700px){
-
-    .nav{
-        padding:0 18px;
-
-        min-height:70px;
-    }
-
-    .logo-main{
-        font-size:23px;
-    }
-
-    .logo-sub{
-        font-size:6px;
-    }
-
-    .actions{
-        gap:5px;
-    }
-
-    .action{
-        width:37px;
-        height:37px;
-    }
-
-    .hero{
-        min-height:650px;
-    }
-
-    .hero-content{
-        padding:70px 7%;
-    }
-
-    .hero h1{
-        font-size:62px;
-
-        letter-spacing:-2px;
-    }
-
-    .hero-description{
-        font-size:13px;
-    }
-
-    .hero-stats{
-        gap:20px;
-    }
-
-    section{
-        padding:70px 6%;
-    }
-
-    .section-head{
-        display:block;
-    }
-
-    .section-head h2{
-        font-size:34px;
-    }
-
-    .view-all{
-        display:inline-block;
-
-        margin-top:15px;
-    }
-
-    .categories{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .category{
-        min-height:170px;
-    }
-
-    .products{
-        grid-template-columns:1fr 1fr;
-
-        gap:10px;
-    }
-
-    .product-image{
-        height:210px;
-    }
-
-    .product-info{
-        padding:14px;
-    }
-
-    .product-info h3{
-        font-size:12px;
-    }
-
-    .price{
-        font-size:17px;
-    }
-
-    .reviews{
-        grid-template-columns:1fr;
-    }
-
-    .footer-grid{
-        grid-template-columns:1fr 1fr;
-
-        gap:35px;
-    }
-
-    .luxury-banner{
-        width:88%;
-    }
-
-    .banner-content h2{
-        font-size:43px;
-    }
-
-}
-
-@media(max-width:450px){
-
-    .topbar{
-        font-size:10px;
-    }
-
-    .hero h1{
-        font-size:50px;
-    }
-
-    .hero-buttons{
-        flex-direction:column;
-    }
-
-    .btn{
-        width:100%;
-    }
-
-    .categories{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .category{
-        min-height:145px;
-
-        padding:17px;
-    }
-
-    .category h3{
-        font-size:14px;
-    }
-
-    .product-image{
-        height:180px;
-    }
-
-    .product-placeholder{
-        font-size:48px;
-    }
-
-    .newsletter-form{
-        flex-direction:column;
-
-        gap:8px;
-    }
-
-    .newsletter input{
-        width:100%;
-    }
-
-    .newsletter button{
-        padding:14px;
-    }
-
-    .footer-grid{
-        grid-template-columns:1fr;
-    }
-
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LIBYA FLEX | ليبيا فلكس</title>
+
+    <meta name="description" content="LIBYA FLEX - متجر إلكتروني ليبي">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Tahoma, sans-serif;
+        }
+
+        :root {
+            --primary: #0d6b4d;
+            --primary-dark: #084b37;
+            --secondary: #f5b700;
+            --dark: #101820;
+            --light: #f6f7f8;
+            --white: #ffffff;
+            --gray: #777;
+            --border: #e5e5e5;
+            --danger: #d62828;
+        }
+
+        body {
+            background: var(--light);
+            color: var(--dark);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+        }
+
+        /* HEADER */
+
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background: var(--dark);
+            color: white;
+            padding: 8px 5%;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .navbar {
+            min-height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 12px 5%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 27px;
+            font-weight: 900;
+            color: var(--primary);
+            white-space: nowrap;
+        }
+
+        .logo-box {
+            width: 45px;
+            height: 45px;
+            background: var(--primary);
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 900;
+        }
+
+        .search {
+            flex: 1;
+            max-width: 600px;
+            display: flex;
+            background: #f2f3f4;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .search input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 14px 18px;
+            font-size: 15px;
+            text-align: right;
+        }
+
+        .search button {
+            width: 55px;
+            background: var(--primary);
+            color: white;
+            font-size: 18px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: #f2f3f4;
+            border-radius: 10px;
+            padding: 12px 15px;
+            color: var(--dark);
+            font-weight: bold;
+        }
+
+        .cart-btn {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -7px;
+            left: -7px;
+            background: var(--secondary);
+            color: #111;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 430px;
+            background:
+                linear-gradient(90deg, rgba(0,0,0,.72), rgba(0,0,0,.25)),
+                linear-gradient(135deg, #0d6b4d, #073d2d);
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 60px 7%;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .hero small {
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 6vw, 70px);
+            margin: 15px 0;
+            line-height: 1.05;
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #eee;
+            margin-bottom: 25px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: #111;
+            padding: 14px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary);
+            padding: 14px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        /* CATEGORIES */
+
+        .section {
+            padding: 55px 5%;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            gap: 15px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 900;
+        }
+
+        .section-subtitle {
+            color: var(--gray);
+            margin-top: 7px;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .category {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 25px 15px;
+            text-align: center;
+            transition: .2s;
+        }
+
+        .category:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 8px 25px rgba(0,0,0,.07);
+        }
+
+        .category-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .category h3 {
+            font-size: 16px;
+        }
+
+        /* PRODUCTS */
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 20px;
+        }
+
+        .product {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: .2s;
+        }
+
+        .product:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0,0,0,.08);
+        }
+
+        .product-image {
+            height: 210px;
+            background: #eef0ef;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .placeholder {
+            font-size: 55px;
+        }
+
+        .product-info {
+            padding: 16px;
+        }
+
+        .product-category {
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .product h3 {
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            color: var(--gray);
+            font-size: 13px;
+            line-height: 1.6;
+            min-height: 40px;
+        }
+
+        .product-bottom {
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .add-btn {
+            background: var(--primary);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 9px;
+            font-weight: bold;
+        }
+
+        .add-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* FEATURES */
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
+        }
+
+        .feature {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .feature h3 {
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            color: var(--gray);
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        /* CART */
+
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.5);
+            z-index: 2000;
+            display: none;
+        }
+
+        .cart-overlay.active {
+            display: block;
+        }
+
+        .cart {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: min(430px, 92%);
+            height: 100%;
+            background: white;
+            padding: 25px;
+            overflow-y: auto;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .close-btn {
+            background: #eee;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 12px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cart-item-image {
+            width: 65px;
+            height: 65px;
+            border-radius: 10px;
+            background: #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .quantity button {
+            width: 25px;
+            height: 25px;
+            background: #eee;
+            border-radius: 5px;
+        }
+
+        .remove-btn {
+            color: var(--danger);
+            background: none;
+            margin-top: 5px;
+        }
+
+        .cart-total {
+            margin-top: 25px;
+            border-top: 2px solid var(--dark);
+            padding-top: 20px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        .checkout {
+            width: 100%;
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--primary);
+            color: white;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* MODAL */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.6);
+            z-index: 3000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            width: min(550px, 100%);
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 18px;
+            padding: 25px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 9px;
+            padding: 12px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .form-group textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: white;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 5% 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 35px;
+            margin-bottom: 35px;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+        }
+
+        footer p,
+        footer li {
+            color: #bbb;
+            line-height: 1.9;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin-bottom: 6px;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #29313a;
+            padding-top: 20px;
+            color: #999;
+        }
+
+        /* TOAST */
+
+        .toast {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: var(--dark);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            z-index: 5000;
+            transform: translateY(120px);
+            transition: .3s;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+            .navbar {
+                flex-wrap: wrap;
+            }
+
+            .search {
+                order: 3;
+                flex-basis: 100%;
+                max-width: none;
+            }
+
+            .nav-actions .hide-mobile {
+                display: none;
+            }
+
+            .hero {
+                min-height: 500px;
+                padding: 50px 6%;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+            }
+
+            .section {
+                padding: 40px 5%;
+            }
+
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .product-image {
+                height: 160px;
+            }
+
+            .product-info {
+                padding: 12px;
+            }
+
+            .product h3 {
+                font-size: 14px;
+            }
+
+            .price {
+                font-size: 15px;
+            }
+
+            .add-btn {
+                padding: 8px 10px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .logo {
+                font-size: 21px;
+            }
+
+            .logo-box {
+                width: 38px;
+                height: 38px;
+            }
+
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- =========================
-     TOP BAR
-========================= -->
+    <header>
 
-<div class="topbar">
-🚚 توصيل لجميع مناطق ليبيا &nbsp; • &nbsp;
-الدفع عند الاستلام &nbsp; • &nbsp;
-استبدال وإرجاع بسهولة
-</div>
+        <div class="top-bar">
+            🇱🇾 التوصيل متوفر داخل ليبيا — مرحباً بكم في LIBYA FLEX
+        </div>
 
+        <nav class="navbar">
 
-<!-- =========================
-     HEADER
-========================= -->
+            <a href="#" class="logo">
+                <span class="logo-box">LF</span>
+                LIBYA FLEX
+            </a>
 
-<header>
+            <div class="search">
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="ابحث عن منتج..."
+                    oninput="searchProducts()"
+                >
+                <button onclick="searchProducts()">🔍</button>
+            </div>
 
-<nav class="nav">
+            <div class="nav-actions">
 
-<a href="#" class="logo">
+                <button class="nav-btn hide-mobile" onclick="scrollToProducts()">
+                    المنتجات
+                </button>
 
-<div class="logo-main">
-LIBYA <span>FLEX</span>
-</div>
+                <button class="nav-btn cart-btn" onclick="openCart()">
+                    🛒 السلة
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
 
-<div class="logo-sub">
-FOOTBALL • PERFORMANCE • STYLE
-</div>
+            </div>
 
-</a>
+        </nav>
 
+    </header>
 
-<ul class="navlinks">
 
-<li><a href="#">الرئيسية</a></li>
+    <main>
 
-<li><a href="#categories">المجموعات</a></li>
+        <!-- HERO -->
 
-<li><a href="#new">الجديد</a></li>
+        <section class="hero">
 
-<li><a href="#best">الأكثر مبيعاً</a></li>
+            <div class="hero-content">
 
-<li><a href="#reviews">آراء العملاء</a></li>
+                <small>🇱🇾 متجر ليبي</small>
 
-<li><a href="#contact">تواصل معنا</a></li>
+                <h1>
+                    LIBYA<br>
+                    FLEX
+                </h1>
 
-</ul>
+                <p>
+                    اكتشف منتجاتنا واختر ما يناسبك.
+                    تجربة تسوق بسيطة وسريعة مصممة للمستخدم الليبي.
+                </p>
 
+                <div class="hero-buttons">
 
-<div class="actions">
+                    <button
+                        class="btn-primary"
+                        onclick="scrollToProducts()"
+                    >
+                        تسوق الآن
+                    </button>
 
-<button class="action" aria-label="بحث">
-⌕
-</button>
+                    <button
+                        class="btn-white"
+                        onclick="scrollToCategories()"
+                    >
+                        الأقسام
+                    </button>
 
-<button class="action" aria-label="المفضلة">
-♡
-</button>
+                </div>
 
-<button class="action" id="cartBtn" aria-label="السلة">
+            </div>
 
-🛒
+        </section>
 
-<span class="cart-count" id="cartCount">
-0
-</span>
 
-</button>
+        <!-- CATEGORIES -->
 
-</div>
+        <section class="section" id="categories">
 
-</nav>
+            <div class="section-header">
 
-</header>
+                <div>
+                    <h2 class="section-title">الأقسام</h2>
+                    <p class="section-subtitle">
+                        اختر القسم الذي تريد تصفحه
+                    </p>
+                </div>
 
+            </div>
 
-<!-- =========================
-     HERO
-========================= -->
+            <div class="categories">
 
-<main>
+                <button class="category" onclick="filterCategory('إلكترونيات')">
+                    <div class="category-icon">📱</div>
+                    <h3>إلكترونيات</h3>
+                </button>
 
-<section class="hero">
+                <button class="category" onclick="filterCategory('ملابس')">
+                    <div class="category-icon">👕</div>
+                    <h3>ملابس</h3>
+                </button>
 
-<div class="hero-content">
+                <button class="category" onclick="filterCategory('أحذية')">
+                    <div class="category-icon">👟</div>
+                    <h3>أحذية</h3>
+                </button>
 
-<div class="hero-label">
-LIBYA FLEX — PREMIUM COLLECTION
-</div>
+                <button class="category" onclick="filterCategory('إكسسوارات')">
+                    <div class="category-icon">⌚</div>
+                    <h3>إكسسوارات</h3>
+                </button>
 
-<h1>
+                <button class="category" onclick="filterCategory('منزل')">
+                    <div class="category-icon">🏠</div>
+                    <h3>المنزل</h3>
+                </button>
 
-MOVE.
+                <button class="category" onclick="filterCategory('أخرى')">
+                    <div class="category-icon">🛍️</div>
+                    <h3>أخرى</h3>
+                </button>
 
-<br>
+            </div>
 
-<span class="gold">FLEX.</span>
+        </section>
 
-<br>
 
-<span class="outline">WIN.</span>
+        <!-- PRODUCTS -->
 
-</h1>
+        <section class="section" id="productsSection">
 
+            <div class="section-header">
 
-<p class="hero-description">
+                <div>
+                    <h2 class="section-title">منتجاتنا</h2>
+                    <p class="section-subtitle" id="productsSubtitle">
+                        أفضل المنتجات المختارة لك
+                    </p>
+                </div>
 
-اكتشف مجموعة LIBYA FLEX الجديدة.
-قمصان كرة قدم، ملابس تدريب وتصاميم مختارة بعناية
-لعشاق اللعبة في ليبيا.
+                <button
+                    class="nav-btn"
+                    onclick="showAllProducts()"
+                >
+                    عرض الكل
+                </button>
 
-</p>
+            </div>
 
+            <div
+                class="products"
+                id="productsContainer"
+            ></div>
 
-<div class="hero-buttons">
+        </section>
 
-<a href="#new" class="btn btn-primary">
-تسوق المجموعة
-→
-</a>
 
-<a href="#categories" class="btn btn-outline">
-استكشف التصنيفات
-</a>
+        <!-- FEATURES -->
 
-</div>
+        <section class="section">
 
+            <div class="section-header">
 
-<div class="hero-stats">
+                <div>
+                    <h2 class="section-title">
+                        لماذا LIBYA FLEX؟
+                    </h2>
 
-<div class="stat">
+                    <p class="section-subtitle">
+                        تجربة تسوق بسيطة ومريحة
+                    </p>
+                </div>
 
-<strong>2026</strong>
+            </div>
 
-<span>COLLECTION</span>
+            <div class="features">
 
-</div>
+                <div class="feature">
+                    <div class="feature-icon">🚚</div>
+                    <h3>توصيل</h3>
+                    <p>
+                        نوفر خيارات توصيل مناسبة للزبائن داخل ليبيا.
+                    </p>
+                </div>
 
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <h3>أمان</h3>
+                    <p>
+                        نحافظ على تجربة استخدام بسيطة وآمنة.
+                    </p>
+                </div>
 
-<div class="stat">
+                <div class="feature">
+                    <div class="feature-icon">💰</div>
+                    <h3>أسعار مناسبة</h3>
+                    <p>
+                        منتجات بأسعار واضحة وسهلة المقارنة.
+                    </p>
+                </div>
 
-<strong>100%</strong>
+                <div class="feature">
+                    <div class="feature-icon">🇱🇾</div>
+                    <h3>ليبي</h3>
+                    <p>
+                        متجر مصمم خصيصاً للمستخدمين في ليبيا.
+                    </p>
+                </div>
 
-<span>QUALITY</span>
+            </div>
 
-</div>
+        </section>
 
+    </main>
 
-<div class="stat">
 
-<strong>24/7</strong>
+    <!-- CART -->
 
-<span>SUPPORT</span>
+    <div
+        class="cart-overlay"
+        id="cartOverlay"
+        onclick="closeCartOutside(event)"
+    >
 
-</div>
+        <aside
+            class="cart"
+            onclick="event.stopPropagation()"
+        >
 
-</div>
+            <div class="cart-header">
 
-</div>
+                <h2>سلة المشتريات</h2>
 
-</section>
+                <button
+                    class="close-btn"
+                    onclick="closeCart()"
+                >
+                    ✕
+                </button>
 
+            </div>
 
-<!-- =========================
-     CATEGORIES
-========================= -->
+            <div id="cartItems"></div>
 
-<section id="categories">
+            <div class="cart-total">
 
-<div class="section-head">
+                <div class="total-row">
 
-<div>
+                    <span>الإجمالي</span>
 
-<div class="section-label">
-SHOP BY CATEGORY
-</div>
+                    <span id="cartTotal">
+                        0 د.ل
+                    </span>
 
-<h2>
-اختر أسلوبك
-</h2>
+                </div>
 
-<p>
-مجموعة مختارة لعشاق كرة القدم والستايل الرياضي.
-</p>
+                <button
+                    class="checkout"
+                    onclick="openCheckout()"
+                >
+                    إتمام الطلب
+                </button>
 
-</div>
+            </div>
 
-<a href="#" class="view-all">
-عرض الكل →
-</a>
+        </aside>
 
-</div>
+    </div>
 
 
-<div class="categories">
+    <!-- CHECKOUT MODAL -->
 
+    <div
+        class="modal"
+        id="checkoutModal"
+    >
 
-<a href="#" class="category">
+        <div class="modal-content">
 
-<span class="category-number">
-01
-</span>
+            <div class="modal-header">
 
-<div class="category-icon">
-⚽
-</div>
+                <h2>إتمام الطلب</h2>
 
-<h3>
-قمصان كرة القدم
-</h3>
+                <button
+                    class="close-btn"
+                    onclick="closeCheckout()"
+                >
+                    ✕
+                </button>
 
-<span>
-Football Jerseys
-</span>
+            </div>
 
-</a>
+            <form onsubmit="submitOrder(event)">
 
+                <div class="form-group">
 
-<a href="#" class="category">
+                    <label>
+                        الاسم الكامل
+                    </label>
 
-<span class="category-number">
-02
-</span>
+                    <input
+                        type="text"
+                        id="customerName"
+                        required
+                    >
 
-<div class="category-icon">
-✦
-</div>
+                </div>
 
-<h3>
-Player Version
-</h3>
 
-<span>
-Professional Fit
-</span>
+                <div class="form-group">
 
-</a>
+                    <label>
+                        رقم الهاتف
+                    </label>
 
+                    <input
+                        type="tel"
+                        id="customerPhone"
+                        placeholder="09xxxxxxxx"
+                        required
+                    >
 
-<a href="#" class="category">
+                </div>
 
-<span class="category-number">
-03
-</span>
 
-<div class="category-icon">
-◈
-</div>
+                <div class="form-group">
 
-<h3>
-Retro Collection
-</h3>
+                    <label>
+                        المدينة
+                    </label>
 
-<span>
-Classic Football
-</span>
+                    <select
+                        id="customerCity"
+                        required
+                    >
 
-</a>
+                        <option value="">
+                            اختر المدينة
+                        </option>
 
+                        <option>طرابلس</option>
+                        <option>بنغازي</option>
+                        <option>مصراتة</option>
+                        <option>الزاوية</option>
+                        <option>البيضاء</option>
+                        <option>درنة</option>
+                        <option>سبها</option>
+                        <option>زليتن</option>
+                        <option>الخمس</option>
+                        <option>تاجوراء</option>
+                        <option>أخرى</option>
 
-<a href="#" class="category">
+                    </select>
 
-<span class="category-number">
-04
-</span>
+                </div>
 
-<div class="category-icon">
-◆
-</div>
 
-<h3>
-Training Wear
-</h3>
+                <div class="form-group">
 
-<span>
-Performance
-</span>
+                    <label>
+                        العنوان
+                    </label>
 
-</a>
+                    <textarea
+                        id="customerAddress"
+                        required
+                    ></textarea>
 
+                </div>
 
-</div>
 
-</section>
+                <div class="form-group">
 
+                    <label>
+                        ملاحظات
+                    </label>
 
-<!-- =========================
-     NEW PRODUCTS
-========================= -->
+                    <textarea
+                        id="customerNotes"
+                        placeholder="أي ملاحظات إضافية..."
+                    ></textarea>
 
-<section id="new">
+                </div>
 
-<div class="section-head">
 
-<div>
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
+                    إرسال الطلب
+                </button>
 
-<div class="section-label">
-NEW ARRIVALS
-</div>
+            </form>
 
-<h2>
-وصل حديثاً
-</h2>
+        </div>
 
-<p>
-أحدث القطع المختارة من LIBYA FLEX.
-</p>
+    </div>
 
-</div>
 
-<a href="#" class="view-all">
-عرض المجموعة →
-</a>
+    <!-- FOOTER -->
 
-</div>
+    <footer>
 
+        <div class="footer-grid">
 
-<div class="products">
+            <div>
 
+                <h3>LIBYA FLEX</h3>
 
-<div class="product">
+                <p>
+                    متجر إلكتروني ليبي يوفر تجربة تسوق
+                    سهلة وبسيطة.
+                </p>
 
-<span class="badge">
-NEW
-</span>
+            </div>
 
-<div class="product-image">
 
-<div class="product-placeholder">
-⚽
-</div>
+            <div>
 
-</div>
+                <h3>روابط</h3>
 
-<div class="product-info">
+                <ul>
 
-<div class="product-category">
-Football Jersey
-</div>
+                    <li>
+                        <a href="#">
+                            الرئيسية
+                        </a>
+                    </li>
 
-<h3>
-Premium Football Jersey
-</h3>
+                    <li>
+                        <a
+                            href="#productsSection"
+                        >
+                            المنتجات
+                        </a>
+                    </li>
 
-<div class="product-bottom">
+                    <li>
+                        <a
+                            href="#categories"
+                        >
+                            الأقسام
+                        </a>
+                    </li>
 
-<div class="price">
-149 LYD
-</div>
+                </ul>
 
-<button class="add">
-+
-</button>
+            </div>
 
-</div>
 
-</div>
+            <div>
 
-</div>
+                <h3>تواصل معنا</h3>
 
+                <ul>
 
-<div class="product">
+                    <li>
+                        📱 الهاتف
+                    </li>
 
-<span class="badge">
-NEW
-</span>
+                    <li>
+                        💬 واتساب
+                    </li>
 
-<div class="product-image">
+                    <li>
+                        📍 ليبيا
+                    </li>
 
-<div class="product-placeholder">
-👕
-</div>
+                </ul>
 
-</div>
+            </div>
 
-<div class="product-info">
 
-<div class="product-category">
-Training
-</div>
+        </div>
 
-<h3>
-LIBYA FLEX Performance
-</h3>
 
-<div class="product-bottom">
+        <div class="copyright">
 
-<div class="price">
-119 LYD
-</div>
+            © 2026 LIBYA FLEX — جميع الحقوق محفوظة
 
-<button class="add">
-+
-</button>
+        </div>
 
-</div>
+    </footer>
 
-</div>
 
-</div>
+    <div
+        class="toast"
+        id="toast"
+    ></div>
 
 
-<div class="product">
+    <script>
 
-<div class="product-image">
+        /* ================================
+           PRODUCT DATABASE
+        ================================= */
 
-<div class="product-placeholder">
-👟
-</div>
+        const defaultProducts = [
 
-</div>
+            {
+                id: 1,
+                name: "هاتف ذكي",
+                category: "إلكترونيات",
+                price: 1299,
+                description: "هاتف ذكي للاستخدام اليومي.",
+                image: "",
+                emoji: "📱"
+            },
 
-<div class="product-info">
+            {
+                id: 2,
+                name: "سماعات لاسلكية",
+                category: "إلكترونيات",
+                price: 149,
+                description: "سماعات لاسلكية بجودة صوت ممتازة.",
+                image: "",
+                emoji: "🎧"
+            },
 
-<div class="product-category">
-Sports
-</div>
+            {
+                id: 3,
+                name: "ساعة ذكية",
+                category: "إكسسوارات",
+                price: 299,
+                description: "ساعة ذكية للاستخدام اليومي والرياضة.",
+                image: "",
+                emoji: "⌚"
+            },
 
-<h3>
-Premium Sports Collection
-</h3>
+            {
+                id: 4,
+                name: "حذاء رياضي",
+                category: "أحذية",
+                price: 220,
+                description: "حذاء رياضي مريح للاستخدام اليومي.",
+                image: "",
+                emoji: "👟"
+            },
 
-<div class="product-bottom">
+            {
+                id: 5,
+                name: "تيشيرت",
+                category: "ملابس",
+                price: 75,
+                description: "تيشيرت مريح بتصميم عصري.",
+                image: "",
+                emoji: "👕"
+            },
 
-<div class="price">
-179 LYD
-</div>
+            {
+                id: 6,
+                name: "حقيبة ظهر",
+                category: "إكسسوارات",
+                price: 120,
+                description: "حقيبة عملية للدراسة والعمل.",
+                image: "",
+                emoji: "🎒"
+            },
 
-<button class="add">
-+
-</button>
+            {
+                id: 7,
+                name: "مصباح LED",
+                category: "منزل",
+                price: 55,
+                description: "مصباح LED للاستخدام المنزلي.",
+                image: "",
+                emoji: "💡"
+            },
 
-</div>
+            {
+                id: 8,
+                name: "منتج مميز",
+                category: "أخرى",
+                price: 100,
+                description: "منتج مميز من LIBYA FLEX.",
+                image: "",
+                emoji: "🛍️"
+            }
 
-</div>
+        ];
 
-</div>
 
+        let products =
+            JSON.parse(
+                localStorage.getItem("libyaFlexProducts")
+            ) || defaultProducts;
 
-<div class="product">
 
-<div class="product-image">
+        let cart =
+            JSON.parse(
+                localStorage.getItem("libyaFlexCart")
+            ) || [];
 
-<div class="product-placeholder">
-🧢
-</div>
 
-</div>
+        let currentProducts = [...products];
 
-<div class="product-info">
 
-<div class="product-category">
-Accessories
-</div>
+        /* ================================
+           DISPLAY PRODUCTS
+        ================================= */
 
-<h3>
-LIBYA FLEX Signature Cap
-</h3>
+        function renderProducts(list = products) {
 
-<div class="product-bottom">
+            const container =
+                document.getElementById(
+                    "productsContainer"
+                );
 
-<div class="price">
-65 LYD
-</div>
+            currentProducts = list;
 
-<button class="add">
-+
-</button>
+            if (!list.length) {
 
-</div>
+                container.innerHTML = `
+                    <div style="
+                        grid-column:1/-1;
+                        background:white;
+                        padding:50px;
+                        border-radius:15px;
+                        text-align:center;
+                    ">
+                        <h3>لا توجد منتجات</h3>
+                        <p style="margin-top:10px;color:#777">
+                            لم يتم العثور على منتجات مطابقة.
+                        </p>
+                    </div>
+                `;
 
-</div>
+                return;
+            }
 
-</div>
 
+            container.innerHTML =
+                list.map(product => `
 
-</div>
+                    <article class="product">
 
-</section>
+                        <div class="product-image">
 
+                            ${
+                                product.image
+                                ?
+                                `<img
+                                    src="${escapeHtml(product.image)}"
+                                    alt="${escapeHtml(product.name)}"
+                                >`
+                                :
+                                `<span class="placeholder">
+                                    ${product.emoji || "🛍️"}
+                                </span>`
+                            }
 
-<!-- =========================
-     PREMIUM BANNER
-========================= -->
+                        </div>
 
-<div class="luxury-banner">
 
-<div class="banner-content">
+                        <div class="product-info">
 
-<small>
-LIBYA FLEX
-</small>
+                            <div class="product-category">
+                                ${escapeHtml(product.category)}
+                            </div>
 
-<h2>
-Built for the Game.
-</h2>
+                            <h3>
+                                ${escapeHtml(product.name)}
+                            </h3>
 
-<p>
-Designed for those who live football.
-</p>
+                            <p class="product-description">
+                                ${escapeHtml(product.description)}
+                            </p>
 
-<a href="#new" class="btn btn-primary">
-اكتشف المجموعة
-</a>
 
-</div>
+                            <div class="product-bottom">
 
-</div>
+                                <span class="price">
+                                    ${formatPrice(product.price)}
+                                </span>
 
+                                <button
+                                    class="add-btn"
+                                    onclick="addToCart(${product.id})"
+                                >
+                                    أضف للسلة
+                                </button>
 
-<!-- =========================
-     BEST SELLERS
-========================= -->
+                            </div>
 
-<section id="best">
+                        </div>
 
-<div class="section-head">
+                    </article>
 
-<div>
+                `).join("");
 
-<div class="section-label">
-BEST SELLERS
-</div>
+        }
 
-<h2>
-الأكثر مبيعاً
-</h2>
 
-<p>
-اختيارات مجتمع LIBYA FLEX.
-</p>
+        /* ================================
+           CART
+        ================================= */
 
-</div>
+        function addToCart(id) {
 
-<a href="#" class="view-all">
-عرض الكل →
-</a>
+            const product =
+                products.find(
+                    p => p.id === id
+                );
 
-</div>
+            if (!product) return;
 
 
-<div class="products">
+            const existing =
+                cart.find(
+                    item => item.id === id
+                );
 
 
-<div class="product">
+            if (existing) {
 
-<span class="badge">
-BEST SELLER
-</span>
+                existing.quantity++;
 
-<div class="product-image">
+            } else {
 
-<div class="product-placeholder">
-⚽
-</div>
+                cart.push({
+                    id: product.id,
+                    quantity: 1
+                });
 
-</div>
+            }
 
-<div class="product-info">
 
-<div class="product-category">
-Football
-</div>
+            saveCart();
 
-<h3>
-Premium Football Jersey
-</h3>
+            updateCartUI();
 
-<div class="product-bottom">
+            showToast(
+                "تمت إضافة المنتج إلى السلة"
+            );
 
-<div>
+        }
 
-<span class="price">
-139 LYD
-</span>
 
-<span class="old">
-169 LYD
-</span>
+        function removeFromCart(id) {
 
-</div>
+            cart =
+                cart.filter(
+                    item => item.id !== id
+                );
 
-<button class="add">
-+
-</button>
+            saveCart();
 
-</div>
+            updateCartUI();
 
-</div>
+        }
 
-</div>
 
+        function changeQuantity(id, amount) {
 
-<div class="product">
+            const item =
+                cart.find(
+                    item => item.id === id
+                );
 
-<div class="product-image">
+            if (!item) return;
 
-<div class="product-placeholder">
-👕
-</div>
 
-</div>
+            item.quantity += amount;
 
-<div class="product-info">
 
-<div class="product-category">
-Performance
-</div>
+            if (item.quantity <= 0) {
 
-<h3>
-Performance T-Shirt
-</h3>
+                removeFromCart(id);
 
-<div class="product-bottom">
+                return;
 
-<div class="price">
-89 LYD
-</div>
+            }
 
-<button class="add">
-+
-</button>
 
-</div>
+            saveCart();
 
-</div>
+            updateCartUI();
 
-</div>
+        }
 
 
-<div class="product">
+        function updateCartUI() {
 
-<div class="product-image">
+            const count =
+                cart.reduce(
+                    (sum, item) =>
+                        sum + item.quantity,
+                    0
+                );
 
-<div class="product-placeholder">
-🥅
-</div>
 
-</div>
+            document.getElementById(
+                "cartCount"
+            ).textContent = count;
 
-<div class="product-info">
 
-<div class="product-category">
-Football
-</div>
+            const container =
+                document.getElementById(
+                    "cartItems"
+                );
 
-<h3>
-Football Collection
-</h3>
 
-<div class="product-bottom">
+            if (!cart.length) {
 
-<div class="price">
-159 LYD
-</div>
+                container.innerHTML = `
+                    <div style="
+                        text-align:center;
+                        padding:50px 10px;
+                        color:#777;
+                    ">
+                        <div style="
+                            font-size:50px;
+                            margin-bottom:15px;
+                        ">
+                            🛒
+                        </div>
 
-<button class="add">
-+
-</button>
+                        <h3>
+                            السلة فارغة
+                        </h3>
 
-</div>
+                        <p style="margin-top:8px">
+                            أضف منتجات للبدء.
+                        </p>
+                    </div>
+                `;
 
-</div>
+                document.getElementById(
+                    "cartTotal"
+                ).textContent = "0 د.ل";
 
-</div>
+                return;
 
+            }
 
-<div class="product">
 
-<div class="product-image">
+            let total = 0;
 
-<div class="product-placeholder">
-🏃
-</div>
 
-</div>
+            container.innerHTML =
+                cart.map(item => {
 
-<div class="product-info">
+                    const product =
+                        products.find(
+                            p => p.id === item.id
+                        );
 
-<div class="product-category">
-Training
-</div>
 
-<h3>
-Training Set
-</h3>
+                    if (!product) return "";
 
-<div class="product-bottom">
 
-<div class="price">
-199 LYD
-</div>
+                    const subtotal =
+                        product.price *
+                        item.quantity;
 
-<button class="add">
-+
-</button>
 
-</div>
+                    total += subtotal;
 
-</div>
 
-</div>
+                    return `
 
+                        <div class="cart-item">
 
-</div>
+                            <div class="cart-item-image">
+                                ${
+                                    product.image
+                                    ?
+                                    `<img
+                                        src="${escapeHtml(product.image)}"
+                                        style="
+                                            width:100%;
+                                            height:100%;
+                                            object-fit:cover;
+                                            border-radius:10px;
+                                        "
+                                    >`
+                                    :
+                                    `<span>
+                                        ${product.emoji || "🛍️"}
+                                    </span>`
+                                }
+                            </div>
 
-</section>
 
+                            <div class="cart-item-info">
 
-<!-- =========================
-     REVIEWS
-========================= -->
+                                <h4>
+                                    ${escapeHtml(product.name)}
+                                </h4>
 
-<section id="reviews">
+                                <div>
+                                    ${formatPrice(product.price)}
+                                </div>
 
-<div class="section-head">
 
-<div>
+                                <div class="quantity">
 
-<div class="section-label">
-OUR COMMUNITY
-</div>
+                                    <button
+                                        onclick="changeQuantity(${product.id}, 1)"
+                                    >
+                                        +
+                                    </button>
 
-<h2>
-ماذا يقول عملاؤنا؟
-</h2>
+                                    <strong>
+                                        ${item.quantity}
+                                    </strong>
 
-<p>
-تجارب من مجتمع LIBYA FLEX.
-</p>
+                                    <button
+                                        onclick="changeQuantity(${product.id}, -1)"
+                                    >
+                                        −
+                                    </button>
 
-</div>
+                                </div>
 
-</div>
 
+                                <button
+                                    class="remove-btn"
+                                    onclick="removeFromCart(${product.id})"
+                                >
+                                    حذف
+                                </button>
 
-<div class="reviews">
+                            </div>
 
+                        </div>
 
-<div class="review">
+                    `;
 
-<div class="stars">
-★★★★★
-</div>
+                }).join("");
 
-<p>
-الجودة ممتازة والتصميم شكله فخم جداً.
-التوصيل كان سريع والتجربة كلها ممتازة.
-</p>
 
-<div class="reviewer">
+            document.getElementById(
+                "cartTotal"
+            ).textContent =
+                formatPrice(total);
 
-<div class="avatar">
-م
-</div>
+        }
 
-<div>
 
-<strong>
-محمد
-</strong>
+        function saveCart() {
 
-<span>
-Verified Customer
-</span>
+            localStorage.setItem(
+                "libyaFlexCart",
+                JSON.stringify(cart)
+            );
 
-</div>
+        }
 
-</div>
 
-</div>
+        function openCart() {
 
+            document.getElementById(
+                "cartOverlay"
+            ).classList.add("active");
 
-<div class="review">
+        }
 
-<div class="stars">
-★★★★★
-</div>
 
-<p>
-الخامة ممتازة والمقاس جاء مضبوط.
-أكيد بنطلب مرة ثانية.
-</p>
+        function closeCart() {
 
-<div class="reviewer">
+            document.getElementById(
+                "cartOverlay"
+            ).classList.remove("active");
 
-<div class="avatar">
-أ
-</div>
+        }
 
-<div>
 
-<strong>
-أحمد
-</strong>
+        function closeCartOutside(event) {
 
-<span>
-Verified Customer
-</span>
+            if (
+                event.target.id ===
+                "cartOverlay"
+            ) {
 
-</div>
+                closeCart();
 
-</div>
+            }
 
-</div>
+        }
 
 
-<div class="review">
+        /* ================================
+           CHECKOUT
+        ================================= */
 
-<div class="stars">
-★★★★★
-</div>
+        function openCheckout() {
 
-<p>
-أكثر شيء عجبني هو شكل الموقع والمنتجات.
-تحس إنك تشتري من براند حقيقي.
-</p>
+            if (!cart.length) {
 
-<div class="reviewer">
+                showToast(
+                    "السلة فارغة"
+                );
 
-<div class="avatar">
-ع
-</div>
+                return;
 
-<div>
+            }
 
-<strong>
-عمر
-</strong>
 
-<span>
-Verified Customer
-</span>
+            document.getElementById(
+                "checkoutModal"
+            ).classList.add("active");
 
-</div>
+        }
 
-</div>
 
-</div>
+        function closeCheckout() {
 
+            document.getElementById(
+                "checkoutModal"
+            ).classList.remove("active");
 
-</div>
+        }
 
-</section>
 
+        function submitOrder(event) {
 
-<!-- =========================
-     NEWSLETTER
-========================= -->
+            event.preventDefault();
 
-<section class="newsletter">
 
-<h2>
-Stay in the Game.
-</h2>
+            if (!cart.length) {
 
-<p>
-اشترك للحصول على المنتجات الجديدة والعروض الخاصة.
-</p>
+                showToast(
+                    "السلة فارغة"
+                );
 
-<form class="newsletter-form">
+                return;
 
-<input
-type="email"
-placeholder="البريد الإلكتروني"
->
+            }
 
-<button type="submit">
-اشتراك
-</button>
 
-</form>
+            const name =
+                document.getElementById(
+                    "customerName"
+                ).value.trim();
 
-</section>
 
-</main>
+            const phone =
+                document.getElementById(
+                    "customerPhone"
+                ).value.trim();
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+            const city =
+                document.getElementById(
+                    "customerCity"
+                ).value;
 
-<footer id="contact">
 
-<div class="footer-grid">
+            const address =
+                document.getElementById(
+                    "customerAddress"
+                ).value.trim();
 
 
-<div>
+            const notes =
+                document.getElementById(
+                    "customerNotes"
+                ).value.trim();
 
-<div class="footer-logo">
-LIBYA <span>FLEX</span>
-</div>
 
-<p class="footer-about">
-علامة رياضية ليبية تجمع بين الجودة،
-الأداء والتصميم العصري لعشاق كرة القدم.
-</p>
+            const order = {
 
-</div>
+                id:
+                    "LF-" +
+                    Date.now(),
 
+                date:
+                    new Date().toISOString(),
 
-<div>
+                customer: {
 
-<h3>
-المتجر
-</h3>
+                    name,
+                    phone,
+                    city,
+                    address,
+                    notes
 
-<ul>
+                },
 
-<li>
-جميع المنتجات
-</li>
+                items: cart,
 
-<li>
-الجديد
-</li>
+                total:
+                    calculateCartTotal()
 
-<li>
-الأكثر مبيعاً
-</li>
+            };
 
-<li>
-العروض
-</li>
 
-</ul>
+            const orders =
+                JSON.parse(
+                    localStorage.getItem(
+                        "libyaFlexOrders"
+                    )
+                ) || [];
 
-</div>
 
+            orders.push(order);
 
-<div>
 
-<h3>
-خدمة العملاء
-</h3>
+            localStorage.setItem(
+                "libyaFlexOrders",
+                JSON.stringify(orders)
+            );
 
-<ul>
 
-<li>
-تواصل معنا
-</li>
+            cart = [];
 
-<li>
-دليل المقاسات
-</li>
+            saveCart();
 
-<li>
-الشحن والتوصيل
-</li>
+            updateCartUI();
 
-<li>
-الإرجاع والاستبدال
-</li>
+            closeCheckout();
 
-</ul>
+            closeCart();
 
-</div>
 
+            document.querySelector(
+                "#checkoutModal form"
+            ).reset();
 
-<div>
 
-<h3>
-تابعنا
-</h3>
+            showToast(
+                "تم إرسال طلبك بنجاح رقم الطلب: " +
+                order.id
+            );
 
-<ul>
+        }
 
-<li>
-Instagram
-</li>
 
-<li>
-Facebook
-</li>
+        function calculateCartTotal() {
 
-<li>
-TikTok
-</li>
+            return cart.reduce(
+                (total, item) => {
 
-<li>
-WhatsApp
-</li>
+                    const product =
+                        products.find(
+                            p => p.id === item.id
+                        );
 
-</ul>
+                    if (!product) {
+                        return total;
+                    }
 
-</div>
+                    return total +
+                        product.price *
+                        item.quantity;
 
+                },
+                0
+            );
 
-</div>
+        }
 
 
-<div class="copyright">
+        /* ================================
+           SEARCH
+        ================================= */
 
-© 2026 LIBYA FLEX — جميع الحقوق محفوظة
+        function searchProducts() {
 
-</div>
+            const value =
+                document.getElementById(
+                    "searchInput"
+                ).value
+                .trim()
+                .toLowerCase();
 
-</footer>
 
+            if (!value) {
 
-<!-- CART -->
+                renderProducts(products);
 
-<div class="overlay" id="overlay"></div>
+                return;
 
-<div class="cart-panel" id="cartPanel">
+            }
 
-<div class="cart-header">
 
-<h2>
-سلة التسوق
-</h2>
+            const result =
+                products.filter(product =>
 
-<button class="close-cart" id="closeCart">
-×
-</button>
+                    product.name
+                        .toLowerCase()
+                        .includes(value)
 
-</div>
+                    ||
 
-<div class="cart-empty">
+                    product.category
+                        .toLowerCase()
+                        .includes(value)
 
-🛒
+                    ||
 
-<br><br>
+                    product.description
+                        .toLowerCase()
+                        .includes(value)
 
-السلة فارغة حالياً.
+                );
 
-</div>
 
-</div>
+            renderProducts(result);
 
 
-<script>
+            scrollToProducts();
 
-/* =========================
-   CART
-========================= */
+        }
 
-const cartBtn =
-document.getElementById("cartBtn");
 
-const cartPanel =
-document.getElementById("cartPanel");
+        function filterCategory(category) {
 
-const closeCart =
-document.getElementById("closeCart");
+            const result =
+                products.filter(
+                    product =>
+                        product.category === category
+                );
 
-const overlay =
-document.getElementById("overlay");
 
-const cartCount =
-document.getElementById("cartCount");
+            renderProducts(result);
 
-let count = 0;
 
+            document.getElementById(
+                "productsSubtitle"
+            ).textContent =
+                "قسم: " + category;
 
-cartBtn.addEventListener("click",()=>{
 
-cartPanel.classList.add("active");
+            scrollToProducts();
 
-overlay.classList.add("active");
+        }
 
-});
 
+        function showAllProducts() {
 
-closeCart.addEventListener("click",()=>{
+            renderProducts(products);
 
-cartPanel.classList.remove("active");
 
-overlay.classList.remove("active");
+            document.getElementById(
+                "productsSubtitle"
+            ).textContent =
+                "أفضل المنتجات المختارة لك";
 
-});
+        }
 
 
-overlay.addEventListener("click",()=>{
+        /* ================================
+           NAVIGATION
+        ================================= */
 
-cartPanel.classList.remove("active");
+        function scrollToProducts() {
 
-overlay.classList.remove("active");
+            document.getElementById(
+                "productsSection"
+            ).scrollIntoView({
+                behavior: "smooth"
+            });
 
-});
+        }
 
 
-/* ADD TO CART */
+        function scrollToCategories() {
 
-document.querySelectorAll(".add").forEach(button=>{
+            document.getElementById(
+                "categories"
+            ).scrollIntoView({
+                behavior: "smooth"
+            });
 
-button.addEventListener("click",()=>{
+        }
 
-count++;
 
-cartCount.textContent=count;
+        /* ================================
+           HELPERS
+        ================================= */
 
-button.innerHTML="✓";
+        function formatPrice(price) {
 
-button.style.background="#d6c09a";
+            return (
+                Number(price).toLocaleString(
+                    "ar-LY"
+                )
+                + " د.ل"
+            );
 
-button.style.color="#080808";
+        }
 
-setTimeout(()=>{
 
-button.innerHTML="+";
+        function escapeHtml(value) {
 
-button.style.background="";
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
 
-button.style.color="";
+        }
 
-},1000);
 
-});
+        function showToast(message) {
 
-});
+            const toast =
+                document.getElementById(
+                    "toast"
+                );
 
 
-/* NEWSLETTER */
+            toast.textContent = message;
 
-document
-.querySelector(".newsletter-form")
-.addEventListener("submit",(e)=>{
+            toast.classList.add("show");
 
-e.preventDefault();
 
-alert("تم الاشتراك بنجاح في LIBYA FLEX ✦");
+            setTimeout(() => {
 
-});
+                toast.classList.remove(
+                    "show"
+                );
 
+            }, 3000);
 
-</script>
+        }
+
+
+        /* ================================
+           INITIALIZE
+        ================================= */
+
+        renderProducts(products);
+
+        updateCartUI();
+
+    </script>
 
 </body>
 </html>
