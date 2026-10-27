@@ -1,358 +1,826 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 <title>LIBYA FLEX — Admin</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#060708;color:#eee;font-family:Arial,Tahoma,sans-serif}
-.hidden{display:none!important}
-:root{--g:#d6ad52;--g2:#f0d48a;--line:#ffffff12;--mut:#7e878e;--r:#ff5964;--gr:#35d083;--o:#f1a63b}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-
-.login{min-height:100vh;display:grid;place-items:center;padding:20px}
-.loginbox,.card,.stat{background:#0d1114;border:1px solid var(--line);border-radius:16px}
-.loginbox{width:min(430px,100%);padding:35px}
-.brand{font:34px Georgia;color:var(--g);letter-spacing:3px}
-.small{font-size:10px;color:#555;letter-spacing:4px;margin-bottom:25px}
-
-.field{margin:0 0 13px}
-.field label{display:block;color:#aaa;font-size:12px;margin-bottom:6px}
-.field input,.field select,.field textarea,.search{
-width:100%;background:#07090b;color:#fff;border:1px solid var(--line);
-border-radius:9px;padding:11px
+*{
+    box-sizing:border-box;
 }
-.field textarea{min-height:90px}
 
-.btn{border:0;border-radius:9px;padding:10px 14px;background:#1a1d20;color:#fff}
-.gold{background:linear-gradient(135deg,var(--g2),var(--g));color:#090909;font-weight:bold}
-.danger{background:#ff596414;color:#ff7b83;border:1px solid #ff596433}
-.green{background:#35d08318;color:#63e3a0;border:1px solid #35d08333}
+:root{
+    --gold:#d6ad52;
+    --gold2:#f0d48a;
+    --bg:#060708;
+    --card:#0d1013;
+    --card2:#111519;
+    --line:#ffffff12;
+    --muted:#7e878e;
+    --red:#ff5964;
+    --green:#35d083;
+    --orange:#f1a63b;
+    --blue:#4da3ff;
+}
+
+body{
+    margin:0;
+    background:var(--bg);
+    color:#f4f1ea;
+    font-family:Arial,Tahoma,sans-serif;
+}
+
+.hidden{
+    display:none!important;
+}
+
+button,input,select,textarea{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+input,select,textarea{
+    outline:none;
+}
+
+.login{
+    min-height:100vh;
+    display:grid;
+    place-items:center;
+    padding:20px;
+    background:
+    radial-gradient(circle at 20% 20%,#d6ad5210,transparent 30%),
+    radial-gradient(circle at 80% 80%,#15d9e310,transparent 30%);
+}
+
+.loginBox{
+    width:min(430px,100%);
+    background:#0c0f12;
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:38px;
+    box-shadow:0 30px 100px #000;
+}
+
+.brand{
+    font:34px Georgia;
+    color:var(--gold);
+    letter-spacing:3px;
+}
+
+.brandSmall{
+    color:#666;
+    font-size:9px;
+    letter-spacing:4px;
+    margin:6px 0 30px;
+}
+
+.field{
+    margin-bottom:14px;
+}
+
+.field label{
+    display:block;
+    color:#aab0b5;
+    font-size:12px;
+    margin-bottom:6px;
+}
+
+.field input,
+.field select,
+.field textarea{
+    width:100%;
+    background:#07090b;
+    border:1px solid var(--line);
+    color:#fff;
+    border-radius:9px;
+    padding:12px;
+}
+
+.field textarea{
+    min-height:90px;
+    resize:vertical;
+}
+
+.btn{
+    border:0;
+    border-radius:9px;
+    padding:11px 16px;
+    background:#1a1d20;
+    color:#fff;
+}
+
+.btn:hover{
+    filter:brightness(1.15);
+}
+
+.btnGold{
+    background:linear-gradient(135deg,var(--gold2),var(--gold));
+    color:#080808;
+    font-weight:800;
+}
+
+.btnDanger{
+    background:#ff596414;
+    color:#ff7b83;
+    border:1px solid #ff596433;
+}
+
+.btnGreen{
+    background:#35d08318;
+    color:#63e3a0;
+    border:1px solid #35d08333;
+}
+
+.btnBlue{
+    background:#4da3ff18;
+    color:#72baff;
+    border:1px solid #4da3ff33;
+}
+
+.loginBtn{
+    width:100%;
+    margin-top:8px;
+    padding:13px;
+}
+
+.hint{
+    font-size:10px;
+    color:#555;
+    margin-top:15px;
+    text-align:center;
+}
 
 .sidebar{
-position:fixed;right:0;top:0;bottom:0;width:255px;background:#090b0d;
-border-left:1px solid var(--line);padding:20px 14px
+    position:fixed;
+    right:0;
+    top:0;
+    bottom:0;
+    width:260px;
+    background:#090b0d;
+    border-left:1px solid var(--line);
+    padding:22px 15px;
+    z-index:20;
 }
-.sidebrand{
-font:28px Georgia;color:var(--g);padding:10px;
-border-bottom:1px solid var(--line);margin-bottom:15px
+
+.sideBrand{
+    padding:8px 10px 24px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:18px;
 }
+
+.sideBrand b{
+    font:29px Georgia;
+    color:var(--gold);
+    letter-spacing:2px;
+}
+
+.sideBrand small{
+    display:block;
+    color:#555;
+    font-size:8px;
+    letter-spacing:3px;
+}
+
 .nav{
-display:block;width:100%;text-align:right;border:1px solid transparent;
-background:none;color:#888;padding:12px;border-radius:9px;margin:4px 0
-}
-.nav.active,.nav:hover{color:var(--g);background:#ffffff08}
-.logout{position:absolute;bottom:20px;left:14px;right:14px}
-
-main{margin-right:255px;padding:28px}
-.top{display:flex;justify-content:space-between;gap:15px;margin-bottom:22px}
-.top h1{margin:0}
-.top p{color:#777;font-size:12px}
-
-.section{display:none}
-.section.active{display:block}
-
-.stats{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:12px
-}
-.stat{padding:18px}
-.stat span{font-size:11px;color:#777}
-.stat b{
-display:block;
-color:var(--g);
-font-size:26px;
-margin-top:8px
+    display:block;
+    width:100%;
+    padding:12px;
+    border:1px solid transparent;
+    background:none;
+    color:#858d94;
+    border-radius:10px;
+    text-align:right;
+    margin:4px 0;
 }
 
-.card{padding:18px;margin-top:18px}
-.head{
-display:flex;
-justify-content:space-between;
-gap:10px;
-align-items:center;
-margin-bottom:15px
+.nav:hover,
+.nav.active{
+    background:#ffffff08;
+    color:#fff;
+    border-color:#ffffff0d;
 }
-.head h3{margin:0}
-.head span{font-size:11px;color:#666}
 
-.tablewrap{overflow:auto}
+.nav.active{
+    color:var(--gold);
+}
+
+.logout{
+    position:absolute;
+    bottom:20px;
+    right:15px;
+    left:15px;
+}
+
+.main{
+    margin-right:260px;
+    padding:28px 32px;
+}
+
+.top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.top h1{
+    margin:0;
+    font-size:27px;
+}
+
+.top p{
+    color:#777;
+    margin:5px 0 0;
+    font-size:12px;
+}
+
+.gridStats{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:14px;
+    margin-bottom:22px;
+}
+
+.stat,
+.card{
+    background:linear-gradient(145deg,#111519,#0c0f12);
+    border:1px solid var(--line);
+    border-radius:14px;
+}
+
+.stat{
+    padding:20px;
+}
+
+.stat span{
+    color:#777;
+    font-size:11px;
+}
+
+.stat strong{
+    display:block;
+    font-size:29px;
+    margin-top:8px;
+    color:var(--gold);
+}
+
+.section{
+    display:none;
+}
+
+.section.active{
+    display:block;
+}
+
+.card{
+    padding:20px;
+    margin-bottom:18px;
+}
+
+.cardHead{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:18px;
+}
+
+.cardHead h2,
+.cardHead h3{
+    margin:0;
+}
+
+.cardHead span{
+    color:#666;
+    font-size:11px;
+}
+
+.tableWrap{
+    overflow:auto;
+}
+
 .table{
-width:100%;
-min-width:900px;
-border-collapse:collapse
+    width:100%;
+    border-collapse:collapse;
+    min-width:900px;
 }
-.table th,.table td{
-padding:11px 8px;
-border-bottom:1px solid var(--line);
-font-size:12px;
-text-align:right;
-vertical-align:top
-}
-.table th{color:#777;font-weight:normal}
 
-.thumb{
-width:55px;
-height:55px;
-object-fit:cover;
-border-radius:8px;
-background:#111
+.table th,
+.table td{
+    padding:13px 10px;
+    border-bottom:1px solid var(--line);
+    text-align:right;
+    font-size:12px;
+    vertical-align:top;
+}
+
+.table th{
+    color:#777;
+    font-weight:normal;
+}
+
+.productThumb{
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    border-radius:8px;
+    background:#161a1d;
 }
 
 .tag{
-display:inline-block;
-padding:4px 8px;
-border-radius:20px;
-font-size:9px;
-margin:2px;
-background:#d6ad5215;
-color:var(--g)
+    display:inline-block;
+    padding:4px 8px;
+    border-radius:20px;
+    font-size:9px;
+    background:#d6ad5215;
+    color:var(--gold);
+    margin:2px;
 }
-.tag.r{background:#ff596415;color:#ff7b83}
-.tag.gr{background:#35d08315;color:#63e3a0}
-.tag.o{background:#f1a63b15;color:#f7b95e}
-.tag.b{background:#5ba7ff15;color:#79b9ff}
+
+.tag.red{
+    background:#ff596415;
+    color:#ff7b83;
+}
+
+.tag.green{
+    background:#35d08315;
+    color:#63e3a0;
+}
+
+.tag.blue{
+    background:#4da3ff15;
+    color:#72baff;
+}
+
+.tag.orange{
+    background:#f1a63b15;
+    color:#ffc06b;
+}
 
 .actions{
-display:flex;
-gap:6px;
-flex-wrap:wrap
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
 }
 
 .empty{
-text-align:center;
-color:#666;
-padding:40px
+    text-align:center;
+    color:#666;
+    padding:45px;
 }
 
-.formgrid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:13px
-}
-.full{grid-column:1/-1}
-
-.sizerows{display:grid;gap:7px}
-.sizerow{
-display:grid;
-grid-template-columns:1fr 110px 40px;
-gap:7px
-}
-.sizerow input{
-background:#090b0d;
-color:#fff;
-border:1px solid var(--line);
-padding:9px;
-border-radius:8px
+.searchBar{
+    display:flex;
+    gap:10px;
+    margin-bottom:15px;
 }
 
-.preview{
-width:140px;
-height:140px;
-object-fit:cover;
-border-radius:10px;
-margin-top:8px;
-display:none
+.searchBar input{
+    flex:1;
+    background:#090b0d;
+    border:1px solid var(--line);
+    color:#fff;
+    border-radius:9px;
+    padding:11px;
+}
+
+.formGrid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+.sizeRows{
+    display:grid;
+    gap:8px;
+}
+
+.sizeRow{
+    display:grid;
+    grid-template-columns:1fr 120px 42px;
+    gap:8px;
+}
+
+.sizeRow input{
+    background:#090b0d;
+    border:1px solid var(--line);
+    color:#fff;
+    border-radius:8px;
+    padding:10px;
+}
+
+.mini{
+    width:42px;
+    padding:0;
+}
+
+.presets{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+    margin-top:9px;
+}
+
+.preset{
+    padding:7px 10px;
+    background:#181b1f;
+    border:1px solid var(--line);
+    color:#bbb;
+    border-radius:7px;
+    font-size:11px;
+}
+
+.preset:hover{
+    border-color:#d6ad5266;
+    color:var(--gold);
 }
 
 .modal{
-position:fixed;
-inset:0;
-background:#000c;
-display:none;
-align-items:center;
-justify-content:center;
-padding:15px;
-z-index:50
+    position:fixed;
+    inset:0;
+    background:#000c;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+    z-index:100;
 }
-.modal.open{display:flex}
 
-.modalbox{
-width:min(850px,100%);
-max-height:92vh;
-overflow:auto;
-background:#0d1013;
-border:1px solid #d6ad5230;
-border-radius:15px;
-padding:22px
+.modal.open{
+    display:flex;
+}
+
+.modalBox{
+    width:min(800px,100%);
+    max-height:92vh;
+    overflow:auto;
+    background:#0d1013;
+    border:1px solid #d6ad5230;
+    border-radius:15px;
+    padding:24px;
+}
+
+.modalHead{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
 }
 
 .close{
-border:0;
-background:#222;
-color:#fff;
-border-radius:50%;
-width:35px;
-height:35px
+    width:36px;
+    height:36px;
+    border:1px solid var(--line);
+    background:#181b1f;
+    color:#fff;
+    border-radius:50%;
 }
 
-.citygrid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:12px
-}
-.city{
-background:#111519;
-border:1px solid var(--line);
-border-radius:10px;
-padding:15px
-}
-.price{
-font-size:21px;
-color:var(--g);
-margin:7px 0
+.orderItems{
+    display:grid;
+    gap:8px;
+    margin:15px 0;
 }
 
-.customerstats{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:10px
+.orderItem{
+    background:#111519;
+    border:1px solid var(--line);
+    padding:10px;
+    border-radius:8px;
 }
-.customerstats>div{
-background:#111519;
-border:1px solid var(--line);
-border-radius:9px;
-padding:12px
-}
-.customerstats b{
-font-size:22px;
-color:var(--g);
-display:block;
-margin-top:5px
+
+.notice{
+    padding:12px;
+    border:1px solid #d6ad5230;
+    background:#d6ad5209;
+    color:#aaa;
+    border-radius:9px;
+    font-size:11px;
+    margin-bottom:15px;
 }
 
 .toast{
-position:fixed;
-bottom:22px;
-left:50%;
-transform:translate(-50%,120px);
-transition:.25s;
-background:#171b1f;
-border:1px solid #d6ad5266;
-padding:12px 18px;
-border-radius:9px;
-z-index:100
-}
-.toast.show{transform:translate(-50%,0)}
-
-@media(max-width:1050px){
-.stats{grid-template-columns:repeat(3,1fr)}
-.citygrid{grid-template-columns:repeat(2,1fr)}
+    position:fixed;
+    left:50%;
+    bottom:25px;
+    transform:translate(-50%,120px);
+    background:#15191d;
+    border:1px solid #d6ad5266;
+    padding:13px 20px;
+    border-radius:8px;
+    z-index:300;
+    transition:.3s;
 }
 
-@media(max-width:800px){
-.sidebar{width:70px}
-.sidebrand{font-size:0}
-.sidebrand:after{
-content:'LF';
-font:24px Georgia;
-color:var(--g)
+.toast.show{
+    transform:translate(-50%,0);
 }
-.nav{font-size:0;text-align:center}
-.nav:first-letter{font-size:18px}
-main{margin-right:70px;padding:18px}
+
+.imagePreview{
+    width:140px;
+    height:140px;
+    object-fit:cover;
+    border-radius:12px;
+    border:1px solid var(--line);
+    margin-top:10px;
+    display:none;
+}
+
+.customerBox{
+    background:#111519;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:14px;
+    margin-bottom:10px;
+}
+
+.customerStats{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:8px;
+}
+
+.cityRow{
+    display:grid;
+    grid-template-columns:1fr 150px 100px;
+    gap:8px;
+    align-items:center;
+    margin-bottom:8px;
+}
+
+.cityRow input{
+    background:#090b0d;
+    border:1px solid var(--line);
+    color:#fff;
+    border-radius:8px;
+    padding:10px;
+}
+
+.statusButtons{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+}
+
+.statusButtons button{
+    padding:6px 9px;
+    border-radius:7px;
+    border:0;
+    font-size:10px;
+}
+
+@media(max-width:1100px){
+    .gridStats{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
+@media(max-width:900px){
+
+    .sidebar{
+        width:72px;
+    }
+
+    .sideBrand b{
+        font-size:0;
+    }
+
+    .sideBrand b:after{
+        content:'LF';
+        font-size:24px;
+    }
+
+    .sideBrand small{
+        display:none;
+    }
+
+    .nav{
+        font-size:0;
+        text-align:center;
+    }
+
+    .main{
+        margin-right:72px;
+        padding:20px;
+    }
+
+    .gridStats{
+        grid-template-columns:repeat(2,1fr);
+    }
 }
 
 @media(max-width:600px){
-.sidebar{display:none}
-main{margin:0;padding:14px}
-.stats{grid-template-columns:1fr 1fr}
-.formgrid{grid-template-columns:1fr}
-.full{grid-column:auto}
-.citygrid{grid-template-columns:1fr}
-.customerstats{grid-template-columns:1fr 1fr}
+
+    .sidebar{
+        width:0;
+        padding:0;
+        border:0;
+        overflow:hidden;
+    }
+
+    .main{
+        margin-right:0;
+        padding:15px;
+    }
+
+    .gridStats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .formGrid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+    .top{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .table{
+        min-width:850px;
+    }
+
+    .cityRow{
+        grid-template-columns:1fr;
+    }
 }
 </style>
 </head>
 
 <body>
 
+<!-- LOGIN -->
 <div id="login" class="login">
-<div class="loginbox">
 
-<div class="brand">LIBYA FLEX</div>
-<div class="small">PRIVATE STORE ADMIN</div>
+<div class="loginBox">
+
+<div class="brand">
+LIBYA FLEX
+</div>
+
+<div class="brandSmall">
+PRIVATE STORE ADMIN
+</div>
 
 <h2>لوحة التحكم</h2>
 
 <p style="color:#777;font-size:12px">
-إدارة المنتجات والعملاء والطلبات والمخزون والمدن.
+إدارة المنتجات والعملاء والمخزون والطلبات والمدن والتوصيل.
 </p>
 
 <div class="field">
-<label>اسم المستخدم</label>
-<input id="username" value="admin">
+
+<label>
+اسم المستخدم
+</label>
+
+<input
+id="username"
+value="admin"
+autocomplete="username"
+>
+
 </div>
 
 <div class="field">
-<label>كلمة المرور</label>
-<input id="password" type="password">
+
+<label>
+كلمة المرور
+</label>
+
+<input
+id="password"
+type="password"
+autocomplete="current-password"
+>
+
 </div>
 
-<button class="btn gold" style="width:100%" onclick="login()">
+<button
+type="button"
+class="btn btnGold loginBtn"
+onclick="login()"
+>
 دخول لوحة التحكم
 </button>
 
-<div style="font-size:10px;color:#555;text-align:center;margin-top:12px">
-admin / libyaflex
+<div class="hint">
+الدخول الحالي: admin / libyaflex
 </div>
 
 </div>
 </div>
 
 
+<!-- APP -->
 <div id="app" class="hidden">
 
 <aside class="sidebar">
 
-<div class="sidebrand">LIBYA FLEX</div>
+<div class="sideBrand">
 
-<button class="nav active" onclick="section('dashboard',this)">
-▣ الرئيسية
+<b>LIBYA FLEX</b>
+
+<small>
+STORE ADMINISTRATION
+</small>
+
+</div>
+
+<button
+class="nav active"
+data-section="dashboard"
+onclick="showSection('dashboard',this)"
+>
+▣ &nbsp; الرئيسية
 </button>
 
-<button class="nav" onclick="section('products',this)">
-◈ المنتجات
+<button
+class="nav"
+data-section="products"
+onclick="showSection('products',this)"
+>
+◈ &nbsp; المنتجات
 </button>
 
-<button class="nav" onclick="section('orders',this)">
-🛍 الطلبات
+<button
+class="nav"
+data-section="orders"
+onclick="showSection('orders',this)"
+>
+🛍 &nbsp; الطلبات
 </button>
 
-<button class="nav" onclick="section('customers',this)">
-👤 العملاء
+<button
+class="nav"
+data-section="customers"
+onclick="showSection('customers',this)"
+>
+👤 &nbsp; العملاء
 </button>
 
-<button class="nav" onclick="section('cities',this)">
-🚚 المدن والتوصيل
+<button
+class="nav"
+data-section="cities"
+onclick="showSection('cities',this)"
+>
+📍 &nbsp; المدن والتوصيل
 </button>
 
-<button class="nav" onclick="section('settings',this)">
-⚙ الإعدادات
+<button
+class="nav"
+data-section="settings"
+onclick="showSection('settings',this)"
+>
+⚙ &nbsp; إعدادات المتجر
 </button>
 
-<button class="btn logout" onclick="logout()">
+<button
+class="btn logout"
+onclick="logout()"
+>
 تسجيل الخروج
 </button>
 
 </aside>
 
 
-<main>
+<main class="main">
 
 <div class="top">
 
 <div>
-<h1 id="title">نظرة عامة</h1>
-<p style="color:#777">
-تحكم كامل في LIBYA FLEX.
+
+<h1 id="pageTitle">
+نظرة عامة
+</h1>
+
+<p>
+تحكم كامل في متجر LIBYA FLEX من مكان واحد.
 </p>
+
 </div>
 
-<button class="btn gold" onclick="productModal()">
+<button
+class="btn btnGold"
+onclick="openProductModal()"
+>
 + إضافة منتج
 </button>
 
@@ -361,53 +829,36 @@ admin / libyaflex
 
 <!-- DASHBOARD -->
 
-<section id="dashboard" class="section active">
+<section
+id="dashboard"
+class="section active"
+>
 
-<div class="stats">
+<div class="gridStats">
 
 <div class="stat">
 <span>المنتجات</span>
-<b id="sp">0</b>
+<strong id="sProducts">0</strong>
 </div>
 
 <div class="stat">
 <span>الطلبات</span>
-<b id="so">0</b>
+<strong id="sOrders">0</strong>
 </div>
 
 <div class="stat">
-<span>المبيعات المستلمة</span>
-<b id="sr">0</b>
+<span>إجمالي الطلبات</span>
+<strong id="sRevenue">0</strong>
 </div>
 
 <div class="stat">
 <span>المخزون</span>
-<b id="ss">0</b>
+<strong id="sStock">0</strong>
 </div>
 
 <div class="stat">
 <span>العملاء</span>
-<b id="sc">0</b>
-</div>
-
-<div class="stat">
-<span>🚚 قيد التوصيل</span>
-<b id="sw">0</b>
-</div>
-
-<div class="stat">
-<span>🟢 مستلمة</span>
-<b id="sd">0</b>
-</div>
-
-<div class="stat">
-<span>🔴 لم تستلم</span>
-<b id="sf">0</b>
-</div>
-
-<div class="stat">
-<span>⚠️ مخزون منخفض</span>
-<b id="sl">0</b>
+<strong id="sCustomers">0</strong>
 </div>
 
 </div>
@@ -415,30 +866,39 @@ admin / libyaflex
 
 <div class="card">
 
-<div class="head">
+<div class="cardHead">
 
 <div>
 <h3>آخر الطلبات</h3>
+<span>أحدث الطلبات المسجلة</span>
 </div>
 
-<button class="btn" onclick="section('orders')">
+<button
+class="btn"
+onclick="showSection('orders')"
+>
 عرض الكل
 </button>
 
 </div>
 
-<div id="recent"></div>
+<div id="recentOrders"></div>
 
 </div>
 
 
 <div class="card">
 
-<div class="head">
+<div class="cardHead">
+
+<div>
 <h3>تنبيهات المخزون</h3>
+<span>المقاسات التي مخزونها منخفض أو منتهٍ</span>
 </div>
 
-<div id="alerts"></div>
+</div>
+
+<div id="stockAlerts"></div>
 
 </div>
 
@@ -447,47 +907,67 @@ admin / libyaflex
 
 <!-- PRODUCTS -->
 
-<section id="products" class="section">
+<section
+id="products"
+class="section"
+>
 
 <div class="card">
 
-<div class="head">
+<div class="cardHead">
 
 <div>
-<h3>المنتجات</h3>
-<span>الصورة من الجوال أو رابط.</span>
+<h3>إدارة المنتجات</h3>
+
+<span>
+إضافة وتعديل وحذف المنتجات والمقاسات والمخزون.
+</span>
+
 </div>
 
-<button class="btn gold" onclick="productModal()">
-+ منتج
+<button
+class="btn btnGold"
+onclick="openProductModal()"
+>
++ منتج جديد
 </button>
 
 </div>
 
+
+<div class="searchBar">
+
 <input
-class="search"
-id="psearch"
-placeholder="بحث..."
-oninput="productsTable()"
+id="productSearch"
+placeholder="ابحث عن منتج أو قسم أو نوع..."
+oninput="renderProductsTable()"
 >
 
-<div class="tablewrap">
+</div>
+
+
+<div class="tableWrap">
 
 <table class="table">
 
 <thead>
+
 <tr>
+
 <th>الصورة</th>
 <th>المنتج</th>
 <th>القسم</th>
+<th>النوع</th>
 <th>السعر</th>
-<th>المقاسات</th>
+<th>المقاسات / المخزون</th>
 <th>الحالة</th>
 <th>إجراءات</th>
+
 </tr>
+
 </thead>
 
-<tbody id="pt"></tbody>
+<tbody id="productsTable"></tbody>
 
 </table>
 
@@ -500,46 +980,59 @@ oninput="productsTable()"
 
 <!-- ORDERS -->
 
-<section id="orders" class="section">
+<section
+id="orders"
+class="section"
+>
 
 <div class="card">
 
-<div class="head">
+<div class="cardHead">
 
-<h3>الطلبات</h3>
+<div>
 
-<button class="btn danger" onclick="clearOrders()">
-حذف الكل
+<h3>
+الطلبات
+</h3>
+
+<span>
+إدارة حالة كل طلب.
+</span>
+
+</div>
+
+<button
+class="btn btnDanger"
+onclick="clearOrders()"
+>
+حذف كل الطلبات
 </button>
 
 </div>
 
-<input
-class="search"
-id="osearch"
-placeholder="رقم الطلب / الاسم / الهاتف"
-oninput="ordersTable()"
->
 
-<div class="tablewrap">
+<div class="tableWrap">
 
 <table class="table">
 
 <thead>
 
 <tr>
-<th>الطلب</th>
+
+<th>رقم الطلب</th>
 <th>التاريخ</th>
 <th>العميل</th>
 <th>المدينة</th>
+<th>العناصر</th>
 <th>الإجمالي</th>
 <th>الحالة</th>
-<th>إجراء</th>
+<th>إجراءات</th>
+
 </tr>
 
 </thead>
 
-<tbody id="ot"></tbody>
+<tbody id="ordersTable"></tbody>
 
 </table>
 
@@ -552,51 +1045,42 @@ oninput="ordersTable()"
 
 <!-- CUSTOMERS -->
 
-<section id="customers" class="section">
+<section
+id="customers"
+class="section"
+>
 
 <div class="card">
 
-<div class="head">
+<div class="cardHead">
 
-<h3>العملاء</h3>
+<div>
+
+<h3>
+سجل العملاء
+</h3>
 
 <span>
-نفس رقم الهاتف = نفس سجل العميل.
+معرفة عدد مرات الطلب والاستلام وعدم الاستلام لكل عميل.
 </span>
 
 </div>
 
+</div>
+
+
+<div class="searchBar">
+
 <input
-class="search"
-id="csearch"
-placeholder="بحث بالاسم أو الهاتف"
-oninput="customersTable()"
+id="customerSearch"
+placeholder="ابحث باسم العميل أو رقم الهاتف..."
+oninput="renderCustomers()"
 >
 
-<div class="tablewrap">
-
-<table class="table">
-
-<thead>
-
-<tr>
-<th>العميل</th>
-<th>الهاتف</th>
-<th>الطلبات</th>
-<th>🟢 استلم</th>
-<th>🔴 لم يستلم</th>
-<th>القيمة</th>
-<th>التقييم</th>
-<th></th>
-</tr>
-
-</thead>
-
-<tbody id="ct"></tbody>
-
-</table>
-
 </div>
+
+
+<div id="customersList"></div>
 
 </div>
 
@@ -605,29 +1089,44 @@ oninput="customersTable()"
 
 <!-- CITIES -->
 
-<section id="cities" class="section">
+<section
+id="cities"
+class="section"
+>
 
 <div class="card">
 
-<div class="head">
+<div class="cardHead">
 
 <div>
 
-<h3>المدن وأسعار التوصيل</h3>
+<h3>
+المدن وأسعار التوصيل
+</h3>
 
 <span>
-قابلة للإضافة والتعديل والحذف.
+أضف المدن وعدّل سعر التوصيل أو احذفها.
 </span>
 
 </div>
 
-<button class="btn gold" onclick="cityModal()">
-+ مدينة
+<button
+class="btn btnGold"
+onclick="addCity()"
+>
++ إضافة مدينة
 </button>
 
 </div>
 
-<div class="citygrid" id="citiesGrid"></div>
+<div id="citiesList"></div>
+
+<button
+class="btn btnGold"
+onclick="saveCities()"
+>
+حفظ المدن والأسعار
+</button>
 
 </div>
 
@@ -636,150 +1135,303 @@ oninput="customersTable()"
 
 <!-- SETTINGS -->
 
-<section id="settings" class="section">
+<section
+id="settings"
+class="section"
+>
 
 <div class="card">
 
-<div class="head">
-<h3>إعدادات المتجر</h3>
+<div class="cardHead">
+
+<div>
+
+<h3>
+إعدادات المتجر
+</h3>
+
+<span>
+تعديل البيانات الأساسية للموقع.
+</span>
+
 </div>
 
-<div class="formgrid">
+</div>
+
+
+<div class="notice">
+
+ملاحظة: GitHub Pages لا يوفر قاعدة بيانات مشتركة بين الأجهزة.
+هذه النسخة تحفظ البيانات في localStorage على المتصفح والجهاز نفسه.
+
+</div>
+
+
+<div class="formGrid">
 
 <div class="field">
-<label>اسم المتجر</label>
-<input id="sn">
+
+<label>
+اسم المتجر
+</label>
+
+<input id="setName">
+
 </div>
 
+
 <div class="field">
-<label>WhatsApp</label>
-<input id="swp">
+
+<label>
+رقم WhatsApp
+</label>
+
+<input
+id="setWhatsapp"
+placeholder="2189xxxxxxxx"
+>
+
 </div>
+
 
 <div class="field full">
-<label>الوصف</label>
-<textarea id="sdesc"></textarea>
+
+<label>
+وصف المتجر
+</label>
+
+<textarea id="setDescription"></textarea>
+
 </div>
+
 
 <div class="field full">
-<label>Hero</label>
-<textarea id="shero"></textarea>
+
+<label>
+نص الـ Hero
+</label>
+
+<textarea id="setHeroSubtitle"></textarea>
+
 </div>
+
 
 <div class="field">
-<label>Instagram</label>
-<input id="sig">
+
+<label>
+Instagram
+</label>
+
+<input
+id="setInstagram"
+placeholder="https://instagram.com/..."
+>
+
 </div>
+
 
 <div class="field">
-<label>Facebook</label>
-<input id="sfb">
+
+<label>
+Facebook
+</label>
+
+<input
+id="setFacebook"
+placeholder="https://facebook.com/..."
+>
+
 </div>
+
 
 <div class="field">
-<label>TikTok</label>
-<input id="stk">
+
+<label>
+TikTok
+</label>
+
+<input
+id="setTikTok"
+placeholder="https://tiktok.com/@..."
+>
+
 </div>
+
 
 <div class="field">
-<label>ملاحظة التوصيل</label>
-<input id="sdel">
-</div>
+
+<label>
+ملاحظة التوصيل
+</label>
+
+<input
+id="setDelivery"
+placeholder="توصيل داخل ليبيا"
+>
 
 </div>
 
-<button class="btn gold" onclick="saveSettings()">
-حفظ الإعدادات
+</div>
+
+
+<button
+class="btn btnGold"
+onclick="saveSettings()"
+>
+حفظ إعدادات المتجر
 </button>
 
 </div>
 
 </section>
 
-</main>
 
+</main>
 </div>
 
 
 <!-- PRODUCT MODAL -->
 
-<div class="modal" id="pm">
+<div
+class="modal"
+id="productModal"
+>
 
-<div class="modalbox">
+<div class="modalBox">
 
-<div class="head">
+<div class="modalHead">
 
-<h2 id="pmt">إضافة منتج</h2>
+<h2 id="modalTitle">
+إضافة منتج
+</h2>
 
-<button class="close" onclick="closeM('pm')">
+<button
+class="close"
+onclick="closeProductModal()"
+>
 ✕
 </button>
 
 </div>
 
-<input type="hidden" id="pid">
 
-<div class="formgrid">
+<input
+type="hidden"
+id="pId"
+>
+
+
+<div class="formGrid">
+
 
 <div class="field">
-<label>اسم المنتج</label>
-<input id="pn" placeholder="مثلاً Real Madrid Home">
+
+<label>
+اسم المنتج
+</label>
+
+<input
+id="pName"
+placeholder="مثلاً: Real Madrid Home"
+>
+
 </div>
 
+
 <div class="field">
-<label>القسم / الفريق</label>
-<input id="pc" placeholder="مثلاً ريال مدريد">
+
+<label>
+القسم / الفريق
+</label>
+
+<input
+id="pCategory"
+placeholder="مثلاً: ريال مدريد"
+>
+
 </div>
 
+
 <div class="field">
 
-<label>نوع المنتج</label>
+<label>
+نوع المنتج
+</label>
 
-<select id="ptp">
+<select id="pType">
 
-<option value="shirt">قميص / ملابس</option>
-<option value="shoe">حذاء رياضي</option>
-<option value="shorts">شورت</option>
-<option value="jacket">جاكيت</option>
-<option value="accessory">إكسسوار</option>
-<option value="other">أخرى</option>
+<option value="shirt">
+قميص / ملابس
+</option>
+
+<option value="shoe">
+حذاء رياضي
+</option>
+
+<option value="shorts">
+شورت
+</option>
+
+<option value="jacket">
+جاكيت
+</option>
+
+<option value="accessory">
+إكسسوار
+</option>
+
+<option value="other">
+أخرى
+</option>
 
 </select>
 
 </div>
 
+
 <div class="field">
 
-<label>السعر بالدينار</label>
+<label>
+السعر بالدينار
+</label>
 
-<input id="pp" type="number" min="0">
+<input
+id="pPrice"
+type="number"
+min="0"
+>
 
 </div>
 
 
 <div class="field full">
 
-<label>الصورة من الجوال</label>
+<label>
+صورة المنتج
+</label>
 
 <input
-id="pfile"
+id="pImage"
+placeholder="رابط الصورة https://..."
+>
+
+<div
+style="margin-top:8px;color:#777;font-size:11px"
+>
+أو اختر صورة من الجوال:
+</div>
+
+<input
+id="pImageFile"
 type="file"
 accept="image/*"
-onchange="preview()"
+onchange="previewImageFile(event)"
+style="margin-top:8px"
 >
 
-<img id="prev" class="preview">
-
-</div>
-
-
-<div class="field full">
-
-<label>أو رابط الصورة</label>
-
-<input
-id="pi"
-placeholder="https://..."
+<img
+id="imagePreview"
+class="imagePreview"
 >
 
 </div>
@@ -787,9 +1439,13 @@ placeholder="https://..."
 
 <div class="field full">
 
-<label>الوصف</label>
+<label>
+الوصف
+</label>
 
-<textarea id="pd"></textarea>
+<textarea
+id="pDescription"
+></textarea>
 
 </div>
 
@@ -800,46 +1456,61 @@ placeholder="https://..."
 المقاسات / الأرقام والمخزون
 </label>
 
-<div class="sizerows" id="sizes"></div>
 
-<div style="margin-top:10px;display:flex;gap:7px;flex-wrap:wrap">
+<div
+class="notice"
+style="margin:0 0 8px"
+>
+
+تقدر تضيف S/M/L/XL للقمصان،
+أو 39/40/41/42 للأحذية،
+أو أي أرقام وخيارات أخرى.
+
+</div>
+
+
+<div class="presets">
 
 <button
-class="btn"
-onclick="preset(['XS','S','M','L','XL','XXL'])"
+type="button"
+class="preset"
+onclick="usePreset(['XS','S','M','L','XL','XXL'])"
 >
 ملابس
 </button>
 
 <button
-class="btn"
-onclick="preset(['S','M','L','XL'])"
+type="button"
+class="preset"
+onclick="usePreset(['S','M','L','XL'])"
 >
 قمصان
 </button>
 
 <button
-class="btn"
-onclick="preset(['36','37','38','39','40','41','42','43','44','45'])"
+type="button"
+class="preset"
+onclick="usePreset(['36','37','38','39','40','41','42','43','44','45'])"
 >
 أحذية
 </button>
 
 <button
-class="btn"
-onclick="preset(['6','7','8','9','10','11','12'])"
+type="button"
+class="preset"
+onclick="addSizeRow()"
 >
-US Shoes
-</button>
-
-<button
-class="btn gold"
-onclick="sizeRow()"
->
-+ مقاس
++ مقاس مخصص
 </button>
 
 </div>
+
+
+<div
+id="sizeRows"
+class="sizeRows"
+style="margin-top:10px"
+></div>
 
 </div>
 
@@ -848,11 +1519,17 @@ onclick="sizeRow()"
 
 <div class="actions">
 
-<button class="btn gold" onclick="saveProduct()">
+<button
+class="btn btnGold"
+onclick="saveProduct()"
+>
 حفظ المنتج
 </button>
 
-<button class="btn" onclick="closeM('pm')">
+<button
+class="btn"
+onclick="closeProductModal()"
+>
 إلغاء
 </button>
 
@@ -865,109 +1542,56 @@ onclick="sizeRow()"
 
 <!-- ORDER MODAL -->
 
-<div class="modal" id="om">
+<div
+class="modal"
+id="orderModal"
+>
 
-<div class="modalbox">
+<div class="modalBox">
 
-<div class="head">
+<div class="modalHead">
 
-<h2>تفاصيل الطلب</h2>
+<h2>
+تفاصيل الطلب
+</h2>
 
-<button class="close" onclick="closeM('om')">
+<button
+class="close"
+onclick="closeOrderModal()"
+>
 ✕
 </button>
 
 </div>
 
-<div id="od"></div>
+<div id="orderDetails"></div>
 
 </div>
 
 </div>
 
 
-<!-- CUSTOMER MODAL -->
-
-<div class="modal" id="cm">
-
-<div class="modalbox">
-
-<div class="head">
-
-<h2>سجل العميل</h2>
-
-<button class="close" onclick="closeM('cm')">
-✕
-</button>
-
-</div>
-
-<div id="cd"></div>
-
-</div>
-
-</div>
-
-
-<!-- CITY MODAL -->
-
-<div class="modal" id="citym">
-
-<div class="modalbox">
-
-<div class="head">
-
-<h2 id="cmt">إضافة مدينة</h2>
-
-<button class="close" onclick="closeM('citym')">
-✕
-</button>
-
-</div>
-
-<input type="hidden" id="cid">
-
-<div class="field">
-<label>اسم المدينة</label>
-<input id="cname" placeholder="طرابلس">
-</div>
-
-<div class="field">
-<label>سعر التوصيل</label>
-<input id="cprice" type="number" min="0" placeholder="10">
-</div>
-
-<div class="field">
-<label>ملاحظة</label>
-<input id="cnote" placeholder="التوصيل خلال 24-48 ساعة">
-</div>
-
-<div class="actions">
-
-<button class="btn gold" onclick="saveCity()">
-حفظ
-</button>
-
-<button class="btn" onclick="closeM('citym')">
-إلغاء
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="toast" id="toast"></div>
+<div
+class="toast"
+id="toast"
+></div>
 
 
 <script>
 
-const K='libyaFlexProducts';
-const O='libyaFlexOrders';
-const C='libyaFlexCities';
-const S='libyaFlexSettings';
+/* =========================
+   DATABASE KEYS
+========================= */
+
+const KEY='libyaFlexProducts';
+const ORD='libyaFlexOrders';
+const SET='libyaFlexSettings';
+const CITY='libyaFlexCities';
+
+
+/* =========================
+   DEFAULT DATA
+========================= */
 
 const defaultProducts=[
 
@@ -1022,539 +1646,1128 @@ sizes:[
 ];
 
 
-let products=load(K,defaultProducts);
-let orders=load(O,[]);
-let cities=load(C,[
-{id:1,name:'طرابلس',price:10,note:'التوصيل داخل طرابلس'},
-{id:2,name:'بنغازي',price:20,note:'التوصيل إلى بنغازي'},
-{id:3,name:'مصراتة',price:15,note:'التوصيل إلى مصراتة'},
-{id:4,name:'الزاوية',price:12,note:'التوصيل إلى الزاوية'},
-{id:5,name:'زليتن',price:15,note:'التوصيل إلى زليتن'}
-]);
-let settings=load(S,{});
+const defaultCities=[
+
+{
+name:'طرابلس',
+price:15
+},
+
+{
+name:'ضواحي طرابلس',
+price:20
+},
+
+{
+name:'الزاوية',
+price:30
+},
+
+{
+name:'زليتن',
+price:30
+},
+
+{
+name:'مصراتة',
+price:35
+},
+
+{
+name:'الخمس',
+price:35
+},
+
+{
+name:'بنغازي',
+price:30
+},
+
+{
+name:'البيضاء',
+price:35
+},
+
+{
+name:'درنة',
+price:40
+},
+
+{
+name:'طبرق',
+price:40
+},
+
+{
+name:'سبها',
+price:40
+},
+
+{
+name:'غات',
+price:50
+},
+
+{
+name:'الكفرة',
+price:50
+},
+
+{
+name:'الجبل الغربي',
+price:35
+},
+
+{
+name:'الجبل الشرقي',
+price:50
+}
+
+];
 
 
-function load(key,fallback){
+/* =========================
+   LOAD DATA
+========================= */
+
+let products=loadProducts();
+
+let orders=JSON.parse(
+localStorage.getItem(ORD)||'[]'
+);
+
+let settings=JSON.parse(
+localStorage.getItem(SET)||'{}'
+);
+
+let cities=loadCities();
+
+
+/* =========================
+   PRODUCTS
+========================= */
+
+function normalize(list){
+
+return (Array.isArray(list)?list:[]).map((p,i)=>({
+
+...p,
+
+id:Number(p.id)||Date.now()+i,
+
+price:Number(p.price)||0,
+
+type:p.type||'shirt',
+
+sizes:
+
+(Array.isArray(p.sizes)&&p.sizes.length?
+
+p.sizes:
+
+[
+{name:'S',stock:0},
+{name:'M',stock:0},
+{name:'L',stock:0},
+{name:'XL',stock:0}
+]
+
+).map(s=>({
+
+name:String(
+Array.isArray(s)
+?s[0]
+:s.name||s.size||''
+),
+
+stock:Math.max(
+0,
+Number(
+Array.isArray(s)
+?s[1]
+:s.stock
+)||0
+)
+
+})).filter(s=>s.name)
+
+}));
+
+}
+
+
+function loadProducts(){
 
 try{
 
-let x=JSON.parse(localStorage.getItem(key));
+let x=JSON.parse(
+localStorage.getItem(KEY)
+);
 
-if(x!==null)return x;
+if(Array.isArray(x)&&x.length){
+
+return normalize(x);
+
+}
 
 }catch(e){}
 
-localStorage.setItem(key,JSON.stringify(fallback));
+localStorage.setItem(
+KEY,
+JSON.stringify(defaultProducts)
+);
 
-return fallback;
+return normalize(defaultProducts);
+
+}
+
+
+function saveProducts(){
+
+localStorage.setItem(
+KEY,
+JSON.stringify(products)
+);
 
 }
 
 
-function save(key,value){
+/* =========================
+   CITIES
+========================= */
 
-localStorage.setItem(key,JSON.stringify(value));
+function loadCities(){
+
+try{
+
+let x=JSON.parse(
+localStorage.getItem(CITY)
+);
+
+if(Array.isArray(x)&&x.length){
+
+return x;
 
 }
 
+}catch(e){}
+
+localStorage.setItem(
+CITY,
+JSON.stringify(defaultCities)
+);
+
+return [...defaultCities];
+
+}
+
+
+function saveCities(){
+
+localStorage.setItem(
+CITY,
+JSON.stringify(cities)
+);
+
+toast('تم حفظ المدن والأسعار');
+
+}
+
+
+/* =========================
+   LOGIN
+========================= */
 
 function login(){
 
+const usernameInput=
+document.getElementById('username');
+
+const passwordInput=
+document.getElementById('password');
+
+const usernameValue=
+usernameInput.value.trim();
+
+const passwordValue=
+passwordInput.value;
+
 if(
-username.value.trim()==='admin' &&
-password.value==='libyaflex'
+usernameValue==='admin' &&
+passwordValue==='libyaflex'
 ){
 
-localStorage.setItem('lfAdminSession','1');
+localStorage.setItem(
+'lfAdminSession',
+'1'
+);
 
-document.getElementById('login').classList.add('hidden');
-document.getElementById('app').classList.remove('hidden');
+document
+.getElementById('login')
+.classList.add('hidden');
+
+document
+.getElementById('app')
+.classList.remove('hidden');
 
 refresh();
 
 }else{
 
-alert('بيانات الدخول غير صحيحة');
+alert(
+'بيانات الدخول غير صحيحة'
+);
 
 }
+
+}
+
+
+function loginBoxHide(){
+
+document
+.getElementById('login')
+.classList.add('hidden');
+
+document
+.getElementById('app')
+.classList.remove('hidden');
+
+refresh();
 
 }
 
 
 function logout(){
 
-localStorage.removeItem('lfAdminSession');
+localStorage.removeItem(
+'lfAdminSession'
+);
 
 location.reload();
 
 }
 
 
-if(localStorage.getItem('lfAdminSession')==='1'){
+/* =========================
+   ENTER KEY LOGIN
+========================= */
 
-document.getElementById('login').classList.add('hidden');
-document.getElementById('app').classList.remove('hidden');
+document.addEventListener(
+'keydown',
+function(e){
+
+if(
+e.key==='Enter' &&
+!document
+.getElementById('login')
+.classList.contains('hidden')
+){
+
+login();
+
+}
+
+});
+
+
+if(
+localStorage.getItem(
+'lfAdminSession'
+)==='1'
+){
+
+loginBoxHide();
 
 }
 
 
-function section(id,btn){
+/* =========================
+   NAVIGATION
+========================= */
 
-document.querySelectorAll('.section')
-.forEach(x=>x.classList.remove('active'));
+function showSection(id,btn){
 
-document.getElementById(id).classList.add('active');
+document
+.querySelectorAll('.section')
+.forEach(
+x=>x.classList.remove('active')
+);
 
-document.querySelectorAll('.nav')
-.forEach(x=>x.classList.remove('active'));
+document
+.getElementById(id)
+.classList.add('active');
 
-if(btn)btn.classList.add('active');
 
-let names={
+document
+.querySelectorAll('.nav')
+.forEach(
+x=>x.classList.remove('active')
+);
+
+
+if(btn){
+
+btn.classList.add('active');
+
+}else{
+
+document
+.querySelector(
+`.nav[data-section="${id}"]`
+)
+?.classList.add('active');
+
+}
+
+
+const titles={
+
 dashboard:'نظرة عامة',
+
 products:'المنتجات',
+
 orders:'الطلبات',
+
 customers:'العملاء',
+
 cities:'المدن والتوصيل',
-settings:'الإعدادات'
+
+settings:'إعدادات المتجر'
+
 };
 
-title.textContent=names[id]||'لوحة التحكم';
 
-if(id==='products')productsTable();
-if(id==='orders')ordersTable();
-if(id==='customers')customersTable();
-if(id==='cities')renderCities();
-if(id==='settings')loadSettings();
-
-}
+document.getElementById(
+'pageTitle'
+).textContent=
+titles[id]||'لوحة التحكم';
 
 
-function refresh(){
+if(id==='products')
+renderProductsTable();
 
-products=load(K,defaultProducts);
-orders=load(O,[]);
-cities=load(C,[]);
-settings=load(S,{});
+if(id==='orders')
+renderOrders();
 
-renderStats();
-productsTable();
-ordersTable();
-customersTable();
-renderRecent();
-renderAlerts();
+if(id==='customers')
+renderCustomers();
+
+if(id==='cities')
 renderCities();
+
+if(id==='settings')
 loadSettings();
 
 }
 
 
+/* =========================
+   REFRESH
+========================= */
+
+function refresh(){
+
+products=
+normalize(products);
+
+orders=
+JSON.parse(
+localStorage.getItem(ORD)||'[]'
+);
+
+cities=
+loadCities();
+
+renderStats();
+
+renderProductsTable();
+
+renderOrders();
+
+renderRecentOrders();
+
+renderAlerts();
+
+renderCustomers();
+
+renderCities();
+
+loadSettings();
+
+}
+
+
+/* =========================
+   STATS
+========================= */
+
 function renderStats(){
 
-sp.textContent=products.length;
-so.textContent=orders.length;
+document.getElementById(
+'sProducts'
+).textContent=products.length;
 
-let delivered=orders.filter(o=>status(o)==='delivered');
-let failed=orders.filter(o=>status(o)==='failed');
-let shipping=orders.filter(o=>status(o)==='shipping');
 
-sr.textContent=money(
-delivered.reduce((a,o)=>a+Number(o.total||0),0)
+document.getElementById(
+'sOrders'
+).textContent=orders.length;
+
+
+document.getElementById(
+'sRevenue'
+).textContent=
+money(
+orders.reduce(
+(a,o)=>a+Number(o.total||0),
+0
+)
 );
 
-ss.textContent=products.reduce(
-(a,p)=>
-a+(p.sizes||[]).reduce(
-(b,s)=>b+Number(s.stock||0),0
-),0
-);
 
-sc.textContent=customers().length;
-sw.textContent=shipping.length;
-sd.textContent=delivered.length;
-sf.textContent=failed.length;
-
-sl.textContent=products.reduce(
+document.getElementById(
+'sStock'
+).textContent=
+products.reduce(
 (a,p)=>
-a+(p.sizes||[]).filter(s=>s.stock<=3).length,
+a+p.sizes.reduce(
+(b,s)=>
+b+Number(s.stock||0),
+0
+),
 0
 );
 
-}
 
-
-function renderRecent(){
-
-recent.innerHTML=orders.length?
-
-[...orders].reverse().slice(0,5).map(o=>`
-
-<div style="padding:12px 0;border-bottom:1px solid var(--line)">
-
-<b>${esc(o.id)}</b>
-
-<span style="float:left;color:var(--g)">
-${money(o.total)}
-</span>
-
-<div style="color:#777;font-size:10px">
-${esc(o.customer?.name||'-')}
-—
-${esc(o.customer?.phone||'-')}
-</div>
-
-</div>
-
-`).join('')
-
-:'<div class="empty">لا توجد طلبات</div>';
+document.getElementById(
+'sCustomers'
+).textContent=
+getCustomers().length;
 
 }
 
 
-function renderAlerts(){
+/* =========================
+   PRODUCTS TABLE
+========================= */
 
-let a=[];
+function renderProductsTable(){
 
-products.forEach(p=>
-(p.sizes||[]).forEach(s=>{
-
-if(s.stock<=3){
-
-a.push(`
-
-<div style="padding:9px;border-bottom:1px solid var(--line)">
-
-${esc(p.name)}
-—
-${esc(s.name)}:
-
-<b style="color:${s.stock?'var(--o)':'var(--r)'}">
-${s.stock}
-</b>
-
-</div>
-
-`);
-
-}
-
-})
-);
-
-alerts.innerHTML=a.length?
-a.slice(0,15).join('')
-:'<div class="empty">المخزون جيد</div>';
-
-}
+const q=
+(
+document.getElementById(
+'productSearch'
+)?.value||''
+).toLowerCase();
 
 
-function productsTable(){
-
-let q=
-(document.getElementById('psearch')?.value||'')
-.toLowerCase();
-
-let list=products.filter(p=>
-(p.name+' '+p.category+' '+p.type)
+const list=
+products.filter(
+p=>
+(
+p.name+' '+
+p.category+' '+
+p.type
+)
 .toLowerCase()
 .includes(q)
 );
 
-pt.innerHTML=list.length?
 
-list.map(p=>`
+document.getElementById(
+'productsTable'
+).innerHTML=
+
+list.length?
+
+list.map(p=>{
+
+const stock=
+p.sizes.reduce(
+(a,s)=>a+s.stock,
+0
+);
+
+
+return `
 
 <tr>
 
 <td>
-<img class="thumb" src="${esc(p.image)}">
+
+<img
+class="productThumb"
+src="${esc(p.image)}"
+onerror="this.src='https://via.placeholder.com/100?text=LF'"
+>
+
 </td>
+
 
 <td>
 
-<b>${esc(p.name)}</b>
+<b>
+${esc(p.name)}
+</b>
 
-<div style="color:#666">
+<div
+style="color:#666;font-size:10px"
+>
 ${esc(p.description||'')}
 </div>
 
 </td>
 
+
 <td>
 ${esc(p.category)}
 </td>
 
-<td style="color:var(--g)">
+
+<td>
+${typeName(p.type)}
+</td>
+
+
+<td
+style="color:var(--gold)"
+>
 ${money(p.price)}
 </td>
 
+
 <td>
 
-${(p.sizes||[]).map(s=>`
+${p.sizes.map(
+s=>`
 
-<span class="tag ${
-s.stock<=0?'r':
-s.stock<=3?'o':''
-}">
-
-${esc(s.name)}:${s.stock}
-
+<span
+class="tag ${s.stock<=0?'red':''}"
+>
+${esc(s.name)}:
+${s.stock}
 </span>
 
-`).join(' ')}
+`
+).join(' ')}
 
 </td>
 
+
 <td>
 
-<span class="tag ${
-(p.sizes||[]).reduce((a,s)=>a+s.stock,0)
-?'gr':'r'
-}">
-
-${
-(p.sizes||[]).reduce((a,s)=>a+s.stock,0)
-?'متوفر':'نفد'
-}
-
+<span
+class="tag ${stock?'green':'red'}"
+>
+${stock?'متوفر':'نفد'}
 </span>
 
 </td>
 
+
 <td>
+
+<div class="actions">
 
 <button
 class="btn"
-onclick="productModal(${p.id})"
+onclick="editProduct(${p.id})"
 >
 تعديل
 </button>
 
+
 <button
-class="btn danger"
-onclick="delProduct(${p.id})"
+class="btn btnDanger"
+onclick="deleteProduct(${p.id})"
 >
 حذف
 </button>
+
+</div>
 
 </td>
 
 </tr>
 
-`).join('')
+`;
+
+}).join('')
 
 :
 
-'<tr><td colspan="7" class="empty">لا توجد منتجات</td></tr>';
+`
+
+<tr>
+
+<td
+colspan="8"
+class="empty"
+>
+لا توجد منتجات
+</td>
+
+</tr>
+
+`;
 
 }
 
 
-function productModal(id){
+/* =========================
+   PRODUCT MODAL
+========================= */
 
-pid.value=id||'';
+function openProductModal(id=null){
 
-pmt.textContent=
+document.getElementById(
+'pId'
+).value=id||'';
+
+
+document.getElementById(
+'modalTitle'
+).textContent=
 id?'تعديل المنتج':'إضافة منتج';
 
-sizes.innerHTML='';
 
-prev.style.display='none';
+const rows=
+document.getElementById(
+'sizeRows'
+);
 
-pfile.value='';
+rows.innerHTML='';
+
+
+document.getElementById(
+'imagePreview'
+).style.display='none';
+
+
+document.getElementById(
+'pImageFile'
+).value='';
+
 
 if(id){
 
-let p=products.find(x=>x.id==id);
+const p=
+products.find(
+x=>x.id===id
+);
 
-pn.value=p.name;
-pc.value=p.category;
-ptp.value=p.type||'shirt';
-pp.value=p.price;
-pd.value=p.description||'';
+if(!p)return;
 
-pi.value=
-p.image?.startsWith('data:')
-?''
-:p.image||'';
 
-if(p.image?.startsWith('data:')){
+pName.value=p.name;
 
-prev.src=p.image;
-prev.style.display='block';
+pCategory.value=p.category;
+
+pType.value=p.type||'shirt';
+
+pPrice.value=p.price;
+
+pImage.value=p.image||'';
+
+pDescription.value=
+p.description||'';
+
+
+p.sizes.forEach(
+s=>
+addSizeRow(
+s.name,
+s.stock
+)
+);
+
+
+if(p.image){
+
+showImagePreview(
+p.image
+);
 
 }
-
-(p.sizes||[]).forEach(
-s=>sizeRow(s.name,s.stock)
-);
 
 }else{
 
-pn.value='';
-pc.value='';
-pi.value='';
-pd.value='';
-pp.value='';
-ptp.value='shirt';
+pName.value='';
 
-preset(['S','M','L','XL']);
+pCategory.value='';
+
+pType.value='shirt';
+
+pPrice.value='';
+
+pImage.value='';
+
+pDescription.value='';
+
+usePreset(
+['S','M','L','XL']
+);
 
 }
 
-document.getElementById('pm').classList.add('open');
+
+document
+.getElementById(
+'productModal'
+)
+.classList.add('open');
 
 }
 
 
-function closeM(id){
+function closeProductModal(){
 
-document.getElementById(id)
+document
+.getElementById(
+'productModal'
+)
 .classList.remove('open');
 
 }
 
 
-function sizeRow(n='',v=0){
+/* =========================
+   IMAGE FROM PHONE
+========================= */
 
-let r=document.createElement('div');
+function previewImageFile(event){
 
-r.className='sizerow';
+const file=
+event.target.files[0];
 
-r.innerHTML=`
+if(!file)return;
+
+
+if(!file.type.startsWith('image/')){
+
+alert('اختر صورة فقط');
+
+return;
+
+}
+
+
+if(file.size>5*1024*1024){
+
+alert(
+'الصورة كبيرة جداً. الحد الأقصى 5MB.'
+);
+
+event.target.value='';
+
+return;
+
+}
+
+
+const reader=
+new FileReader();
+
+
+reader.onload=function(e){
+
+document.getElementById(
+'pImage'
+).value='';
+
+
+showImagePreview(
+e.target.result
+);
+
+};
+
+
+reader.readAsDataURL(file);
+
+}
+
+
+function showImagePreview(src){
+
+const img=
+document.getElementById(
+'imagePreview'
+);
+
+img.src=src;
+
+img.style.display='block';
+
+}
+
+
+/* =========================
+   SIZE ROWS
+========================= */
+
+function addSizeRow(
+name='',
+stock=0
+){
+
+const row=
+document.createElement('div');
+
+row.className='sizeRow';
+
+
+row.innerHTML=`
 
 <input
-class="sn"
-value="${esc(n)}"
+class="sizeName"
 placeholder="المقاس / الرقم"
+value="${esc(name)}"
 >
 
 <input
-class="sv"
+class="sizeStock"
 type="number"
 min="0"
-value="${v}"
+value="${Number(stock)||0}"
 >
 
 <button
-class="btn danger"
-onclick="this.parentNode.remove()"
+type="button"
+class="btn btnDanger mini"
+onclick="this.parentElement.remove()"
 >
 ×
 </button>
 
 `;
 
-sizes.appendChild(r);
 
-}
-
-
-function preset(a){
-
-sizes.innerHTML='';
-
-a.forEach(x=>sizeRow(x,0));
-
-}
-
-
-function preview(){
-
-let f=pfile.files[0];
-
-if(!f)return;
-
-let r=new FileReader();
-
-r.onload=e=>{
-
-prev.src=e.target.result;
-
-prev.style.display='block';
-
-};
-
-r.readAsDataURL(f);
-
-}
-
-
-function saveProduct(){
-
-if(
-!pn.value.trim() ||
-!pc.value.trim() ||
-Number(pp.value)<0
-){
-
-return alert('أكمل بيانات المنتج');
-
-}
-
-
-let arr=[...document.querySelectorAll('.sizerow')]
-
-.map(r=>({
-
-name:r.querySelector('.sn').value.trim(),
-
-stock:Math.max(
-0,
-Number(r.querySelector('.sv').value)||0
+document
+.getElementById(
+'sizeRows'
 )
-
-}))
-
-.filter(x=>x.name);
-
-
-if(!arr.length){
-
-return alert('أضف مقاساً');
+.appendChild(row);
 
 }
 
 
-let finish=image=>{
+function usePreset(names){
 
-if(!image){
+document.getElementById(
+'sizeRows'
+).innerHTML='';
 
-return alert(
-'اختر صورة من الجوال أو ضع رابطاً'
+
+names.forEach(
+n=>addSizeRow(n,0)
 );
 
 }
 
-let id=Number(pid.value);
 
-let obj={
+/* =========================
+   SAVE PRODUCT
+========================= */
+
+function saveProduct(){
+
+const nameV=
+pName.value.trim();
+
+const cat=
+pCategory.value.trim();
+
+const priceV=
+Number(pPrice.value);
+
+const url=
+pImage.value.trim();
+
+const fileInput=
+document.getElementById(
+'pImageFile'
+);
+
+const desc=
+pDescription.value.trim();
+
+const type=
+pType.value;
+
+
+if(
+!nameV||
+!cat||
+!priceV
+){
+
+alert(
+'أكمل اسم المنتج والقسم والسعر'
+);
+
+return;
+
+}
+
+
+const rows=
+[
+...document.querySelectorAll(
+'.sizeRow'
+)
+];
+
+
+const sizes=
+rows.map(
+r=>({
+
+name:
+r.querySelector(
+'.sizeName'
+).value.trim(),
+
+stock:
+Math.max(
+0,
+Number(
+r.querySelector(
+'.sizeStock'
+).value
+)||0
+)
+
+})
+).filter(
+s=>s.name
+);
+
+
+if(!sizes.length){
+
+alert(
+'أضف مقاساً أو رقماً واحداً على الأقل'
+);
+
+return;
+
+}
+
+
+/*
+الصورة:
+1. إذا اختار المستخدم صورة من الهاتف
+2. نستخدمها
+3. إذا لم يختار، نستخدم الرابط
+*/
+
+if(
+fileInput.files &&
+fileInput.files[0]
+){
+
+const reader=
+new FileReader();
+
+
+reader.onload=function(e){
+
+finishSaveProduct(
+nameV,
+cat,
+priceV,
+e.target.result,
+desc,
+type,
+sizes
+);
+
+};
+
+
+reader.readAsDataURL(
+fileInput.files[0]
+);
+
+}else{
+
+if(!url){
+
+alert(
+'اختر صورة من الجوال أو ضع رابط صورة'
+);
+
+return;
+
+}
+
+finishSaveProduct(
+nameV,
+cat,
+priceV,
+url,
+desc,
+type,
+sizes
+);
+
+}
+
+}
+
+
+function finishSaveProduct(
+nameV,
+cat,
+priceV,
+image,
+desc,
+type,
+sizes
+){
+
+const id=
+Number(
+document.getElementById(
+'pId'
+).value
+);
+
+
+const obj={
 
 id:id||Date.now(),
 
-name:pn.value.trim(),
+name:nameV,
 
-category:pc.value.trim(),
+category:cat,
 
-type:ptp.value,
+type:type,
 
-price:Number(pp.value),
+price:priceV,
 
 image:image,
 
-description:pd.value.trim(),
+description:desc,
 
-sizes:arr
+sizes:sizes
 
 };
 
 
 if(id){
 
-let i=products.findIndex(x=>x.id==id);
+const i=
+products.findIndex(
+p=>p.id===id
+);
 
-if(i>=0)products[i]=obj;
+if(i>=0){
+
+products[i]=obj;
+
+}
 
 }else{
 
@@ -1562,119 +2775,100 @@ products.push(obj);
 
 }
 
-save(K,products);
 
-closeM('pm');
+saveProducts();
 
-refresh();
-
-toast('تم حفظ المنتج');
-
-};
-
-
-let f=pfile.files[0];
-
-if(f){
-
-let r=new FileReader();
-
-r.onload=e=>
-finish(e.target.result);
-
-r.readAsDataURL(f);
-
-}else{
-
-finish(pi.value.trim());
-
-}
-
-}
-
-
-function delProduct(id){
-
-if(confirm('حذف المنتج؟')){
-
-products=
-products.filter(p=>p.id!=id);
-
-save(K,products);
+closeProductModal();
 
 refresh();
 
-toast('تم حذف المنتج');
-
-}
-
-}
-
-
-function status(o){
-
-return o.status||'new';
-
-}
-
-
-function stName(s){
-
-return({
-
-new:'جديد',
-
-confirmed:'مؤكد',
-
-shipping:'قيد التوصيل',
-
-delivered:'استلم',
-
-failed:'لم يستلم'
-
-})[s]||'جديد';
-
-}
-
-
-function tag(s){
-
-return({
-
-new:'b',
-
-confirmed:'o',
-
-shipping:'o',
-
-delivered:'gr',
-
-failed:'r'
-
-})[s]||'';
-
-}
-
-
-function ordersTable(){
-
-let q=
-(document.getElementById('osearch')?.value||'')
-.toLowerCase();
-
-let list=[...orders]
-.reverse()
-.filter(o=>
-(o.id+' '+
-(o.customer?.name||'')+' '+
-(o.customer?.phone||''))
-.toLowerCase()
-.includes(q)
+toast(
+'تم حفظ المنتج بنجاح'
 );
 
-ot.innerHTML=list.length?
+}
 
-list.map(o=>`
+
+function editProduct(id){
+
+openProductModal(id);
+
+}
+
+
+function deleteProduct(id){
+
+const p=
+products.find(
+x=>x.id===id
+);
+
+if(!p)return;
+
+
+if(
+confirm(
+'حذف '+p.name+'؟'
+)
+){
+
+products=
+products.filter(
+x=>x.id!==id
+);
+
+saveProducts();
+
+refresh();
+
+toast(
+'تم حذف المنتج'
+);
+
+}
+
+}
+
+
+/* =========================
+   ORDERS
+========================= */
+
+function renderOrders(){
+
+orders=
+JSON.parse(
+localStorage.getItem(ORD)||'[]'
+);
+
+
+document.getElementById(
+'ordersTable'
+).innerHTML=
+
+orders.length?
+
+[...orders]
+.reverse()
+.map(o=>{
+
+const items=
+(o.items||[])
+.reduce(
+(a,x)=>
+a+
+(Number(
+x.quantity||x.qty
+)||0),
+0
+);
+
+
+const status=
+o.status||'pending';
+
+
+return `
 
 <tr>
 
@@ -1682,11 +2876,11 @@ list.map(o=>`
 <b>${esc(o.id)}</b>
 </td>
 
+
 <td>
-${o.date?
-new Date(o.date).toLocaleString('ar-LY')
-:'-'}
+${formatDate(o.date)}
 </td>
+
 
 <td>
 
@@ -1694,57 +2888,44 @@ new Date(o.date).toLocaleString('ar-LY')
 ${esc(o.customer?.name||'-')}
 </b>
 
-<div style="color:#666">
+<div
+style="color:#666;font-size:10px"
+>
 ${esc(o.customer?.phone||'')}
 </div>
 
 </td>
 
+
 <td>
 ${esc(o.customer?.city||'-')}
 </td>
 
-<td style="color:var(--g)">
+
+<td>
+${items} قطعة
+</td>
+
+
+<td
+style="color:var(--gold)"
+>
 ${money(o.total)}
 </td>
 
+
 <td>
 
-<select
-class="btn"
-onchange="changeStatus('${esc(o.id)}',this.value)"
->
-
-<option value="new"
-${status(o)==='new'?'selected':''}>
-🆕 جديد
-</option>
-
-<option value="confirmed"
-${status(o)==='confirmed'?'selected':''}>
-🟡 مؤكد
-</option>
-
-<option value="shipping"
-${status(o)==='shipping'?'selected':''}>
-🚚 قيد التوصيل
-</option>
-
-<option value="delivered"
-${status(o)==='delivered'?'selected':''}>
-🟢 استلم
-</option>
-
-<option value="failed"
-${status(o)==='failed'?'selected':''}>
-🔴 لم يستلم
-</option>
-
-</select>
+<span class="tag ${statusClass(status)}">
+${statusName(status)}
+</span>
 
 </td>
 
+
 <td>
+
+<div class="actions">
 
 <button
 class="btn"
@@ -1753,65 +2934,145 @@ onclick="viewOrder('${esc(o.id)}')"
 التفاصيل
 </button>
 
+
 <button
-class="btn danger"
-onclick="delOrder('${esc(o.id)}')"
+class="btn btnGreen"
+onclick="setOrderStatus('${esc(o.id)}','delivered')"
+>
+استلم
+</button>
+
+
+<button
+class="btn btnDanger"
+onclick="setOrderStatus('${esc(o.id)}','not_delivered')"
+>
+لم يستلم
+</button>
+
+
+<button
+class="btn btnOrange"
+onclick="setOrderStatus('${esc(o.id)}','pending')"
+>
+معلق
+</button>
+
+
+<button
+class="btn btnDanger"
+onclick="deleteOrder('${esc(o.id)}')"
 >
 حذف
 </button>
+
+</div>
 
 </td>
 
 </tr>
 
-`).join('')
+`;
+
+}).join('')
 
 :
 
-'<tr><td colspan="7" class="empty">لا توجد طلبات</td></tr>';
+`
+
+<tr>
+
+<td
+colspan="8"
+class="empty"
+>
+لا توجد طلبات حتى الآن
+</td>
+
+</tr>
+
+`;
 
 }
 
 
-function changeStatus(id,s){
+/* =========================
+   ORDER STATUS
+========================= */
 
-let o=orders.find(
-x=>String(x.id)===String(id)
+function setOrderStatus(
+id,
+status
+){
+
+orders=
+JSON.parse(
+localStorage.getItem(ORD)||'[]'
 );
 
-if(!o)return;
 
-o.status=s;
+const index=
+orders.findIndex(
+o=>String(o.id)===String(id)
+);
 
-o.statusUpdatedAt=
+
+if(index<0)return;
+
+
+orders[index].status=
+status;
+
+
+orders[index].statusUpdatedAt=
 new Date().toISOString();
 
-save(O,orders);
+
+localStorage.setItem(
+ORD,
+JSON.stringify(orders)
+);
+
 
 refresh();
 
-toast('تم تحديث الحالة');
+toast(
+'تم تحديث حالة الطلب'
+);
 
 }
 
 
+/* =========================
+   ORDER DETAILS
+========================= */
+
 function viewOrder(id){
 
-let o=orders.find(
+const o=
+orders.find(
 x=>String(x.id)===String(id)
 );
 
 if(!o)return;
 
-od.innerHTML=`
 
-<div class="tag ${tag(status(o))}">
-${stName(status(o))}
-</div>
+const status=
+o.status||'pending';
+
+
+document.getElementById(
+'orderDetails'
+).innerHTML=`
 
 <p>
 <b>الطلب:</b>
 ${esc(o.id)}
+</p>
+
+<p>
+<b>التاريخ:</b>
+${formatDate(o.date)}
 </p>
 
 <p>
@@ -1834,485 +3095,702 @@ ${esc(o.customer?.city||'-')}
 ${esc(o.customer?.address||'-')}
 </p>
 
-<hr style="border-color:var(--line)">
+<p>
+<b>ملاحظات:</b>
+${esc(o.customer?.notes||'-')}
+</p>
 
-${(o.items||[]).map(x=>`
+<p>
+<b>الحالة:</b>
 
-<div style="padding:10px;border-bottom:1px solid var(--line)">
+<span class="tag ${statusClass(status)}">
+${statusName(status)}
+</span>
 
-${esc(
-x.name||
-products.find(p=>p.id==x.id)?.name||
-'منتج'
-)}
+</p>
+
+
+<div class="orderItems">
+
+${(o.items||[])
+.map(x=>{
+
+const p=
+products.find(
+y=>y.id===x.id
+);
+
+
+return `
+
+<div class="orderItem">
+
+<b>
+${esc(p?.name||x.name||'منتج')}
+</b>
+
+<br>
+
+المقاس / الرقم:
+${esc(x.size||'-')}
 
 —
 
-${esc(x.size||'-')}
+الكمية:
+${Number(
+x.quantity||x.qty
+)||0}
 
-×
+<br>
 
-${Number(x.quantity||x.qty)||0}
+السعر:
+${money(
+x.price||
+p?.price||
+0
+)}
 
 </div>
 
-`).join('')}
+`;
 
-<h3 style="color:var(--g)">
+}).join('')}
+
+</div>
+
+
+<h3
+style="color:var(--gold)"
+>
 الإجمالي:
 ${money(o.total)}
 </h3>
 
 `;
 
-document.getElementById('om')
+
+document
+.getElementById(
+'orderModal'
+)
 .classList.add('open');
 
 }
 
 
-function delOrder(id){
+function closeOrderModal(){
 
-if(confirm('حذف الطلب؟')){
+document
+.getElementById(
+'orderModal'
+)
+.classList.remove('open');
+
+}
+
+
+function deleteOrder(id){
+
+if(
+!confirm(
+'حذف هذا الطلب؟'
+)
+)return;
+
 
 orders=
 orders.filter(
-x=>String(x.id)!==String(id)
+o=>String(o.id)!==String(id)
 );
 
-save(O,orders);
+
+localStorage.setItem(
+ORD,
+JSON.stringify(orders)
+);
+
 
 refresh();
 
-toast('تم حذف الطلب');
-
-}
+toast(
+'تم حذف الطلب'
+);
 
 }
 
 
 function clearOrders(){
 
-if(confirm('حذف كل الطلبات؟')){
+if(!orders.length)return;
+
+
+if(
+confirm(
+'حذف جميع الطلبات؟'
+)
+){
 
 orders=[];
 
-save(O,orders);
+localStorage.setItem(
+ORD,
+'[]'
+);
 
 refresh();
 
-toast('تم حذف الطلبات');
+toast(
+'تم حذف الطلبات'
+);
 
 }
 
 }
 
 
-function customers(){
+/* =========================
+   RECENT ORDERS
+========================= */
 
-let m={};
+function renderRecentOrders(){
+
+document.getElementById(
+'recentOrders'
+).innerHTML=
+
+orders.length?
+
+[...orders]
+.slice(-5)
+.reverse()
+.map(o=>`
+
+<div
+style="
+display:flex;
+justify-content:space-between;
+gap:10px;
+padding:12px 0;
+border-bottom:1px solid var(--line)
+"
+>
+
+<div>
+
+<b>
+${esc(o.id)}
+</b>
+
+<div
+style="color:#666;font-size:10px"
+>
+
+${esc(
+o.customer?.name||'-'
+)}
+
+—
+
+${esc(
+o.customer?.city||'-'
+)}
+
+</div>
+
+</div>
+
+
+<div>
+
+<strong
+style="color:var(--gold)"
+>
+${money(o.total)}
+</strong>
+
+<br>
+
+<span
+class="tag ${statusClass(o.status||'pending')}"
+>
+${statusName(o.status||'pending')}
+</span>
+
+</div>
+
+</div>
+
+`).join('')
+
+:
+
+`
+
+<div class="empty">
+لا توجد طلبات حتى الآن.
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   STOCK ALERTS
+========================= */
+
+function renderAlerts(){
+
+let rows=[];
+
+
+products.forEach(p=>{
+
+p.sizes.forEach(s=>{
+
+if(s.stock<=3){
+
+rows.push(`
+
+<div
+style="
+padding:12px 0;
+border-bottom:1px solid var(--line)
+"
+>
+
+<b>
+${esc(p.name)}
+</b>
+
+—
+
+<span style="color:var(--gold)">
+${esc(s.name)}
+</span>
+
+<span
+style="
+color:${s.stock?'var(--orange)':'var(--red)'}
+"
+>
+(${s.stock} متبقي)
+</span>
+
+</div>
+
+`);
+
+}
+
+});
+
+});
+
+
+document.getElementById(
+'stockAlerts'
+).innerHTML=
+
+rows.length?
+
+rows.slice(0,15).join(''):
+
+`
+
+<div class="empty">
+المخزون جيد ولا توجد تنبيهات.
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   CUSTOMERS
+========================= */
+
+function getCustomers(){
+
+const map={};
+
 
 orders.forEach(o=>{
 
-let c=o.customer||{};
+const customer=
+o.customer||{};
 
-let k=
-String(c.phone||'')
-.replace(/\D/g,'')||
-String(c.name||'')
-.toLowerCase();
+const phone=
+String(
+customer.phone||''
+).trim();
 
-if(!k)return;
 
-if(!m[k]){
+const name=
+String(
+customer.name||'عميل'
+).trim();
 
-m[k]={
 
-key:k,
+const key=
+phone||
+name;
 
-name:c.name||'-',
 
-phone:c.phone||'-',
+if(!key)return;
 
-city:c.city||'-',
 
-orders:[]
+if(!map[key]){
+
+map[key]={
+
+key:key,
+
+name:name,
+
+phone:phone,
+
+orders:0,
+
+delivered:0,
+
+notDelivered:0,
+
+pending:0,
+
+total:0
 
 };
 
 }
 
-m[k].orders.push(o);
+
+map[key].orders++;
+
+map[key].total+=
+Number(o.total||0);
+
+
+const status=
+o.status||'pending';
+
+
+if(status==='delivered')
+map[key].delivered++;
+
+
+else if(status==='not_delivered')
+map[key].notDelivered++;
+
+
+else
+map[key].pending++;
 
 });
 
-return Object.values(m);
+
+return Object.values(map);
 
 }
 
 
-function customersTable(){
+function renderCustomers(){
 
-let q=
-(document.getElementById('csearch')?.value||'')
-.toLowerCase();
+const q=
+(
+document.getElementById(
+'customerSearch'
+)?.value||''
+).toLowerCase();
 
-let list=customers()
-.filter(c=>
-(c.name+' '+c.phone)
+
+const list=
+getCustomers().filter(c=>
+
+(
+c.name+' '+c.phone
+)
 .toLowerCase()
 .includes(q)
+
 );
 
-ct.innerHTML=list.length?
 
-list.map(c=>{
+document.getElementById(
+'customersList'
+).innerHTML=
 
-let d=
-c.orders.filter(
-o=>status(o)==='delivered'
-).length;
+list.length?
 
-let f=
-c.orders.filter(
-o=>status(o)==='failed'
-).length;
+list.map(c=>`
 
-let total=
-c.orders.reduce(
-(a,o)=>a+Number(o.total||0),0
-);
+<div class="customerBox">
 
-let ratio=
-c.orders.length?
-d/c.orders.length:0;
-
-let rate=
-f>=3&&ratio<.5
-?
-['عالي المخاطرة','r']
-:
-ratio>=.8
-?
-['موثوق','gr']
-:
-['متوسط','o'];
-
-return `
-
-<tr>
-
-<td>
-<b>${esc(c.name)}</b>
-</td>
-
-<td>
-${esc(c.phone)}
-</td>
-
-<td>
-${c.orders.length}
-</td>
-
-<td>
-<span class="tag gr">
-${d}
-</span>
-</td>
-
-<td>
-<span class="tag r">
-${f}
-</span>
-</td>
-
-<td>
-${money(total)}
-</td>
-
-<td>
-<span class="tag ${rate[1]}">
-${rate[0]}
-</span>
-</td>
-
-<td>
-
-<button
-class="btn"
-onclick="viewCustomer('${encodeURIComponent(c.key)}')"
+<div
+style="
+display:flex;
+justify-content:space-between;
+gap:10px;
+flex-wrap:wrap
+"
 >
-السجل
-</button>
 
-</td>
+<div>
 
-</tr>
+<b>
+${esc(c.name)}
+</b>
 
-`;
+<div
+style="
+color:#666;
+font-size:11px;
+margin-top:4px
+"
+>
+${esc(c.phone||'لا يوجد رقم')}
+</div>
 
-}).join('')
+</div>
+
+
+<strong
+style="color:var(--gold)"
+>
+${money(c.total)}
+</strong>
+
+</div>
+
+
+<div class="customerStats">
+
+<span class="tag blue">
+📦 ${c.orders} طلب
+</span>
+
+<span class="tag green">
+✓ ${c.delivered} مستلم
+</span>
+
+<span class="tag red">
+✕ ${c.notDelivered} لم يستلم
+</span>
+
+<span class="tag orange">
+⏳ ${c.pending} معلق
+</span>
+
+</div>
+
+</div>
+
+`).join('')
 
 :
 
-'<tr><td colspan="8" class="empty">لا يوجد عملاء</td></tr>';
+`
 
-}
-
-
-function viewCustomer(k){
-
-let c=customers()
-.find(
-x=>x.key===decodeURIComponent(k)
-);
-
-if(!c)return;
-
-let d=
-c.orders.filter(
-o=>status(o)==='delivered'
-).length;
-
-let f=
-c.orders.filter(
-o=>status(o)==='failed'
-).length;
-
-cd.innerHTML=`
-
-<h2>
-${esc(c.name)}
-</h2>
-
-<p style="color:#777">
-${esc(c.phone)}
-—
-${esc(c.city)}
-</p>
-
-<div class="customerstats">
-
-<div>
-إجمالي الطلبات
-<b>${c.orders.length}</b>
+<div class="empty">
+لا يوجد عملاء حتى الآن.
 </div>
-
-<div>
-🟢 استلم
-<b style="color:var(--gr)">
-${d}
-</b>
-</div>
-
-<div>
-🔴 لم يستلم
-<b style="color:var(--r)">
-${f}
-</b>
-</div>
-
-<div>
-القيمة
-<b>
-${money(
-c.orders.reduce(
-(a,o)=>a+Number(o.total||0),0
-)}
-</b>
-</div>
-
-</div>
-
-<h3>
-سجل الطلبات
-</h3>
-
-${[...c.orders]
-.reverse()
-.map(o=>`
-
-<div style="padding:11px;border-bottom:1px solid var(--line)">
-
-<b>${esc(o.id)}</b>
-
-<span class="tag ${tag(status(o))}">
-${stName(status(o))}
-</span>
-
-<span style="float:left">
-${money(o.total)}
-</span>
-
-</div>
-
-`).join('')}
 
 `;
 
-document.getElementById('cm')
-.classList.add('open');
-
 }
 
+
+/* =========================
+   CITIES
+========================= */
 
 function renderCities(){
 
-citiesGrid.innerHTML=cities.map(c=>`
+const container=
+document.getElementById(
+'citiesList'
+);
 
-<div class="city">
 
-<b>
-${esc(c.name)}
-</b>
+container.innerHTML=
+cities.map(
+(c,i)=>`
 
-<div class="price">
-${money(c.price)}
-</div>
-
-<div style="color:#777;font-size:11px;min-height:30px">
-${esc(c.note||'')}
-</div>
-
-<button
-class="btn"
-onclick="cityModal(${c.id})"
+<div
+class="cityRow"
+data-city="${i}"
 >
-تعديل
-</button>
+
+<input
+class="cityName"
+value="${esc(c.name)}"
+placeholder="اسم المدينة"
+>
+
+<input
+class="cityPrice"
+type="number"
+min="0"
+value="${Number(c.price)||0}"
+placeholder="السعر"
+>
 
 <button
-class="btn danger"
-onclick="delCity(${c.id})"
+class="btn btnDanger"
+onclick="removeCity(${i})"
 >
 حذف
 </button>
 
 </div>
 
-`).join('');
+`
+).join('');
+
 
 }
 
 
-function cityModal(id){
+function addCity(){
 
-let c=id?
-cities.find(x=>x.id==id):
-null;
+cities.push({
+name:'مدينة جديدة',
+price:0
+});
 
-cid.value=c?.id||'';
-cname.value=c?.name||'';
-cprice.value=c?.price??'';
-cnote.value=c?.note||'';
 
-cmt.textContent=
-c?'تعديل مدينة':'إضافة مدينة';
-
-document.getElementById('citym')
-.classList.add('open');
+renderCities();
 
 }
 
 
-function saveCity(){
+function removeCity(index){
 
 if(
-!cname.value.trim() ||
-Number(cprice.value)<0
-){
+!confirm(
+'هل تريد حذف هذه المدينة؟'
+)
+)return;
 
-return alert(
-'أدخل اسم المدينة والسعر'
+
+cities.splice(
+index,
+1
+);
+
+renderCities();
+
+}
+
+
+function saveCities(){
+
+const rows=
+[
+...document.querySelectorAll(
+'.cityRow'
+)
+];
+
+
+cities=
+rows.map(
+r=>({
+
+name:
+r.querySelector(
+'.cityName'
+).value.trim(),
+
+price:
+Number(
+r.querySelector(
+'.cityPrice'
+).value
+)||0
+
+})
+).filter(
+x=>x.name
+);
+
+
+localStorage.setItem(
+CITY,
+JSON.stringify(cities)
+);
+
+
+toast(
+'تم حفظ المدن والأسعار'
 );
 
 }
 
-let id=Number(cid.value);
 
-let obj={
-
-id:id||Date.now(),
-
-name:cname.value.trim(),
-
-price:Number(cprice.value),
-
-note:cnote.value.trim()
-
-};
-
-if(id){
-
-let i=
-cities.findIndex(x=>x.id==id);
-
-if(i>=0)cities[i]=obj;
-
-}else{
-
-cities.push(obj);
-
-}
-
-save(C,cities);
-
-closeM('citym');
-
-refresh();
-
-toast('تم حفظ المدينة');
-
-}
-
-
-function delCity(id){
-
-if(confirm('حذف المدينة؟')){
-
-cities=
-cities.filter(x=>x.id!=id);
-
-save(C,cities);
-
-refresh();
-
-toast('تم حذف المدينة');
-
-}
-
-}
-
+/* =========================
+   SETTINGS
+========================= */
 
 function loadSettings(){
 
-sn.value=
-settings.name||
+const s=
+JSON.parse(
+localStorage.getItem(SET)||'{}'
+);
+
+
+document.getElementById(
+'setName'
+).value=
+s.name||
 'LIBYA FLEX';
 
-swp.value=
-settings.whatsapp||
+
+document.getElementById(
+'setWhatsapp'
+).value=
+s.whatsapp||
 '218000000000';
 
-sdesc.value=
-settings.description||
-'متجر ليبي للملابس الرياضية وقمصان كرة القدم.';
 
-shero.value=
-settings.heroSubtitle||
-'قميصك.. هويتك.. شغفك.';
+document.getElementById(
+'setDescription'
+).value=
+s.description||
+'متجر ليبي متخصص في قمصان كرة القدم والملابس الرياضية.';
 
-sig.value=
-settings.instagram||'';
 
-sfb.value=
-settings.facebook||'';
+document.getElementById(
+'setHeroSubtitle'
+).value=
+s.heroSubtitle||
+'قميصك.. هويتك.. شغفك. اكتشف أفضل قمصان كرة القدم والمنتخبات والفرق المفضلة لديك.';
 
-stk.value=
-settings.tiktok||'';
 
-sdel.value=
-settings.delivery||
+document.getElementById(
+'setInstagram'
+).value=
+s.instagram||'';
+
+
+document.getElementById(
+'setFacebook'
+).value=
+s.facebook||'';
+
+
+document.getElementById(
+'setTikTok'
+).value=
+s.tiktok||'';
+
+
+document.getElementById(
+'setDelivery'
+).value=
+s.delivery||
 'توصيل داخل ليبيا';
 
 }
@@ -2320,58 +3798,176 @@ settings.delivery||
 
 function saveSettings(){
 
-settings={
+const s={
 
-name:sn.value.trim(),
+name:
+document.getElementById(
+'setName'
+).value.trim()||
+'LIBYA FLEX',
 
-whatsapp:swp.value.trim(),
+whatsapp:
+document.getElementById(
+'setWhatsapp'
+).value.trim(),
 
-description:sdesc.value.trim(),
+description:
+document.getElementById(
+'setDescription'
+).value.trim(),
 
-heroSubtitle:shero.value.trim(),
+heroSubtitle:
+document.getElementById(
+'setHeroSubtitle'
+).value.trim(),
 
-instagram:sig.value.trim(),
+instagram:
+document.getElementById(
+'setInstagram'
+).value.trim(),
 
-facebook:sfb.value.trim(),
+facebook:
+document.getElementById(
+'setFacebook'
+).value.trim(),
 
-tiktok:stk.value.trim(),
+tiktok:
+document.getElementById(
+'setTikTok'
+).value.trim(),
 
-delivery:sdel.value.trim()
+delivery:
+document.getElementById(
+'setDelivery'
+).value.trim()
 
 };
 
-save(S,settings);
 
-toast('تم حفظ الإعدادات');
+localStorage.setItem(
+SET,
+JSON.stringify(s)
+);
+
+
+settings=s;
+
+
+toast(
+'تم حفظ إعدادات المتجر'
+);
+
+}
+
+
+/* =========================
+   HELPERS
+========================= */
+
+function typeName(t){
+
+return({
+
+shirt:'قميص',
+
+shoe:'حذاء',
+
+shorts:'شورت',
+
+jacket:'جاكيت',
+
+accessory:'إكسسوار',
+
+other:'أخرى'
+
+})[t]||'أخرى';
 
 }
 
 
 function money(x){
 
-return Number(x||0)
-.toLocaleString('ar-LY')
-+' د.ل';
+return Number(
+x||0
+).toLocaleString(
+'ar-LY'
+)+' د.ل';
+
+}
+
+
+function formatDate(date){
+
+if(!date)
+return '-';
+
+
+try{
+
+return new Date(
+date
+).toLocaleString(
+'ar-LY'
+);
+
+}catch(e){
+
+return '-';
+
+}
+
+}
+
+
+function statusName(status){
+
+return({
+
+pending:'معلق',
+
+delivered:'تم الاستلام',
+
+not_delivered:'لم يستلم'
+
+})[status]||'معلق';
+
+}
+
+
+function statusClass(status){
+
+return({
+
+pending:'orange',
+
+delivered:'green',
+
+not_delivered:'red'
+
+})[status]||'orange';
 
 }
 
 
 function esc(x){
 
-return String(x??'')
-.replace(
+return String(
+x??''
+).replace(
 /[&<>"']/g,
-
 m=>({
 
 '&':'&amp;',
+
 '<':'&lt;',
+
 '>':'&gt;',
+
 '"':'&quot;',
+
 "'":'&#039;'
 
 }[m])
-
 );
 
 }
@@ -2379,22 +3975,35 @@ m=>({
 
 function toast(x){
 
-let t=document.getElementById('toast');
+const t=
+document.getElementById(
+'toast'
+);
 
 t.textContent=x;
 
 t.classList.add('show');
 
-clearTimeout(window.__toast);
+clearTimeout(
+window.__toast
+);
 
 window.__toast=
 setTimeout(
-()=>t.classList.remove('show'),
+()=>{
+t.classList.remove(
+'show'
+);
+},
 2600
 );
 
 }
 
+
+/* =========================
+   START
+========================= */
 
 refresh();
 
