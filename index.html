@@ -1,79 +1,2404 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LIBYA FLEX | Football Store</title>
-<meta name="description" content="LIBYA FLEX — متجر قمصان كرة القدم والملابس الرياضية في ليبيا">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LIBYA FLEX — Admin</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Arial,Tahoma,sans-serif;background:#050505;color:#fff;overflow-x:hidden}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}a{text-decoration:none;color:inherit}img{max-width:100%;display:block}:root{--gold:#d6ad52;--gold2:#f0d48a;--bg:#050505;--panel:#0e0e0e;--panel2:#151515;--line:#ffffff14;--muted:#858585;--green:#25d366;--red:#ff5964}
-.top{height:34px;background:#000;border-bottom:1px solid #d6ad5225;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:11px}.top b{color:var(--gold)}
-header{position:sticky;top:0;z-index:1000;background:#050505eF;backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.nav{height:78px;max-width:1250px;margin:auto;padding:0 24px;display:flex;align-items:center;gap:24px}.brand{display:flex;align-items:center;gap:10px;min-width:max-content}.brandMark{width:48px;height:48px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);font:bold 21px Georgia}.brandText b{display:block;font:22px Georgia;letter-spacing:3px}.brandText small{color:var(--gold);font-size:8px;letter-spacing:3px}.links{display:flex;gap:22px;align-items:center;margin:auto}.links a{color:#aaa;font-size:13px}.links a:hover{color:var(--gold)}.navActions{display:flex;gap:8px}.icon{width:43px;height:43px;border:1px solid var(--line);background:#101010;color:#fff;border-radius:50%;position:relative}.icon:hover{border-color:#d6ad5266;color:var(--gold)}.count{position:absolute;top:-4px;left:-4px;width:19px;height:19px;border-radius:50%;background:var(--gold);color:#000;font-size:10px;font-weight:bold;display:grid;place-items:center}
-.hero{min-height:680px;display:flex;align-items:center;position:relative;background:linear-gradient(90deg,#000f 5%,#000b 45%,#0004),url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1800&q=90') center/cover}.hero:after{content:"";position:absolute;inset:auto 0 0;height:180px;background:linear-gradient(transparent,#050505)}.heroInner{width:min(1150px,92%);margin:auto;position:relative;z-index:2}.pill{display:inline-block;border:1px solid #d6ad5266;background:#d6ad520d;color:var(--gold2);padding:9px 16px;border-radius:30px;font-size:11px}.hero h1{font:clamp(58px,9vw,110px)/.88 Georgia;margin:24px 0;color:#f2eee5;letter-spacing:4px}.hero h1 span{color:var(--gold)}.hero p{max-width:620px;color:#aaa;line-height:1.9;font-size:16px;margin-bottom:25px}.heroBtns{display:flex;gap:10px;flex-wrap:wrap}.goldBtn,.outlineBtn{padding:14px 25px;border-radius:6px}.goldBtn{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#050505;font-weight:bold}.outlineBtn{background:#ffffff08;border:1px solid #fff3;color:#fff}.goldBtn:hover,.outlineBtn:hover{transform:translateY(-2px)}
-.ticker{overflow:hidden;background:#090909;border-block:1px solid var(--line);white-space:nowrap}.tickerTrack{display:flex;width:max-content;gap:45px;padding:14px 0;animation:marquee 24s linear infinite}.tickerTrack span{color:#777;font-size:12px}.tickerTrack b{color:var(--gold)}
-.section{max-width:1250px;margin:auto;padding:85px 24px}.head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:35px}.eyebrow{color:var(--gold);font-size:10px;letter-spacing:3px;margin-bottom:8px}.head h2{font:42px Georgia}.head p{color:#777;font-size:13px;margin-top:8px}.textLink{color:var(--gold);font-size:12px}
-.categories{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}.cat{min-height:155px;background:linear-gradient(145deg,#151515,#090909);border:1px solid var(--line);border-radius:9px;padding:20px;position:relative;overflow:hidden;transition:.3s}.cat:hover{transform:translateY(-5px);border-color:#d6ad5266}.cat .num{color:#555;font-size:10px}.cat .emoji{font-size:32px;margin:25px 0}.cat h3{font-size:15px}.cat small{color:#666}
-.products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.product{background:linear-gradient(145deg,#151515,#090909);border:1px solid var(--line);border-radius:9px;overflow:hidden;transition:.35s}.product:hover{transform:translateY(-6px);border-color:#d6ad5266}.productImg{height:290px;background:#111;position:relative}.productImg img{width:100%;height:100%;object-fit:cover}.badge{position:absolute;top:12px;right:12px;background:var(--gold);color:#000;padding:5px 8px;border-radius:4px;font-size:9px;font-weight:bold}.productInfo{padding:17px}.categoryText{color:var(--gold);font-size:10px;margin-bottom:7px}.product h3{font-size:16px}.desc{color:#777;font-size:11px;line-height:1.7;min-height:38px;margin-top:7px}.chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px}.chip{font-size:9px;color:#aaa;background:#181818;border:1px solid var(--line);padding:4px 7px;border-radius:4px}.chip.out{opacity:.35;text-decoration:line-through}.productBottom{display:flex;align-items:center;justify-content:space-between;margin-top:16px}.price{color:var(--gold);font-weight:bold;font-size:18px}.add{padding:9px 13px;background:#1b1b1b;border:1px solid var(--line);color:#fff;border-radius:5px}.add:hover{background:var(--gold);color:#000}.add:disabled{opacity:.35;cursor:not-allowed}
-.banner{max-width:1250px;margin:0 auto 85px;min-height:330px;padding:45px;background:linear-gradient(90deg,#000e,#0004),url('https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1600&q=85') center/cover;border:1px solid #d6ad5233;display:flex;align-items:center}.banner h2{font:45px Georgia;margin:8px 0 12px}.banner p{max-width:570px;color:#aaa;line-height:1.8;margin-bottom:20px}
-.features{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line)}.feature{padding:30px;background:#0b0b0b;border-left:1px solid var(--line);min-height:180px}.feature:last-child{border-left:0}.feature .fi{color:var(--gold);font-size:28px;margin-bottom:20px}.feature h3{font-size:15px;margin-bottom:8px}.feature p{color:#777;font-size:12px;line-height:1.8}
-footer{border-top:1px solid var(--line);background:#030303;padding:65px 24px 25px}.footerGrid{max-width:1250px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:45px}.footerBrand{font:26px Georgia;color:var(--gold);letter-spacing:3px;margin-bottom:12px}.footerGrid p,.footerGrid li{color:#666;font-size:12px;line-height:2}.footerGrid h3{font-size:13px;margin-bottom:15px}.footerGrid ul{list-style:none}.copyright{max-width:1250px;margin:40px auto 0;border-top:1px solid var(--line);padding-top:20px;text-align:center;color:#444;font-size:10px}
-.overlay{position:fixed;inset:0;background:#000c;backdrop-filter:blur(5px);z-index:3000;display:none}.overlay.open{display:block}.cart{position:absolute;right:0;top:0;height:100%;width:min(460px,95%);background:#0b0b0b;border-left:1px solid var(--line);padding:25px;overflow:auto;animation:slide .3s}.cartHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.close{width:38px;height:38px;border-radius:50%;background:#171717;border:1px solid var(--line);color:#fff}.close:hover{color:var(--gold);border-color:var(--gold)}.cartItem{display:flex;gap:12px;padding:15px 0;border-bottom:1px solid var(--line)}.cartItem img{width:70px;height:70px;object-fit:cover;border-radius:6px}.cartInfo{flex:1}.cartInfo h4{font-size:14px}.cartSize{color:#aaa;font-size:11px;margin:5px 0}.qty{display:flex;align-items:center;gap:9px;margin-top:8px}.qty button{width:27px;height:27px;background:#181818;color:#fff;border:1px solid var(--line);border-radius:4px}.remove{background:none;color:#d77878;font-size:10px;margin-top:6px}.cartTotal{margin-top:25px;border-top:1px solid var(--line);padding-top:20px}.total{display:flex;justify-content:space-between;font-size:19px;font-weight:bold}.total b:last-child{color:var(--gold)}.checkoutBtn{width:100%;padding:15px;margin-top:18px;background:var(--gold);color:#000;font-weight:bold;border-radius:5px}
-.modal{position:fixed;inset:0;background:#000d;backdrop-filter:blur(7px);z-index:5000;display:none;align-items:center;justify-content:center;padding:18px}.modal.open{display:flex}.modalBox{width:min(560px,100%);max-height:92vh;overflow:auto;background:#101010;border:1px solid #d6ad5244;border-radius:12px;padding:25px}.modalHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}.modalHead h2{font:25px Georgia}.muted{color:#777;font-size:11px;margin-bottom:20px}.sizeGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:9px}.sizeBtn{padding:13px 8px;background:#181818;color:#fff;border:1px solid var(--line);border-radius:7px}.sizeBtn:hover{border-color:var(--gold);color:var(--gold)}.sizeBtn small{display:block;color:#777;font-size:9px;margin-top:4px}.field{margin-bottom:14px}.field label{display:block;color:#aaa;font-size:12px;margin-bottom:6px}.field input,.field select,.field textarea{width:100%;background:#171717;border:1px solid var(--line);color:#fff;padding:12px;border-radius:6px;outline:0}.field textarea{min-height:90px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{border-color:#d6ad5266}.formGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.full{grid-column:1/-1}.submit{width:100%;padding:14px;background:var(--gold);color:#000;font-weight:bold;border-radius:5px}.whatsapp{position:fixed;right:20px;bottom:20px;width:55px;height:55px;border-radius:50%;background:#25d366;display:grid;place-items:center;font-size:24px;z-index:1500;box-shadow:0 8px 30px #25d36644}.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,120px);background:#171717;border:1px solid #d6ad5266;padding:13px 20px;border-radius:7px;z-index:7000;transition:.35s;font-size:12px}.toast.show{transform:translate(-50%,0)}
-@keyframes marquee{to{transform:translateX(50%)}}@keyframes slide{from{transform:translateX(100%)}to{transform:translateX(0)}}
-@media(max-width:1000px){.links{display:none}.categories{grid-template-columns:repeat(3,1fr)}.products{grid-template-columns:repeat(3,1fr)}.features{grid-template-columns:repeat(2,1fr)}.footerGrid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:650px){.nav{height:auto;padding:12px 14px;flex-wrap:wrap}.brandText b{font-size:18px}.brandMark{width:42px;height:42px}.navActions{margin-right:auto}.hero{min-height:600px}.hero h1{font-size:64px}.hero p{font-size:13px}.section{padding:60px 14px}.head{align-items:flex-start;flex-direction:column}.head h2{font-size:34px}.categories{grid-template-columns:repeat(2,1fr)}.products{grid-template-columns:repeat(2,1fr);gap:9px}.productImg{height:190px}.productInfo{padding:12px}.product h3{font-size:13px}.price{font-size:14px}.add{padding:8px;font-size:10px}.banner{margin:0 14px 60px;padding:28px;min-height:360px}.banner h2{font-size:35px}.features{grid-template-columns:1fr}.feature{border-left:0;border-bottom:1px solid var(--line)}.footerGrid{grid-template-columns:1fr}.formGrid{grid-template-columns:1fr}.full{grid-column:auto}}
+*{box-sizing:border-box}
+body{margin:0;background:#060708;color:#eee;font-family:Arial,Tahoma,sans-serif}
+.hidden{display:none!important}
+:root{--g:#d6ad52;--g2:#f0d48a;--line:#ffffff12;--mut:#7e878e;--r:#ff5964;--gr:#35d083;--o:#f1a63b}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+
+.login{min-height:100vh;display:grid;place-items:center;padding:20px}
+.loginbox,.card,.stat{background:#0d1114;border:1px solid var(--line);border-radius:16px}
+.loginbox{width:min(430px,100%);padding:35px}
+.brand{font:34px Georgia;color:var(--g);letter-spacing:3px}
+.small{font-size:10px;color:#555;letter-spacing:4px;margin-bottom:25px}
+
+.field{margin:0 0 13px}
+.field label{display:block;color:#aaa;font-size:12px;margin-bottom:6px}
+.field input,.field select,.field textarea,.search{
+width:100%;background:#07090b;color:#fff;border:1px solid var(--line);
+border-radius:9px;padding:11px
+}
+.field textarea{min-height:90px}
+
+.btn{border:0;border-radius:9px;padding:10px 14px;background:#1a1d20;color:#fff}
+.gold{background:linear-gradient(135deg,var(--g2),var(--g));color:#090909;font-weight:bold}
+.danger{background:#ff596414;color:#ff7b83;border:1px solid #ff596433}
+.green{background:#35d08318;color:#63e3a0;border:1px solid #35d08333}
+
+.sidebar{
+position:fixed;right:0;top:0;bottom:0;width:255px;background:#090b0d;
+border-left:1px solid var(--line);padding:20px 14px
+}
+.sidebrand{
+font:28px Georgia;color:var(--g);padding:10px;
+border-bottom:1px solid var(--line);margin-bottom:15px
+}
+.nav{
+display:block;width:100%;text-align:right;border:1px solid transparent;
+background:none;color:#888;padding:12px;border-radius:9px;margin:4px 0
+}
+.nav.active,.nav:hover{color:var(--g);background:#ffffff08}
+.logout{position:absolute;bottom:20px;left:14px;right:14px}
+
+main{margin-right:255px;padding:28px}
+.top{display:flex;justify-content:space-between;gap:15px;margin-bottom:22px}
+.top h1{margin:0}
+.top p{color:#777;font-size:12px}
+
+.section{display:none}
+.section.active{display:block}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:12px
+}
+.stat{padding:18px}
+.stat span{font-size:11px;color:#777}
+.stat b{
+display:block;
+color:var(--g);
+font-size:26px;
+margin-top:8px
+}
+
+.card{padding:18px;margin-top:18px}
+.head{
+display:flex;
+justify-content:space-between;
+gap:10px;
+align-items:center;
+margin-bottom:15px
+}
+.head h3{margin:0}
+.head span{font-size:11px;color:#666}
+
+.tablewrap{overflow:auto}
+.table{
+width:100%;
+min-width:900px;
+border-collapse:collapse
+}
+.table th,.table td{
+padding:11px 8px;
+border-bottom:1px solid var(--line);
+font-size:12px;
+text-align:right;
+vertical-align:top
+}
+.table th{color:#777;font-weight:normal}
+
+.thumb{
+width:55px;
+height:55px;
+object-fit:cover;
+border-radius:8px;
+background:#111
+}
+
+.tag{
+display:inline-block;
+padding:4px 8px;
+border-radius:20px;
+font-size:9px;
+margin:2px;
+background:#d6ad5215;
+color:var(--g)
+}
+.tag.r{background:#ff596415;color:#ff7b83}
+.tag.gr{background:#35d08315;color:#63e3a0}
+.tag.o{background:#f1a63b15;color:#f7b95e}
+.tag.b{background:#5ba7ff15;color:#79b9ff}
+
+.actions{
+display:flex;
+gap:6px;
+flex-wrap:wrap
+}
+
+.empty{
+text-align:center;
+color:#666;
+padding:40px
+}
+
+.formgrid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:13px
+}
+.full{grid-column:1/-1}
+
+.sizerows{display:grid;gap:7px}
+.sizerow{
+display:grid;
+grid-template-columns:1fr 110px 40px;
+gap:7px
+}
+.sizerow input{
+background:#090b0d;
+color:#fff;
+border:1px solid var(--line);
+padding:9px;
+border-radius:8px
+}
+
+.preview{
+width:140px;
+height:140px;
+object-fit:cover;
+border-radius:10px;
+margin-top:8px;
+display:none
+}
+
+.modal{
+position:fixed;
+inset:0;
+background:#000c;
+display:none;
+align-items:center;
+justify-content:center;
+padding:15px;
+z-index:50
+}
+.modal.open{display:flex}
+
+.modalbox{
+width:min(850px,100%);
+max-height:92vh;
+overflow:auto;
+background:#0d1013;
+border:1px solid #d6ad5230;
+border-radius:15px;
+padding:22px
+}
+
+.close{
+border:0;
+background:#222;
+color:#fff;
+border-radius:50%;
+width:35px;
+height:35px
+}
+
+.citygrid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px
+}
+.city{
+background:#111519;
+border:1px solid var(--line);
+border-radius:10px;
+padding:15px
+}
+.price{
+font-size:21px;
+color:var(--g);
+margin:7px 0
+}
+
+.customerstats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px
+}
+.customerstats>div{
+background:#111519;
+border:1px solid var(--line);
+border-radius:9px;
+padding:12px
+}
+.customerstats b{
+font-size:22px;
+color:var(--g);
+display:block;
+margin-top:5px
+}
+
+.toast{
+position:fixed;
+bottom:22px;
+left:50%;
+transform:translate(-50%,120px);
+transition:.25s;
+background:#171b1f;
+border:1px solid #d6ad5266;
+padding:12px 18px;
+border-radius:9px;
+z-index:100
+}
+.toast.show{transform:translate(-50%,0)}
+
+@media(max-width:1050px){
+.stats{grid-template-columns:repeat(3,1fr)}
+.citygrid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:800px){
+.sidebar{width:70px}
+.sidebrand{font-size:0}
+.sidebrand:after{
+content:'LF';
+font:24px Georgia;
+color:var(--g)
+}
+.nav{font-size:0;text-align:center}
+.nav:first-letter{font-size:18px}
+main{margin-right:70px;padding:18px}
+}
+
+@media(max-width:600px){
+.sidebar{display:none}
+main{margin:0;padding:14px}
+.stats{grid-template-columns:1fr 1fr}
+.formgrid{grid-template-columns:1fr}
+.full{grid-column:auto}
+.citygrid{grid-template-columns:1fr}
+.customerstats{grid-template-columns:1fr 1fr}
+}
 </style>
 </head>
+
 <body>
-<div class="top">🇱🇾 <b>LIBYA FLEX</b>&nbsp; — &nbsp;متجر قمصان كرة القدم والملابس الرياضية في ليبيا</div>
-<header><nav class="nav"><a class="brand" href="#home"><div class="brandMark">LF</div><div class="brandText"><b id="brandName">LIBYA FLEX</b><small>FOOTBALL STORE</small></div></a><div class="links"><a href="#home">الرئيسية</a><a href="#categories">الأقسام</a><a href="#products">القمصان</a><a href="#about">لماذا نحن</a><a href="#contact">تواصل</a></div><div class="navActions"><button class="icon" onclick="openCart()">🛒<span class="count" id="cartCount">0</span></button></div></nav></header>
-<main id="home">
-<section class="hero"><div class="heroInner"><span class="pill">✦ مجموعة 2026 الجديدة</span><h1>LIBYA<br><span>FLEX.</span></h1><p id="heroSubtitle">قميصك.. هويتك.. شغفك. اكتشف أفضل قمصان كرة القدم والمنتخبات والفرق المفضلة لديك بتجربة تسوق مختلفة.</p><div class="heroBtns"><a class="goldBtn" href="#products">تسوق الآن ←</a><a class="outlineBtn" href="#categories">اكتشف المجموعة</a></div></div></section>
-<div class="ticker"><div class="tickerTrack"><span><b>LIBYA FLEX</b> FOOTBALL SHIRTS</span><span>⚽ مقاسات متعددة</span><span>🚚 توصيل داخل ليبيا</span><span>✦ جودة عالية</span><span>🇱🇾 متجر ليبي</span><span><b>LIBYA FLEX</b> FOOTBALL SHIRTS</span><span>👟 مقاسات أحذية وأرقام مستقبلية</span></div></div>
-<section class="section" id="categories"><div class="head"><div><div class="eyebrow">COLLECTION</div><h2>تصفح حسب الفئة</h2><p>اختار عالمك الكروي أو اعرض كل المنتجات.</p></div></div><div class="categories" id="categoryGrid"></div></section>
-<section class="section" id="products"><div class="head"><div><div class="eyebrow">SHOP</div><h2>أحدث المنتجات</h2><p id="productSubtitle">اختر قميصك أو منتجك القادم</p></div><button class="textLink" onclick="showAllProducts()">عرض الكل</button></div><div class="products" id="productsContainer"></div></section>
-<section class="banner"><div><div class="eyebrow">LIBYA FLEX</div><h2>قميصك.<br>هويتك.</h2><p id="storeDescription">مش مجرد قميص كرة قدم. هو الفريق اللي تشجعه، اللاعب اللي تحبه، والذكريات اللي تعيشها.</p><a href="#products" class="goldBtn">اكتشف المجموعة</a></div></section>
-<section class="section" id="about"><div class="head"><div><div class="eyebrow">WHY LIBYA FLEX</div><h2>أكثر من مجرد متجر</h2><p>تجربة مصممة لعشاق كرة القدم والستايل الرياضي في ليبيا.</p></div></div><div class="features"><div class="feature"><div class="fi">✦</div><h3>مقاسات متعددة</h3><p>لكل منتج مقاساته ومخزونه الخاص، ويمكن إضافة أي مقاس أو رقم مستقبلاً.</p></div><div class="feature"><div class="fi">🚚</div><h3>توصيل داخل ليبيا</h3><p>نوفر خيارات توصيل للمدن والمناطق داخل ليبيا.</p></div><div class="feature"><div class="fi">🛡️</div><h3>طلب واضح</h3><p>العميل يختار المقاس والكمية قبل إرسال الطلب.</p></div><div class="feature"><div class="fi">⚽</div><h3>لعشاق اللعبة</h3><p>قمصان، منتجات رياضية وتجربة مبنية حول كرة القدم.</p></div></div></section>
+
+<div id="login" class="login">
+<div class="loginbox">
+
+<div class="brand">LIBYA FLEX</div>
+<div class="small">PRIVATE STORE ADMIN</div>
+
+<h2>لوحة التحكم</h2>
+
+<p style="color:#777;font-size:12px">
+إدارة المنتجات والعملاء والطلبات والمخزون والمدن.
+</p>
+
+<div class="field">
+<label>اسم المستخدم</label>
+<input id="username" value="admin">
+</div>
+
+<div class="field">
+<label>كلمة المرور</label>
+<input id="password" type="password">
+</div>
+
+<button class="btn gold" style="width:100%" onclick="login()">
+دخول لوحة التحكم
+</button>
+
+<div style="font-size:10px;color:#555;text-align:center;margin-top:12px">
+admin / libyaflex
+</div>
+
+</div>
+</div>
+
+
+<div id="app" class="hidden">
+
+<aside class="sidebar">
+
+<div class="sidebrand">LIBYA FLEX</div>
+
+<button class="nav active" onclick="section('dashboard',this)">
+▣ الرئيسية
+</button>
+
+<button class="nav" onclick="section('products',this)">
+◈ المنتجات
+</button>
+
+<button class="nav" onclick="section('orders',this)">
+🛍 الطلبات
+</button>
+
+<button class="nav" onclick="section('customers',this)">
+👤 العملاء
+</button>
+
+<button class="nav" onclick="section('cities',this)">
+🚚 المدن والتوصيل
+</button>
+
+<button class="nav" onclick="section('settings',this)">
+⚙ الإعدادات
+</button>
+
+<button class="btn logout" onclick="logout()">
+تسجيل الخروج
+</button>
+
+</aside>
+
+
+<main>
+
+<div class="top">
+
+<div>
+<h1 id="title">نظرة عامة</h1>
+<p style="color:#777">
+تحكم كامل في LIBYA FLEX.
+</p>
+</div>
+
+<button class="btn gold" onclick="productModal()">
++ إضافة منتج
+</button>
+
+</div>
+
+
+<!-- DASHBOARD -->
+
+<section id="dashboard" class="section active">
+
+<div class="stats">
+
+<div class="stat">
+<span>المنتجات</span>
+<b id="sp">0</b>
+</div>
+
+<div class="stat">
+<span>الطلبات</span>
+<b id="so">0</b>
+</div>
+
+<div class="stat">
+<span>المبيعات المستلمة</span>
+<b id="sr">0</b>
+</div>
+
+<div class="stat">
+<span>المخزون</span>
+<b id="ss">0</b>
+</div>
+
+<div class="stat">
+<span>العملاء</span>
+<b id="sc">0</b>
+</div>
+
+<div class="stat">
+<span>🚚 قيد التوصيل</span>
+<b id="sw">0</b>
+</div>
+
+<div class="stat">
+<span>🟢 مستلمة</span>
+<b id="sd">0</b>
+</div>
+
+<div class="stat">
+<span>🔴 لم تستلم</span>
+<b id="sf">0</b>
+</div>
+
+<div class="stat">
+<span>⚠️ مخزون منخفض</span>
+<b id="sl">0</b>
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="head">
+
+<div>
+<h3>آخر الطلبات</h3>
+</div>
+
+<button class="btn" onclick="section('orders')">
+عرض الكل
+</button>
+
+</div>
+
+<div id="recent"></div>
+
+</div>
+
+
+<div class="card">
+
+<div class="head">
+<h3>تنبيهات المخزون</h3>
+</div>
+
+<div id="alerts"></div>
+
+</div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section id="products" class="section">
+
+<div class="card">
+
+<div class="head">
+
+<div>
+<h3>المنتجات</h3>
+<span>الصورة من الجوال أو رابط.</span>
+</div>
+
+<button class="btn gold" onclick="productModal()">
++ منتج
+</button>
+
+</div>
+
+<input
+class="search"
+id="psearch"
+placeholder="بحث..."
+oninput="productsTable()"
+>
+
+<div class="tablewrap">
+
+<table class="table">
+
+<thead>
+<tr>
+<th>الصورة</th>
+<th>المنتج</th>
+<th>القسم</th>
+<th>السعر</th>
+<th>المقاسات</th>
+<th>الحالة</th>
+<th>إجراءات</th>
+</tr>
+</thead>
+
+<tbody id="pt"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ORDERS -->
+
+<section id="orders" class="section">
+
+<div class="card">
+
+<div class="head">
+
+<h3>الطلبات</h3>
+
+<button class="btn danger" onclick="clearOrders()">
+حذف الكل
+</button>
+
+</div>
+
+<input
+class="search"
+id="osearch"
+placeholder="رقم الطلب / الاسم / الهاتف"
+oninput="ordersTable()"
+>
+
+<div class="tablewrap">
+
+<table class="table">
+
+<thead>
+
+<tr>
+<th>الطلب</th>
+<th>التاريخ</th>
+<th>العميل</th>
+<th>المدينة</th>
+<th>الإجمالي</th>
+<th>الحالة</th>
+<th>إجراء</th>
+</tr>
+
+</thead>
+
+<tbody id="ot"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CUSTOMERS -->
+
+<section id="customers" class="section">
+
+<div class="card">
+
+<div class="head">
+
+<h3>العملاء</h3>
+
+<span>
+نفس رقم الهاتف = نفس سجل العميل.
+</span>
+
+</div>
+
+<input
+class="search"
+id="csearch"
+placeholder="بحث بالاسم أو الهاتف"
+oninput="customersTable()"
+>
+
+<div class="tablewrap">
+
+<table class="table">
+
+<thead>
+
+<tr>
+<th>العميل</th>
+<th>الهاتف</th>
+<th>الطلبات</th>
+<th>🟢 استلم</th>
+<th>🔴 لم يستلم</th>
+<th>القيمة</th>
+<th>التقييم</th>
+<th></th>
+</tr>
+
+</thead>
+
+<tbody id="ct"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CITIES -->
+
+<section id="cities" class="section">
+
+<div class="card">
+
+<div class="head">
+
+<div>
+
+<h3>المدن وأسعار التوصيل</h3>
+
+<span>
+قابلة للإضافة والتعديل والحذف.
+</span>
+
+</div>
+
+<button class="btn gold" onclick="cityModal()">
++ مدينة
+</button>
+
+</div>
+
+<div class="citygrid" id="citiesGrid"></div>
+
+</div>
+
+</section>
+
+
+<!-- SETTINGS -->
+
+<section id="settings" class="section">
+
+<div class="card">
+
+<div class="head">
+<h3>إعدادات المتجر</h3>
+</div>
+
+<div class="formgrid">
+
+<div class="field">
+<label>اسم المتجر</label>
+<input id="sn">
+</div>
+
+<div class="field">
+<label>WhatsApp</label>
+<input id="swp">
+</div>
+
+<div class="field full">
+<label>الوصف</label>
+<textarea id="sdesc"></textarea>
+</div>
+
+<div class="field full">
+<label>Hero</label>
+<textarea id="shero"></textarea>
+</div>
+
+<div class="field">
+<label>Instagram</label>
+<input id="sig">
+</div>
+
+<div class="field">
+<label>Facebook</label>
+<input id="sfb">
+</div>
+
+<div class="field">
+<label>TikTok</label>
+<input id="stk">
+</div>
+
+<div class="field">
+<label>ملاحظة التوصيل</label>
+<input id="sdel">
+</div>
+
+</div>
+
+<button class="btn gold" onclick="saveSettings()">
+حفظ الإعدادات
+</button>
+
+</div>
+
+</section>
+
 </main>
-<footer id="contact"><div class="footerGrid"><div><div class="footerBrand" id="footerName">LIBYA FLEX</div><p id="footerDesc">متجر ليبي متخصص في قمصان كرة القدم والملابس الرياضية.</p></div><div><h3>المتجر</h3><ul><li><a href="#home">الرئيسية</a></li><li><a href="#products">المنتجات</a></li><li><a href="#categories">الأقسام</a></li></ul></div><div><h3>المساعدة</h3><ul><li>دليل المقاسات</li><li>الشحن والتوصيل</li><li>الإرجاع والاستبدال</li></ul></div><div><h3>تواصل</h3><ul><li>🇱🇾 ليبيا</li><li id="phoneText">📱 09xxxxxxxx</li><li>💬 WhatsApp</li></ul></div></div><div class="copyright">© 2026 LIBYA FLEX — جميع الحقوق محفوظة</div></footer>
 
-<div class="overlay" id="cartOverlay" onclick="closeCartOutside(event)"><aside class="cart" onclick="event.stopPropagation()"><div class="cartHead"><h2>سلة المشتريات</h2><button class="close" onclick="closeCart()">✕</button></div><div id="cartItems"></div><div class="cartTotal"><div class="total"><span>الإجمالي</span><b id="cartTotal">0 د.ل</b></div><button class="checkoutBtn" onclick="openCheckout()">إتمام الطلب</button></div></aside></div>
+</div>
 
-<div class="modal" id="sizePicker" onclick="closeSizePickerOutside(event)"><div class="modalBox" onclick="event.stopPropagation()"><div class="modalHead"><h2>اختر المقاس / الرقم</h2><button class="close" onclick="closeSizePicker()">✕</button></div><div class="muted" id="sizeProductName"></div><div class="sizeGrid" id="sizeOptions"></div></div></div>
 
-<div class="modal" id="checkoutModal"><div class="modalBox"><div class="modalHead"><h2>إتمام الطلب</h2><button class="close" onclick="closeCheckout()">✕</button></div><p class="muted">أدخل بيانات التوصيل. سيتم حفظ الطلب ويمكنك أيضاً إرساله عبر WhatsApp.</p><form onsubmit="submitOrder(event)"><div class="formGrid"><div class="field"><label>الاسم الكامل</label><input id="customerName" required></div><div class="field"><label>رقم الهاتف</label><input id="customerPhone" placeholder="09xxxxxxxx" required></div><div class="field"><label>المدينة</label><select id="customerCity" required><option value="">اختر المدينة</option><option>طرابلس</option><option>بنغازي</option><option>مصراتة</option><option>الزاوية</option><option>البيضاء</option><option>درنة</option><option>سبها</option><option>زليتن</option><option>الخمس</option><option>تاجوراء</option><option>أخرى</option></select></div><div class="field"><label>العنوان</label><input id="customerAddress" required></div><div class="field full"><label>ملاحظات</label><textarea id="customerNotes" placeholder="مثلاً: وقت التوصيل أو أي ملاحظة"></textarea></div></div><button class="submit" type="submit">إرسال الطلب</button></form></div></div>
-<a class="whatsapp" id="whatsappLink" href="https://wa.me/218000000000" target="_blank" aria-label="WhatsApp">☎</a><div class="toast" id="toast"></div>
+<!-- PRODUCT MODAL -->
+
+<div class="modal" id="pm">
+
+<div class="modalbox">
+
+<div class="head">
+
+<h2 id="pmt">إضافة منتج</h2>
+
+<button class="close" onclick="closeM('pm')">
+✕
+</button>
+
+</div>
+
+<input type="hidden" id="pid">
+
+<div class="formgrid">
+
+<div class="field">
+<label>اسم المنتج</label>
+<input id="pn" placeholder="مثلاً Real Madrid Home">
+</div>
+
+<div class="field">
+<label>القسم / الفريق</label>
+<input id="pc" placeholder="مثلاً ريال مدريد">
+</div>
+
+<div class="field">
+
+<label>نوع المنتج</label>
+
+<select id="ptp">
+
+<option value="shirt">قميص / ملابس</option>
+<option value="shoe">حذاء رياضي</option>
+<option value="shorts">شورت</option>
+<option value="jacket">جاكيت</option>
+<option value="accessory">إكسسوار</option>
+<option value="other">أخرى</option>
+
+</select>
+
+</div>
+
+<div class="field">
+
+<label>السعر بالدينار</label>
+
+<input id="pp" type="number" min="0">
+
+</div>
+
+
+<div class="field full">
+
+<label>الصورة من الجوال</label>
+
+<input
+id="pfile"
+type="file"
+accept="image/*"
+onchange="preview()"
+>
+
+<img id="prev" class="preview">
+
+</div>
+
+
+<div class="field full">
+
+<label>أو رابط الصورة</label>
+
+<input
+id="pi"
+placeholder="https://..."
+>
+
+</div>
+
+
+<div class="field full">
+
+<label>الوصف</label>
+
+<textarea id="pd"></textarea>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+المقاسات / الأرقام والمخزون
+</label>
+
+<div class="sizerows" id="sizes"></div>
+
+<div style="margin-top:10px;display:flex;gap:7px;flex-wrap:wrap">
+
+<button
+class="btn"
+onclick="preset(['XS','S','M','L','XL','XXL'])"
+>
+ملابس
+</button>
+
+<button
+class="btn"
+onclick="preset(['S','M','L','XL'])"
+>
+قمصان
+</button>
+
+<button
+class="btn"
+onclick="preset(['36','37','38','39','40','41','42','43','44','45'])"
+>
+أحذية
+</button>
+
+<button
+class="btn"
+onclick="preset(['6','7','8','9','10','11','12'])"
+>
+US Shoes
+</button>
+
+<button
+class="btn gold"
+onclick="sizeRow()"
+>
++ مقاس
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button class="btn gold" onclick="saveProduct()">
+حفظ المنتج
+</button>
+
+<button class="btn" onclick="closeM('pm')">
+إلغاء
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ORDER MODAL -->
+
+<div class="modal" id="om">
+
+<div class="modalbox">
+
+<div class="head">
+
+<h2>تفاصيل الطلب</h2>
+
+<button class="close" onclick="closeM('om')">
+✕
+</button>
+
+</div>
+
+<div id="od"></div>
+
+</div>
+
+</div>
+
+
+<!-- CUSTOMER MODAL -->
+
+<div class="modal" id="cm">
+
+<div class="modalbox">
+
+<div class="head">
+
+<h2>سجل العميل</h2>
+
+<button class="close" onclick="closeM('cm')">
+✕
+</button>
+
+</div>
+
+<div id="cd"></div>
+
+</div>
+
+</div>
+
+
+<!-- CITY MODAL -->
+
+<div class="modal" id="citym">
+
+<div class="modalbox">
+
+<div class="head">
+
+<h2 id="cmt">إضافة مدينة</h2>
+
+<button class="close" onclick="closeM('citym')">
+✕
+</button>
+
+</div>
+
+<input type="hidden" id="cid">
+
+<div class="field">
+<label>اسم المدينة</label>
+<input id="cname" placeholder="طرابلس">
+</div>
+
+<div class="field">
+<label>سعر التوصيل</label>
+<input id="cprice" type="number" min="0" placeholder="10">
+</div>
+
+<div class="field">
+<label>ملاحظة</label>
+<input id="cnote" placeholder="التوصيل خلال 24-48 ساعة">
+</div>
+
+<div class="actions">
+
+<button class="btn gold" onclick="saveCity()">
+حفظ
+</button>
+
+<button class="btn" onclick="closeM('citym')">
+إلغاء
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
 
 <script>
-const PRODUCT_KEY='libyaFlexProducts', CART_KEY='libyaFlexCart', ORDER_KEY='libyaFlexOrders', SETTINGS_KEY='libyaFlexSettings';
+
+const K='libyaFlexProducts';
+const O='libyaFlexOrders';
+const C='libyaFlexCities';
+const S='libyaFlexSettings';
+
 const defaultProducts=[
-{id:1,name:'Real Madrid Home',category:'ريال مدريد',type:'shirt',price:280,description:'قميص ريال مدريد بتصميم الموسم الجديد.',image:'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=800&q=85',sizes:[{name:'S',stock:5},{name:'M',stock:8},{name:'L',stock:8},{name:'XL',stock:4}]},
-{id:2,name:'Barcelona Home',category:'برشلونة',type:'shirt',price:270,description:'قميص برشلونة لعشاق النادي الكتالوني.',image:'https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=800&q=85',sizes:[{name:'S',stock:4},{name:'M',stock:7},{name:'L',stock:6},{name:'XL',stock:3}]},
-{id:3,name:'Liverpool Home',category:'ليفربول',type:'shirt',price:260,description:'قميص ليفربول بتصميم كلاسيكي.',image:'https://images.unsplash.com/photo-1553778263-73a83bab9b0c?auto=format&fit=crop&w=800&q=85',sizes:[{name:'S',stock:2},{name:'M',stock:6},{name:'L',stock:7},{name:'XL',stock:3}]},
-{id:4,name:'Argentina Jersey',category:'منتخبات',type:'shirt',price:290,description:'قميص منتخب الأرجنتين.',image:'https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=800&q=85',sizes:[{name:'S',stock:3},{name:'M',stock:5},{name:'L',stock:5},{name:'XL',stock:2}]}
+
+{
+id:1,
+name:'Real Madrid Home',
+category:'ريال مدريد',
+type:'shirt',
+price:280,
+description:'قميص ريال مدريد بتصميم الموسم الجديد.',
+image:'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=800&q=85',
+sizes:[
+{name:'S',stock:5},
+{name:'M',stock:8},
+{name:'L',stock:8},
+{name:'XL',stock:4}
+]
+},
+
+{
+id:2,
+name:'Barcelona Home',
+category:'برشلونة',
+type:'shirt',
+price:270,
+description:'قميص برشلونة لعشاق النادي الكتالوني.',
+image:'https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=800&q=85',
+sizes:[
+{name:'S',stock:4},
+{name:'M',stock:7},
+{name:'L',stock:6},
+{name:'XL',stock:3}
+]
+},
+
+{
+id:3,
+name:'Liverpool Home',
+category:'ليفربول',
+type:'shirt',
+price:260,
+description:'قميص ليفربول بتصميم كلاسيكي.',
+image:'https://images.unsplash.com/photo-1553778263-73a83bab9b0c?auto=format&fit=crop&w=800&q=85',
+sizes:[
+{name:'S',stock:2},
+{name:'M',stock:6},
+{name:'L',stock:7},
+{name:'XL',stock:3}
+]
+}
+
 ];
-let products=loadProducts();let cart=loadCart();let settings=loadSettings();
-function normalizeProducts(list){return (Array.isArray(list)?list:[]).map((p,i)=>({...p,id:Number(p.id)||Date.now()+i,price:Number(p.price)||0,type:p.type||'shirt',sizes:(Array.isArray(p.sizes)&&p.sizes.length?p.sizes:[{name:'S',stock:0},{name:'M',stock:0},{name:'L',stock:0},{name:'XL',stock:0}]).map(s=>Array.isArray(s)?{name:String(s[0]),stock:Number(s[1])||0}:{name:String(s.name||s.size||''),stock:Math.max(0,Number(s.stock)||0)}).filter(s=>s.name)}))}
-function loadProducts(){try{const x=JSON.parse(localStorage.getItem(PRODUCT_KEY));if(Array.isArray(x)&&x.length)return normalizeProducts(x)}catch(e){}localStorage.setItem(PRODUCT_KEY,JSON.stringify(defaultProducts));return normalizeProducts(defaultProducts)}
-function loadCart(){try{const x=JSON.parse(localStorage.getItem(CART_KEY)||'[]');return Array.isArray(x)?x.map(i=>({...i,id:Number(i.id),quantity:Number(i.quantity||1),size:i.size||''})).filter(i=>i.id):[]}catch(e){return []}}
-function loadSettings(){try{return JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}')}catch(e){return {}}}
-function saveProducts(){localStorage.setItem(PRODUCT_KEY,JSON.stringify(products))}function saveCart(){localStorage.setItem(CART_KEY,JSON.stringify(cart))}
-function money(x){return Number(x||0).toLocaleString('ar-LY')+' د.ل'}function esc(x){return String(x??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
-function renderCategories(){const categories=[...new Set(products.map(p=>p.category).filter(Boolean))];const icons=['⚽','👑','🔵🔴','🔴','🌍','🏆','👟','⭐'];document.getElementById('categoryGrid').innerHTML=categories.map((c,i)=>`<button class="cat" onclick="filterCategory('${esc(c).replace(/'/g,"\\'")}')"><span class="num">${String(i+1).padStart(2,'0')}</span><div class="emoji">${icons[i%icons.length]}</div><h3>${esc(c)}</h3><small>عرض المنتجات</small></button>`).join('')+`<button class="cat" onclick="showAllProducts()"><span class="num">ALL</span><div class="emoji">✦</div><h3>كل المنتجات</h3><small>View All</small></button>`}
-function renderProducts(list=products){const box=document.getElementById('productsContainer');if(!list.length){box.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:70px;color:#777">⚽<br><br>لا توجد منتجات</div>';return}box.innerHTML=list.map(p=>{const available=p.sizes.filter(s=>s.stock>0).length;return `<article class="product"><div class="productImg"><span class="badge">${available?'متوفر':'نفد'}</span><img src="${esc(p.image)}" alt="${esc(p.name)}" loading="lazy"></div><div class="productInfo"><div class="categoryText">${esc(p.category)}</div><h3>${esc(p.name)}</h3><p class="desc">${esc(p.description||'')}</p><div class="chips">${p.sizes.map(s=>`<span class="chip ${s.stock<=0?'out':''}">${esc(s.name)}</span>`).join('')}</div><div class="productBottom"><span class="price">${money(p.price)}</span><button class="add" ${available?'':'disabled'} onclick="openSizePicker(${p.id})">+ أضف</button></div></div></article>`}).join('')}
-function openSizePicker(id){const p=products.find(x=>x.id===id);if(!p)return;const options=p.sizes.filter(s=>s.stock>0);if(!options.length)return toast('هذا المنتج غير متوفر حالياً');document.getElementById('sizeProductName').textContent=p.name+' — '+money(p.price);document.getElementById('sizeOptions').innerHTML=options.map(s=>`<button class="sizeBtn" onclick="confirmSize(${p.id},'${esc(s.name).replace(/'/g,"\\'")}')">${esc(s.name)}<small>متوفر: ${s.stock}</small></button>`).join('');document.getElementById('sizePicker').classList.add('open')}
-function closeSizePicker(){document.getElementById('sizePicker').classList.remove('open')}function closeSizePickerOutside(e){if(e.target.id==='sizePicker')closeSizePicker()}
-function confirmSize(id,size){const p=products.find(x=>x.id===id),s=p?.sizes.find(x=>x.name===size);if(!s||s.stock<=0)return toast('المقاس غير متوفر');const existing=cart.find(x=>x.id===id&&x.size===size);if(existing){if(existing.quantity>=s.stock)return toast('وصلت للكمية المتوفرة');existing.quantity++}else cart.push({id,size,quantity:1});saveCart();updateCartUI();closeSizePicker();toast('تمت إضافة المقاس '+size+' إلى السلة ⚽')}
-function updateCartUI(){document.getElementById('cartCount').textContent=cart.reduce((a,x)=>a+(Number(x.quantity)||0),0);const box=document.getElementById('cartItems');if(!cart.length){box.innerHTML='<div style="text-align:center;padding:70px 10px;color:#666">🛒<br><br><b style="color:#ddd">السلة فارغة</b><br><small>ابدأ بإضافة قميصك المفضل.</small></div>';document.getElementById('cartTotal').textContent='0 د.ل';return}let total=0;box.innerHTML=cart.map((item,index)=>{const p=products.find(x=>x.id===item.id);if(!p)return '';const qty=Number(item.quantity)||1;total+=p.price*qty;return `<div class="cartItem"><img src="${esc(p.image)}" alt=""><div class="cartInfo"><h4>${esc(p.name)}</h4><div class="cartSize">المقاس / الرقم: ${esc(item.size||'غير محدد')}</div><div class="price">${money(p.price)}</div><div class="qty"><button onclick="changeQty(${index},1)">+</button><strong>${qty}</strong><button onclick="changeQty(${index},-1)">−</button></div><button class="remove" onclick="removeItem(${index})">حذف</button></div></div>`}).join('');document.getElementById('cartTotal').textContent=money(total)}
-function changeQty(index,amount){const item=cart[index];if(!item)return;const p=products.find(x=>x.id===item.id),s=p?.sizes.find(x=>x.name===item.size);item.quantity+=amount;if(item.quantity<=0)cart.splice(index,1);else if(s&&item.quantity>s.stock){item.quantity=s.stock;toast('لا توجد كمية إضافية من هذا المقاس')}saveCart();updateCartUI()}function removeItem(index){cart.splice(index,1);saveCart();updateCartUI()}
-function openCart(){document.getElementById('cartOverlay').classList.add('open')}function closeCart(){document.getElementById('cartOverlay').classList.remove('open')}function closeCartOutside(e){if(e.target.id==='cartOverlay')closeCart()}
-function openCheckout(){if(!cart.length)return toast('السلة فارغة');document.getElementById('checkoutModal').classList.add('open')}function closeCheckout(){document.getElementById('checkoutModal').classList.remove('open')}
-function cartTotal(){return cart.reduce((a,x)=>{const p=products.find(y=>y.id===x.id);return a+(p?p.price*(Number(x.quantity)||0):0)},0)}
-function submitOrder(e){e.preventDefault();if(!cart.length)return toast('السلة فارغة');const order={id:'LF-'+Date.now(),date:new Date().toISOString(),customer:{name:document.getElementById('customerName').value.trim(),phone:document.getElementById('customerPhone').value.trim(),city:document.getElementById('customerCity').value,address:document.getElementById('customerAddress').value.trim(),notes:document.getElementById('customerNotes').value.trim()},items:cart.map(x=>({...x})),total:cartTotal()};const orders=JSON.parse(localStorage.getItem(ORDER_KEY)||'[]');orders.push(order);localStorage.setItem(ORDER_KEY,JSON.stringify(orders));cart.forEach(item=>{const p=products.find(x=>x.id===item.id);const s=p?.sizes.find(x=>x.name===item.size);if(s)s.stock=Math.max(0,s.stock-item.quantity)});saveProducts();const phone=(settings.whatsapp||'218000000000').replace(/\D/g,'');const text=`طلب جديد من LIBYA FLEX%0Aرقم الطلب: ${order.id}%0Aالاسم: ${encodeURIComponent(order.customer.name)}%0Aالهاتف: ${encodeURIComponent(order.customer.phone)}%0Aالمدينة: ${encodeURIComponent(order.customer.city)}%0Aالعنوان: ${encodeURIComponent(order.customer.address)}%0A%0Aالمنتجات:%0A${order.items.map(x=>{const p=products.find(y=>y.id===x.id);return encodeURIComponent(`${p?.name||'منتج'} | المقاس: ${x.size} | الكمية: ${x.quantity}`)}).join('%0A')}%0A%0Aالإجمالي: ${encodeURIComponent(money(order.total))}`;cart=[];saveCart();updateCartUI();closeCheckout();closeCart();document.querySelector('#checkoutModal form').reset();renderProducts(products);toast('تم تسجيل الطلب بنجاح');if(phone&&phone!=='218000000000')setTimeout(()=>window.open('https://wa.me/'+phone+'?text='+text,'_blank'),350)}
-function filterCategory(c){document.getElementById('productSubtitle').textContent='قسم: '+c;renderProducts(products.filter(p=>p.category===c));document.getElementById('products').scrollIntoView({behavior:'smooth'})}function showAllProducts(){document.getElementById('productSubtitle').textContent='اختر قميصك أو منتجك القادم';renderProducts(products);document.getElementById('products').scrollIntoView({behavior:'smooth'})}
-function applySettings(){settings=loadSettings();if(settings.name){document.title=settings.name+' | Football Store';document.getElementById('brandName').textContent=settings.name;document.getElementById('footerName').textContent=settings.name}if(settings.description){document.getElementById('storeDescription').textContent=settings.description;document.getElementById('footerDesc').textContent=settings.description}if(settings.heroSubtitle)document.getElementById('heroSubtitle').textContent=settings.heroSubtitle;const phone=settings.whatsapp||'218000000000';document.getElementById('phoneText').textContent='📱 '+phone;document.getElementById('whatsappLink').href='https://wa.me/'+phone.replace(/\D/g,'')}
-function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.__t);window.__t=setTimeout(()=>t.classList.remove('show'),2500)}
-renderCategories();renderProducts(products);updateCartUI();applySettings();
+
+
+let products=load(K,defaultProducts);
+let orders=load(O,[]);
+let cities=load(C,[
+{id:1,name:'طرابلس',price:10,note:'التوصيل داخل طرابلس'},
+{id:2,name:'بنغازي',price:20,note:'التوصيل إلى بنغازي'},
+{id:3,name:'مصراتة',price:15,note:'التوصيل إلى مصراتة'},
+{id:4,name:'الزاوية',price:12,note:'التوصيل إلى الزاوية'},
+{id:5,name:'زليتن',price:15,note:'التوصيل إلى زليتن'}
+]);
+let settings=load(S,{});
+
+
+function load(key,fallback){
+
+try{
+
+let x=JSON.parse(localStorage.getItem(key));
+
+if(x!==null)return x;
+
+}catch(e){}
+
+localStorage.setItem(key,JSON.stringify(fallback));
+
+return fallback;
+
+}
+
+
+function save(key,value){
+
+localStorage.setItem(key,JSON.stringify(value));
+
+}
+
+
+function login(){
+
+if(
+username.value.trim()==='admin' &&
+password.value==='libyaflex'
+){
+
+localStorage.setItem('lfAdminSession','1');
+
+document.getElementById('login').classList.add('hidden');
+document.getElementById('app').classList.remove('hidden');
+
+refresh();
+
+}else{
+
+alert('بيانات الدخول غير صحيحة');
+
+}
+
+}
+
+
+function logout(){
+
+localStorage.removeItem('lfAdminSession');
+
+location.reload();
+
+}
+
+
+if(localStorage.getItem('lfAdminSession')==='1'){
+
+document.getElementById('login').classList.add('hidden');
+document.getElementById('app').classList.remove('hidden');
+
+}
+
+
+function section(id,btn){
+
+document.querySelectorAll('.section')
+.forEach(x=>x.classList.remove('active'));
+
+document.getElementById(id).classList.add('active');
+
+document.querySelectorAll('.nav')
+.forEach(x=>x.classList.remove('active'));
+
+if(btn)btn.classList.add('active');
+
+let names={
+dashboard:'نظرة عامة',
+products:'المنتجات',
+orders:'الطلبات',
+customers:'العملاء',
+cities:'المدن والتوصيل',
+settings:'الإعدادات'
+};
+
+title.textContent=names[id]||'لوحة التحكم';
+
+if(id==='products')productsTable();
+if(id==='orders')ordersTable();
+if(id==='customers')customersTable();
+if(id==='cities')renderCities();
+if(id==='settings')loadSettings();
+
+}
+
+
+function refresh(){
+
+products=load(K,defaultProducts);
+orders=load(O,[]);
+cities=load(C,[]);
+settings=load(S,{});
+
+renderStats();
+productsTable();
+ordersTable();
+customersTable();
+renderRecent();
+renderAlerts();
+renderCities();
+loadSettings();
+
+}
+
+
+function renderStats(){
+
+sp.textContent=products.length;
+so.textContent=orders.length;
+
+let delivered=orders.filter(o=>status(o)==='delivered');
+let failed=orders.filter(o=>status(o)==='failed');
+let shipping=orders.filter(o=>status(o)==='shipping');
+
+sr.textContent=money(
+delivered.reduce((a,o)=>a+Number(o.total||0),0)
+);
+
+ss.textContent=products.reduce(
+(a,p)=>
+a+(p.sizes||[]).reduce(
+(b,s)=>b+Number(s.stock||0),0
+),0
+);
+
+sc.textContent=customers().length;
+sw.textContent=shipping.length;
+sd.textContent=delivered.length;
+sf.textContent=failed.length;
+
+sl.textContent=products.reduce(
+(a,p)=>
+a+(p.sizes||[]).filter(s=>s.stock<=3).length,
+0
+);
+
+}
+
+
+function renderRecent(){
+
+recent.innerHTML=orders.length?
+
+[...orders].reverse().slice(0,5).map(o=>`
+
+<div style="padding:12px 0;border-bottom:1px solid var(--line)">
+
+<b>${esc(o.id)}</b>
+
+<span style="float:left;color:var(--g)">
+${money(o.total)}
+</span>
+
+<div style="color:#777;font-size:10px">
+${esc(o.customer?.name||'-')}
+—
+${esc(o.customer?.phone||'-')}
+</div>
+
+</div>
+
+`).join('')
+
+:'<div class="empty">لا توجد طلبات</div>';
+
+}
+
+
+function renderAlerts(){
+
+let a=[];
+
+products.forEach(p=>
+(p.sizes||[]).forEach(s=>{
+
+if(s.stock<=3){
+
+a.push(`
+
+<div style="padding:9px;border-bottom:1px solid var(--line)">
+
+${esc(p.name)}
+—
+${esc(s.name)}:
+
+<b style="color:${s.stock?'var(--o)':'var(--r)'}">
+${s.stock}
+</b>
+
+</div>
+
+`);
+
+}
+
+})
+);
+
+alerts.innerHTML=a.length?
+a.slice(0,15).join('')
+:'<div class="empty">المخزون جيد</div>';
+
+}
+
+
+function productsTable(){
+
+let q=
+(document.getElementById('psearch')?.value||'')
+.toLowerCase();
+
+let list=products.filter(p=>
+(p.name+' '+p.category+' '+p.type)
+.toLowerCase()
+.includes(q)
+);
+
+pt.innerHTML=list.length?
+
+list.map(p=>`
+
+<tr>
+
+<td>
+<img class="thumb" src="${esc(p.image)}">
+</td>
+
+<td>
+
+<b>${esc(p.name)}</b>
+
+<div style="color:#666">
+${esc(p.description||'')}
+</div>
+
+</td>
+
+<td>
+${esc(p.category)}
+</td>
+
+<td style="color:var(--g)">
+${money(p.price)}
+</td>
+
+<td>
+
+${(p.sizes||[]).map(s=>`
+
+<span class="tag ${
+s.stock<=0?'r':
+s.stock<=3?'o':''
+}">
+
+${esc(s.name)}:${s.stock}
+
+</span>
+
+`).join(' ')}
+
+</td>
+
+<td>
+
+<span class="tag ${
+(p.sizes||[]).reduce((a,s)=>a+s.stock,0)
+?'gr':'r'
+}">
+
+${
+(p.sizes||[]).reduce((a,s)=>a+s.stock,0)
+?'متوفر':'نفد'
+}
+
+</span>
+
+</td>
+
+<td>
+
+<button
+class="btn"
+onclick="productModal(${p.id})"
+>
+تعديل
+</button>
+
+<button
+class="btn danger"
+onclick="delProduct(${p.id})"
+>
+حذف
+</button>
+
+</td>
+
+</tr>
+
+`).join('')
+
+:
+
+'<tr><td colspan="7" class="empty">لا توجد منتجات</td></tr>';
+
+}
+
+
+function productModal(id){
+
+pid.value=id||'';
+
+pmt.textContent=
+id?'تعديل المنتج':'إضافة منتج';
+
+sizes.innerHTML='';
+
+prev.style.display='none';
+
+pfile.value='';
+
+if(id){
+
+let p=products.find(x=>x.id==id);
+
+pn.value=p.name;
+pc.value=p.category;
+ptp.value=p.type||'shirt';
+pp.value=p.price;
+pd.value=p.description||'';
+
+pi.value=
+p.image?.startsWith('data:')
+?''
+:p.image||'';
+
+if(p.image?.startsWith('data:')){
+
+prev.src=p.image;
+prev.style.display='block';
+
+}
+
+(p.sizes||[]).forEach(
+s=>sizeRow(s.name,s.stock)
+);
+
+}else{
+
+pn.value='';
+pc.value='';
+pi.value='';
+pd.value='';
+pp.value='';
+ptp.value='shirt';
+
+preset(['S','M','L','XL']);
+
+}
+
+document.getElementById('pm').classList.add('open');
+
+}
+
+
+function closeM(id){
+
+document.getElementById(id)
+.classList.remove('open');
+
+}
+
+
+function sizeRow(n='',v=0){
+
+let r=document.createElement('div');
+
+r.className='sizerow';
+
+r.innerHTML=`
+
+<input
+class="sn"
+value="${esc(n)}"
+placeholder="المقاس / الرقم"
+>
+
+<input
+class="sv"
+type="number"
+min="0"
+value="${v}"
+>
+
+<button
+class="btn danger"
+onclick="this.parentNode.remove()"
+>
+×
+</button>
+
+`;
+
+sizes.appendChild(r);
+
+}
+
+
+function preset(a){
+
+sizes.innerHTML='';
+
+a.forEach(x=>sizeRow(x,0));
+
+}
+
+
+function preview(){
+
+let f=pfile.files[0];
+
+if(!f)return;
+
+let r=new FileReader();
+
+r.onload=e=>{
+
+prev.src=e.target.result;
+
+prev.style.display='block';
+
+};
+
+r.readAsDataURL(f);
+
+}
+
+
+function saveProduct(){
+
+if(
+!pn.value.trim() ||
+!pc.value.trim() ||
+Number(pp.value)<0
+){
+
+return alert('أكمل بيانات المنتج');
+
+}
+
+
+let arr=[...document.querySelectorAll('.sizerow')]
+
+.map(r=>({
+
+name:r.querySelector('.sn').value.trim(),
+
+stock:Math.max(
+0,
+Number(r.querySelector('.sv').value)||0
+)
+
+}))
+
+.filter(x=>x.name);
+
+
+if(!arr.length){
+
+return alert('أضف مقاساً');
+
+}
+
+
+let finish=image=>{
+
+if(!image){
+
+return alert(
+'اختر صورة من الجوال أو ضع رابطاً'
+);
+
+}
+
+let id=Number(pid.value);
+
+let obj={
+
+id:id||Date.now(),
+
+name:pn.value.trim(),
+
+category:pc.value.trim(),
+
+type:ptp.value,
+
+price:Number(pp.value),
+
+image:image,
+
+description:pd.value.trim(),
+
+sizes:arr
+
+};
+
+
+if(id){
+
+let i=products.findIndex(x=>x.id==id);
+
+if(i>=0)products[i]=obj;
+
+}else{
+
+products.push(obj);
+
+}
+
+save(K,products);
+
+closeM('pm');
+
+refresh();
+
+toast('تم حفظ المنتج');
+
+};
+
+
+let f=pfile.files[0];
+
+if(f){
+
+let r=new FileReader();
+
+r.onload=e=>
+finish(e.target.result);
+
+r.readAsDataURL(f);
+
+}else{
+
+finish(pi.value.trim());
+
+}
+
+}
+
+
+function delProduct(id){
+
+if(confirm('حذف المنتج؟')){
+
+products=
+products.filter(p=>p.id!=id);
+
+save(K,products);
+
+refresh();
+
+toast('تم حذف المنتج');
+
+}
+
+}
+
+
+function status(o){
+
+return o.status||'new';
+
+}
+
+
+function stName(s){
+
+return({
+
+new:'جديد',
+
+confirmed:'مؤكد',
+
+shipping:'قيد التوصيل',
+
+delivered:'استلم',
+
+failed:'لم يستلم'
+
+})[s]||'جديد';
+
+}
+
+
+function tag(s){
+
+return({
+
+new:'b',
+
+confirmed:'o',
+
+shipping:'o',
+
+delivered:'gr',
+
+failed:'r'
+
+})[s]||'';
+
+}
+
+
+function ordersTable(){
+
+let q=
+(document.getElementById('osearch')?.value||'')
+.toLowerCase();
+
+let list=[...orders]
+.reverse()
+.filter(o=>
+(o.id+' '+
+(o.customer?.name||'')+' '+
+(o.customer?.phone||''))
+.toLowerCase()
+.includes(q)
+);
+
+ot.innerHTML=list.length?
+
+list.map(o=>`
+
+<tr>
+
+<td>
+<b>${esc(o.id)}</b>
+</td>
+
+<td>
+${o.date?
+new Date(o.date).toLocaleString('ar-LY')
+:'-'}
+</td>
+
+<td>
+
+<b>
+${esc(o.customer?.name||'-')}
+</b>
+
+<div style="color:#666">
+${esc(o.customer?.phone||'')}
+</div>
+
+</td>
+
+<td>
+${esc(o.customer?.city||'-')}
+</td>
+
+<td style="color:var(--g)">
+${money(o.total)}
+</td>
+
+<td>
+
+<select
+class="btn"
+onchange="changeStatus('${esc(o.id)}',this.value)"
+>
+
+<option value="new"
+${status(o)==='new'?'selected':''}>
+🆕 جديد
+</option>
+
+<option value="confirmed"
+${status(o)==='confirmed'?'selected':''}>
+🟡 مؤكد
+</option>
+
+<option value="shipping"
+${status(o)==='shipping'?'selected':''}>
+🚚 قيد التوصيل
+</option>
+
+<option value="delivered"
+${status(o)==='delivered'?'selected':''}>
+🟢 استلم
+</option>
+
+<option value="failed"
+${status(o)==='failed'?'selected':''}>
+🔴 لم يستلم
+</option>
+
+</select>
+
+</td>
+
+<td>
+
+<button
+class="btn"
+onclick="viewOrder('${esc(o.id)}')"
+>
+التفاصيل
+</button>
+
+<button
+class="btn danger"
+onclick="delOrder('${esc(o.id)}')"
+>
+حذف
+</button>
+
+</td>
+
+</tr>
+
+`).join('')
+
+:
+
+'<tr><td colspan="7" class="empty">لا توجد طلبات</td></tr>';
+
+}
+
+
+function changeStatus(id,s){
+
+let o=orders.find(
+x=>String(x.id)===String(id)
+);
+
+if(!o)return;
+
+o.status=s;
+
+o.statusUpdatedAt=
+new Date().toISOString();
+
+save(O,orders);
+
+refresh();
+
+toast('تم تحديث الحالة');
+
+}
+
+
+function viewOrder(id){
+
+let o=orders.find(
+x=>String(x.id)===String(id)
+);
+
+if(!o)return;
+
+od.innerHTML=`
+
+<div class="tag ${tag(status(o))}">
+${stName(status(o))}
+</div>
+
+<p>
+<b>الطلب:</b>
+${esc(o.id)}
+</p>
+
+<p>
+<b>العميل:</b>
+${esc(o.customer?.name||'-')}
+</p>
+
+<p>
+<b>الهاتف:</b>
+${esc(o.customer?.phone||'-')}
+</p>
+
+<p>
+<b>المدينة:</b>
+${esc(o.customer?.city||'-')}
+</p>
+
+<p>
+<b>العنوان:</b>
+${esc(o.customer?.address||'-')}
+</p>
+
+<hr style="border-color:var(--line)">
+
+${(o.items||[]).map(x=>`
+
+<div style="padding:10px;border-bottom:1px solid var(--line)">
+
+${esc(
+x.name||
+products.find(p=>p.id==x.id)?.name||
+'منتج'
+)}
+
+—
+
+${esc(x.size||'-')}
+
+×
+
+${Number(x.quantity||x.qty)||0}
+
+</div>
+
+`).join('')}
+
+<h3 style="color:var(--g)">
+الإجمالي:
+${money(o.total)}
+</h3>
+
+`;
+
+document.getElementById('om')
+.classList.add('open');
+
+}
+
+
+function delOrder(id){
+
+if(confirm('حذف الطلب؟')){
+
+orders=
+orders.filter(
+x=>String(x.id)!==String(id)
+);
+
+save(O,orders);
+
+refresh();
+
+toast('تم حذف الطلب');
+
+}
+
+}
+
+
+function clearOrders(){
+
+if(confirm('حذف كل الطلبات؟')){
+
+orders=[];
+
+save(O,orders);
+
+refresh();
+
+toast('تم حذف الطلبات');
+
+}
+
+}
+
+
+function customers(){
+
+let m={};
+
+orders.forEach(o=>{
+
+let c=o.customer||{};
+
+let k=
+String(c.phone||'')
+.replace(/\D/g,'')||
+String(c.name||'')
+.toLowerCase();
+
+if(!k)return;
+
+if(!m[k]){
+
+m[k]={
+
+key:k,
+
+name:c.name||'-',
+
+phone:c.phone||'-',
+
+city:c.city||'-',
+
+orders:[]
+
+};
+
+}
+
+m[k].orders.push(o);
+
+});
+
+return Object.values(m);
+
+}
+
+
+function customersTable(){
+
+let q=
+(document.getElementById('csearch')?.value||'')
+.toLowerCase();
+
+let list=customers()
+.filter(c=>
+(c.name+' '+c.phone)
+.toLowerCase()
+.includes(q)
+);
+
+ct.innerHTML=list.length?
+
+list.map(c=>{
+
+let d=
+c.orders.filter(
+o=>status(o)==='delivered'
+).length;
+
+let f=
+c.orders.filter(
+o=>status(o)==='failed'
+).length;
+
+let total=
+c.orders.reduce(
+(a,o)=>a+Number(o.total||0),0
+);
+
+let ratio=
+c.orders.length?
+d/c.orders.length:0;
+
+let rate=
+f>=3&&ratio<.5
+?
+['عالي المخاطرة','r']
+:
+ratio>=.8
+?
+['موثوق','gr']
+:
+['متوسط','o'];
+
+return `
+
+<tr>
+
+<td>
+<b>${esc(c.name)}</b>
+</td>
+
+<td>
+${esc(c.phone)}
+</td>
+
+<td>
+${c.orders.length}
+</td>
+
+<td>
+<span class="tag gr">
+${d}
+</span>
+</td>
+
+<td>
+<span class="tag r">
+${f}
+</span>
+</td>
+
+<td>
+${money(total)}
+</td>
+
+<td>
+<span class="tag ${rate[1]}">
+${rate[0]}
+</span>
+</td>
+
+<td>
+
+<button
+class="btn"
+onclick="viewCustomer('${encodeURIComponent(c.key)}')"
+>
+السجل
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+}).join('')
+
+:
+
+'<tr><td colspan="8" class="empty">لا يوجد عملاء</td></tr>';
+
+}
+
+
+function viewCustomer(k){
+
+let c=customers()
+.find(
+x=>x.key===decodeURIComponent(k)
+);
+
+if(!c)return;
+
+let d=
+c.orders.filter(
+o=>status(o)==='delivered'
+).length;
+
+let f=
+c.orders.filter(
+o=>status(o)==='failed'
+).length;
+
+cd.innerHTML=`
+
+<h2>
+${esc(c.name)}
+</h2>
+
+<p style="color:#777">
+${esc(c.phone)}
+—
+${esc(c.city)}
+</p>
+
+<div class="customerstats">
+
+<div>
+إجمالي الطلبات
+<b>${c.orders.length}</b>
+</div>
+
+<div>
+🟢 استلم
+<b style="color:var(--gr)">
+${d}
+</b>
+</div>
+
+<div>
+🔴 لم يستلم
+<b style="color:var(--r)">
+${f}
+</b>
+</div>
+
+<div>
+القيمة
+<b>
+${money(
+c.orders.reduce(
+(a,o)=>a+Number(o.total||0),0
+)}
+</b>
+</div>
+
+</div>
+
+<h3>
+سجل الطلبات
+</h3>
+
+${[...c.orders]
+.reverse()
+.map(o=>`
+
+<div style="padding:11px;border-bottom:1px solid var(--line)">
+
+<b>${esc(o.id)}</b>
+
+<span class="tag ${tag(status(o))}">
+${stName(status(o))}
+</span>
+
+<span style="float:left">
+${money(o.total)}
+</span>
+
+</div>
+
+`).join('')}
+
+`;
+
+document.getElementById('cm')
+.classList.add('open');
+
+}
+
+
+function renderCities(){
+
+citiesGrid.innerHTML=cities.map(c=>`
+
+<div class="city">
+
+<b>
+${esc(c.name)}
+</b>
+
+<div class="price">
+${money(c.price)}
+</div>
+
+<div style="color:#777;font-size:11px;min-height:30px">
+${esc(c.note||'')}
+</div>
+
+<button
+class="btn"
+onclick="cityModal(${c.id})"
+>
+تعديل
+</button>
+
+<button
+class="btn danger"
+onclick="delCity(${c.id})"
+>
+حذف
+</button>
+
+</div>
+
+`).join('');
+
+}
+
+
+function cityModal(id){
+
+let c=id?
+cities.find(x=>x.id==id):
+null;
+
+cid.value=c?.id||'';
+cname.value=c?.name||'';
+cprice.value=c?.price??'';
+cnote.value=c?.note||'';
+
+cmt.textContent=
+c?'تعديل مدينة':'إضافة مدينة';
+
+document.getElementById('citym')
+.classList.add('open');
+
+}
+
+
+function saveCity(){
+
+if(
+!cname.value.trim() ||
+Number(cprice.value)<0
+){
+
+return alert(
+'أدخل اسم المدينة والسعر'
+);
+
+}
+
+let id=Number(cid.value);
+
+let obj={
+
+id:id||Date.now(),
+
+name:cname.value.trim(),
+
+price:Number(cprice.value),
+
+note:cnote.value.trim()
+
+};
+
+if(id){
+
+let i=
+cities.findIndex(x=>x.id==id);
+
+if(i>=0)cities[i]=obj;
+
+}else{
+
+cities.push(obj);
+
+}
+
+save(C,cities);
+
+closeM('citym');
+
+refresh();
+
+toast('تم حفظ المدينة');
+
+}
+
+
+function delCity(id){
+
+if(confirm('حذف المدينة؟')){
+
+cities=
+cities.filter(x=>x.id!=id);
+
+save(C,cities);
+
+refresh();
+
+toast('تم حذف المدينة');
+
+}
+
+}
+
+
+function loadSettings(){
+
+sn.value=
+settings.name||
+'LIBYA FLEX';
+
+swp.value=
+settings.whatsapp||
+'218000000000';
+
+sdesc.value=
+settings.description||
+'متجر ليبي للملابس الرياضية وقمصان كرة القدم.';
+
+shero.value=
+settings.heroSubtitle||
+'قميصك.. هويتك.. شغفك.';
+
+sig.value=
+settings.instagram||'';
+
+sfb.value=
+settings.facebook||'';
+
+stk.value=
+settings.tiktok||'';
+
+sdel.value=
+settings.delivery||
+'توصيل داخل ليبيا';
+
+}
+
+
+function saveSettings(){
+
+settings={
+
+name:sn.value.trim(),
+
+whatsapp:swp.value.trim(),
+
+description:sdesc.value.trim(),
+
+heroSubtitle:shero.value.trim(),
+
+instagram:sig.value.trim(),
+
+facebook:sfb.value.trim(),
+
+tiktok:stk.value.trim(),
+
+delivery:sdel.value.trim()
+
+};
+
+save(S,settings);
+
+toast('تم حفظ الإعدادات');
+
+}
+
+
+function money(x){
+
+return Number(x||0)
+.toLocaleString('ar-LY')
++' د.ل';
+
+}
+
+
+function esc(x){
+
+return String(x??'')
+.replace(
+/[&<>"']/g,
+
+m=>({
+
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#039;'
+
+}[m])
+
+);
+
+}
+
+
+function toast(x){
+
+let t=document.getElementById('toast');
+
+t.textContent=x;
+
+t.classList.add('show');
+
+clearTimeout(window.__toast);
+
+window.__toast=
+setTimeout(
+()=>t.classList.remove('show'),
+2600
+);
+
+}
+
+
+refresh();
+
 </script>
+
 </body>
 </html>
