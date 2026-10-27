@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIBYA FLEX | تسجيل الدخول</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Tahoma,sans-serif}
+
+:root{
+--green:#0d6b4d;
+--green2:#084b37;
+--gold:#f5b700;
+--dark:#101820;
+}
+
+body{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:
+radial-gradient(circle at top right,#0d6b4d 0%,transparent 35%),
+radial-gradient(circle at bottom left,#073d2d 0%,transparent 35%),
+#101820;
+overflow:hidden;
+}
+
+.bg{
+position:fixed;
+width:100%;
+height:100%;
+overflow:hidden;
+z-index:-1;
+}
+
+.bg span{
+position:absolute;
+display:block;
+width:180px;
+height:180px;
+border-radius:50%;
+background:rgba(245,183,0,.08);
+animation:float 8s infinite ease-in-out;
+}
+
+.bg span:nth-child(1){top:10%;left:10%}
+.bg span:nth-child(2){top:65%;right:10%;width:260px;height:260px;animation-delay:2s}
+.bg span:nth-child(3){bottom:-80px;left:40%;width:200px;height:200px;animation-delay:4s}
+
+@keyframes float{
+0%,100%{transform:translateY(0) scale(1)}
+50%{transform:translateY(-30px) scale(1.08)}
+}
+
+.login{
+width:min(430px,92%);
+background:rgba(255,255,255,.97);
+border-radius:25px;
+padding:38px;
+box-shadow:0 25px 80px rgba(0,0,0,.35);
+animation:appear .6s ease;
+}
+
+@keyframes appear{
+from{opacity:0;transform:translateY(25px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+.logo{
+text-align:center;
+margin-bottom:30px;
+}
+
+.logo-box{
+width:65px;
+height:65px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(135deg,var(--green),var(--green2));
+color:white;
+border-radius:18px;
+font-size:24px;
+font-weight:900;
+box-shadow:0 10px 25px rgba(13,107,77,.3);
+}
+
+.logo h1{
+margin-top:15px;
+font-size:27px;
+color:var(--green);
+}
+
+.logo p{
+margin-top:7px;
+color:#777;
+}
+
+.form-group{
+margin-bottom:18px;
+}
+
+label{
+display:block;
+font-weight:bold;
+margin-bottom:8px;
+}
+
+.input-box{
+position:relative;
+}
+
+input{
+width:100%;
+padding:14px 15px;
+border:1px solid #ddd;
+border-radius:12px;
+outline:none;
+font-size:15px;
+transition:.2s;
+}
+
+input:focus{
+border-color:var(--green);
+box-shadow:0 0 0 4px rgba(13,107,77,.1);
+}
+
+.login-btn{
+width:100%;
+padding:15px;
+border:0;
+border-radius:12px;
+background:linear-gradient(135deg,var(--green),var(--green2));
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:.2s;
+}
+
+.login-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 25px rgba(13,107,77,.25);
+}
+
+.error{
+display:none;
+background:#ffe8e8;
+color:#c62828;
+padding:12px;
+border-radius:10px;
+margin-bottom:15px;
+text-align:center;
+font-size:14px;
+}
+
+.back{
+display:block;
+text-align:center;
+margin-top:20px;
+color:#777;
+text-decoration:none;
+font-size:14px;
+}
+
+@media(max-width:500px){
+.login{padding:28px 22px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg">
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+<div class="login">
+
+<div class="logo">
+<div class="logo-box">LF</div>
+<h1>LIBYA FLEX</h1>
+<p>لوحة تحكم الإدارة</p>
+</div>
+
+<div class="error" id="error">
+البريد الإلكتروني أو كلمة السر غير صحيحة
+</div>
+
+<form onsubmit="login(event)">
+
+<div class="form-group">
+<label>البريد الإلكتروني</label>
+<input
+type="email"
+id="email"
+placeholder="admin@libyaflex.com"
+required
+>
+</div>
+
+<div class="form-group">
+<label>كلمة السر</label>
+<input
+type="password"
+id="password"
+placeholder="••••••••"
+required
+>
+</div>
+
+<button class="login-btn" type="submit">
+دخول لوحة التحكم
+</button>
+
+</form>
+
+<a href="index.html" class="back">
+← العودة إلى المتجر
+</a>
+
+</div>
+
+<script>
+
+const ADMIN_EMAIL = "admin@libyaflex.com";
+const ADMIN_PASSWORD = "LibyaFlex@2026";
+
+function login(event){
+
+event.preventDefault();
+
+const email =
+document.getElementById("email").value.trim();
+
+const password =
+document.getElementById("password").value;
+
+if(
+email === ADMIN_EMAIL &&
+password === ADMIN_PASSWORD
+){
+
+sessionStorage.setItem(
+"libyaFlexAdmin",
+"true"
+);
+
+window.location.href="admin.html";
+
+}else{
+
+document.getElementById("error").style.display="block";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
