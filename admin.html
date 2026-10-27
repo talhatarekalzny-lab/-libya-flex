@@ -1,928 +1,857 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIBYA FLEX - Admin Dashboard</title>
+
+    <title>Libya Flex - Admin</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
         }
+
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fa;
-            color: #172033;
+            background: #f5f6f8;
+            color: #111827;
         }
-        /* =========================
-           SIDEBAR
-        ========================= */
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 250px;
-            height: 100vh;
+
+        header {
             background: #111827;
             color: white;
-            padding: 25px 18px;
-            z-index: 1000;
-        }
-        .logo {
-            font-size: 25px;
-            font-weight: bold;
-            margin-bottom: 35px;
-            padding-left: 12px;
-        }
-        .logo span {
-            color: #22c55e;
-        }
-        .nav {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .nav button {
-            border: none;
-            background: transparent;
-            color: #cbd5e1;
-            padding: 14px 15px;
-            border-radius: 10px;
-            text-align: left;
-            font-size: 15px;
-            cursor: pointer;
-        }
-        .nav button:hover,
-        .nav button.active {
-            background: #1f2937;
-            color: white;
-        }
-        .logout-btn {
-            position: absolute;
-            bottom: 25px;
-            left: 18px;
-            right: 18px;
-            background: #dc2626 !important;
-            color: white !important;
-        }
-        /* =========================
-           MAIN
-        ========================= */
-        .main {
-            margin-left: 250px;
-            padding: 30px;
-        }
-        .topbar {
+            padding: 18px 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
         }
-        .topbar h1 {
-            font-size: 28px;
+
+        header h1 {
+            font-size: 24px;
         }
-        .admin-name {
-            background: white;
-            padding: 12px 18px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+
+        header span {
+            color: #9ca3af;
+            font-size: 14px;
         }
-        /* =========================
-           STATS
-        ========================= */
+
+        button {
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-weight: bold;
+        }
+
+        .logout {
+            background: #ef4444;
+            color: white;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 25px auto;
+            padding: 0 15px;
+        }
+
         .stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-            margin-bottom: 30px;
+            gap: 15px;
+            margin-bottom: 25px;
         }
-        .stat-card {
+
+        .stat {
             background: white;
-            padding: 22px;
-            border-radius: 14px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.08);
         }
-        .stat-card h3 {
-            color: #64748b;
+
+        .stat h3 {
+            color: #6b7280;
             font-size: 14px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
-        .stat-card p {
+
+        .stat p {
             font-size: 28px;
             font-weight: bold;
         }
-        /* =========================
-           SECTIONS
-        ========================= */
-        .section {
+
+        .panel {
             background: white;
-            border-radius: 14px;
-            padding: 25px;
+            border-radius: 12px;
+            padding: 20px;
             margin-bottom: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            box-shadow: 0 2px 8px rgba(0,0,0,.08);
         }
-        .section-header {
+
+        .panel-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+            gap: 10px;
         }
-        .section-header h2 {
+
+        .panel-header h2 {
             font-size: 20px;
         }
-        .refresh-btn {
-            border: none;
-            background: #16a34a;
-            color: white;
-            padding: 10px 16px;
+
+        .search {
+            padding: 11px 14px;
+            border: 1px solid #d1d5db;
             border-radius: 8px;
-            cursor: pointer;
+            width: 250px;
         }
-        .refresh-btn:hover {
-            background: #15803d;
-        }
-        /* =========================
-           TABLE
-        ========================= */
-        .table-container {
-            width: 100%;
+
+        .table-wrapper {
             overflow-x: auto;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 950px;
+            min-width: 900px;
         }
+
         th {
-            background: #f8fafc;
-            text-align: left;
-            padding: 14px;
-            font-size: 13px;
-            color: #475569;
+            background: #f3f4f6;
+            text-align: right;
+            padding: 13px;
         }
+
         td {
-            padding: 15px 14px;
-            border-top: 1px solid #e5e7eb;
-            font-size: 14px;
+            padding: 13px;
+            border-bottom: 1px solid #e5e7eb;
         }
-        tr:hover td {
-            background: #fafafa;
+
+        tr:hover {
+            background: #f9fafb;
         }
-        /* =========================
-           STATUS
-        ========================= */
+
         .status {
-            display: inline-block;
             padding: 6px 10px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: bold;
+            display: inline-block;
         }
-        .status-pending {
+
+        .pending {
             background: #fef3c7;
             color: #92400e;
         }
-        .status-confirmed {
+
+        .confirmed {
             background: #dbeafe;
             color: #1e40af;
         }
-        .status-processing {
+
+        .processing {
             background: #ede9fe;
-            color: #6d28d9;
+            color: #5b21b6;
         }
-        .status-shipped {
-            background: #cffafe;
-            color: #155e75;
-        }
-        .status-delivered {
+
+        .delivered {
             background: #dcfce7;
             color: #166534;
         }
-        .status-cancelled {
+
+        .cancelled {
             background: #fee2e2;
             color: #991b1b;
         }
-        .status-default {
-            background: #e5e7eb;
-            color: #374151;
-        }
-        /* =========================
-           BUTTONS
-        ========================= */
-        .btn {
-            border: none;
-            padding: 8px 12px;
+
+        select {
+            padding: 8px;
+            border: 1px solid #d1d5db;
             border-radius: 7px;
-            cursor: pointer;
-            font-size: 13px;
+            background: white;
         }
-        .btn-view {
-            background: #2563eb;
-            color: white;
-        }
-        .btn-view:hover {
-            background: #1d4ed8;
-        }
-        .btn-update {
+
+        .save-btn {
             background: #16a34a;
             color: white;
+            margin-right: 5px;
         }
-        .btn-update:hover {
-            background: #15803d;
+
+        .delete-btn {
+            background: #dc2626;
+            color: white;
         }
-        /* =========================
-           MODAL
-        ========================= */
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.55);
-            z-index: 2000;
-            padding: 30px;
-            overflow-y: auto;
-        }
-        .modal.show {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .modal-content {
-            width: 100%;
-            max-width: 700px;
-            background: white;
-            border-radius: 16px;
-            padding: 28px;
-            position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        .close {
-            position: absolute;
-            right: 20px;
-            top: 15px;
-            border: none;
-            background: transparent;
-            font-size: 28px;
-            cursor: pointer;
-        }
-        .modal-title {
-            margin-bottom: 25px;
-            font-size: 23px;
-        }
-        .order-info {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-        .info-box {
-            background: #f8fafc;
-            padding: 15px;
-            border-radius: 10px;
-        }
-        .info-box strong {
-            display: block;
-            font-size: 12px;
-            color: #64748b;
-            margin-bottom: 6px;
-        }
-        .info-box span {
-            font-size: 15px;
-        }
-        /* =========================
-           UPDATE FORM
-        ========================= */
-        .update-area {
-            margin-top: 25px;
-            border-top: 1px solid #e5e7eb;
-            padding-top: 25px;
-        }
-        .update-area h3 {
-            margin-bottom: 15px;
-        }
-        select,
-        textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-family: inherit;
-            margin-bottom: 12px;
-        }
-        textarea {
-            min-height: 90px;
-            resize: vertical;
-        }
-        /* =========================
-           HISTORY
-        ========================= */
+
         .history {
-            margin-top: 25px;
+            margin-top: 8px;
+            font-size: 13px;
+            color: #6b7280;
         }
-        .history h3 {
-            margin-bottom: 15px;
-        }
+
         .history-item {
-            position: relative;
-            border-left: 3px solid #16a34a;
-            padding: 12px 15px;
-            margin-bottom: 12px;
-            background: #f8fafc;
-            border-radius: 0 8px 8px 0;
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
         }
-        .history-item strong {
-            display: block;
-            margin-bottom: 5px;
+
+        .empty {
+            text-align: center;
+            padding: 30px;
+            color: #6b7280;
         }
-        .history-item p {
-            color: #475569;
-            margin-bottom: 5px;
+
+        .message {
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            display: none;
         }
-        .history-item small {
-            color: #94a3b8;
+
+        .success {
+            background: #dcfce7;
+            color: #166534;
         }
-        /* =========================
-           MOBILE
-        ========================= */
-        @media (max-width: 900px) {
-            .sidebar {
-                width: 210px;
-            }
-            .main {
-                margin-left: 210px;
-            }
+
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        @media (max-width: 700px) {
             .stats {
                 grid-template-columns: repeat(2, 1fr);
             }
-        }
-        @media (max-width: 650px) {
-            .sidebar {
-                position: relative;
-                width: 100%;
-                height: auto;
-            }
-            .logout-btn {
-                position: relative;
-                left: auto;
-                right: auto;
-                bottom: auto;
-                margin-top: 15px;
-            }
-            .main {
-                margin-left: 0;
-                padding: 18px;
-            }
-            .stats {
-                grid-template-columns: 1fr;
-            }
-            .topbar {
+
+            .panel-header {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
+                align-items: stretch;
             }
-            .order-info {
-                grid-template-columns: 1fr;
+
+            .search {
+                width: 100%;
             }
         }
     </style>
 </head>
+
 <body>
-<!-- ==========================================
-     SIDEBAR
-========================================== -->
-<aside class="sidebar">
-    <div class="logo">
-        LIBYA <span>FLEX</span>
+
+<header>
+    <div>
+        <h1>Libya Flex</h1>
+        <span>لوحة تحكم الإدارة</span>
     </div>
-    <nav class="nav">
-        <button class="active" onclick="showSection('dashboard')">
-            Dashboard
-        </button>
-        <button onclick="showSection('orders-section')">
-            Orders
-        </button>
-        <button onclick="loadOrders()">
-            Refresh Orders
-        </button>
-    </nav>
-    <button class="nav logout-btn" onclick="logout()">
-        Logout
-    </button>
-</aside>
-<!-- ==========================================
-     MAIN
-========================================== -->
-<main class="main">
-    <div class="topbar">
-        <div>
-            <h1>Admin Dashboard</h1>
-            <p style="color:#64748b;margin-top:5px;">
-                Manage LIBYA FLEX orders
-            </p>
+
+    <button class="logout" onclick="logout()">تسجيل الخروج</button>
+</header>
+
+<main>
+
+    <div id="message" class="message"></div>
+
+    <!-- Statistics -->
+
+    <section class="stats">
+
+        <div class="stat">
+            <h3>كل الطلبات</h3>
+            <p id="totalOrders">0</p>
         </div>
-        <div class="admin-name">
-            Administrator
+
+        <div class="stat">
+            <h3>قيد الانتظار</h3>
+            <p id="pendingOrders">0</p>
         </div>
-    </div>
-    <!-- ======================================
-         STATISTICS
-    ======================================= -->
-    <section id="dashboard">
-        <div class="stats">
-            <div class="stat-card">
-                <h3>Total Orders</h3>
-                <p id="totalOrders">0</p>
-            </div>
-            <div class="stat-card">
-                <h3>Pending</h3>
-                <p id="pendingOrders">0</p>
-            </div>
-            <div class="stat-card">
-                <h3>Confirmed</h3>
-                <p id="confirmedOrders">0</p>
-            </div>
-            <div class="stat-card">
-                <h3>Delivered</h3>
-                <p id="deliveredOrders">0</p>
-            </div>
+
+        <div class="stat">
+            <h3>مؤكدة</h3>
+            <p id="confirmedOrders">0</p>
         </div>
+
+        <div class="stat">
+            <h3>تم التوصيل</h3>
+            <p id="deliveredOrders">0</p>
+        </div>
+
     </section>
-    <!-- ======================================
-         ORDERS
-    ======================================= -->
-    <section class="section" id="orders-section">
-        <div class="section-header">
-            <div>
-                <h2>Orders</h2>
-                <p style="color:#64748b;margin-top:5px;">
-                    All customer orders
-                </p>
-            </div>
-            <button class="refresh-btn" onclick="loadOrders()">
-                Refresh
-            </button>
+
+
+    <!-- Orders -->
+
+    <section class="panel">
+
+        <div class="panel-header">
+
+            <h2>الطلبات</h2>
+
+            <input
+                type="text"
+                id="searchInput"
+                class="search"
+                placeholder="ابحث بالاسم أو الهاتف..."
+                oninput="filterOrders()"
+            >
+
         </div>
-        <div class="table-container">
+
+        <div class="table-wrapper">
+
             <table>
+
                 <thead>
+
                     <tr>
-                        <th>ID</th>
-                        <th>Customer</th>
-                        <th>Phone</th>
-                        <th>City</th>
-                        <th>Address</th>
-                        <th>Total</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                        <th>#</th>
+                        <th>العميل</th>
+                        <th>الهاتف</th>
+                        <th>العنوان</th>
+                        <th>المدينة</th>
+                        <th>المبلغ</th>
+                        <th>الحالة</th>
+                        <th>تحديث</th>
                     </tr>
+
                 </thead>
-                <tbody id="ordersTableBody">
+
+                <tbody id="ordersTable">
+
                     <tr>
-                        <td colspan="8" style="text-align:center;">
-                            Loading orders...
+                        <td colspan="8" class="empty">
+                            جاري تحميل الطلبات...
                         </td>
                     </tr>
+
                 </tbody>
+
             </table>
+
         </div>
+
     </section>
+
+
+    <!-- Delivery History -->
+
+    <section class="panel">
+
+        <div class="panel-header">
+            <h2>سجل التوصيل</h2>
+        </div>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>#</th>
+                        <th>رقم الطلب</th>
+                        <th>الحالة</th>
+                        <th>ملاحظات</th>
+                        <th>التاريخ</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="historyTable">
+
+                    <tr>
+                        <td colspan="5" class="empty">
+                            جاري تحميل السجل...
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
 </main>
-<!-- ==========================================
-     ORDER MODAL
-========================================== -->
-<div class="modal" id="orderModal">
-    <div class="modal-content">
-        <button class="close" onclick="closeModal()">
-            ×
-        </button>
-        <h2 class="modal-title">
-            Order Details
-        </h2>
-        <div class="order-info">
-            <div class="info-box">
-                <strong>Order ID</strong>
-                <span id="modalOrderId">-</span>
-            </div>
-            <div class="info-box">
-                <strong>Customer</strong>
-                <span id="modalCustomer">-</span>
-            </div>
-            <div class="info-box">
-                <strong>Phone</strong>
-                <span id="modalPhone">-</span>
-            </div>
-            <div class="info-box">
-                <strong>Email</strong>
-                <span id="modalEmail">-</span>
-            </div>
-            <div class="info-box">
-                <strong>City</strong>
-                <span id="modalCity">-</span>
-            </div>
-            <div class="info-box">
-                <strong>Total Amount</strong>
-                <span id="modalTotal">-</span>
-            </div>
-            <div class="info-box" style="grid-column:1/-1;">
-                <strong>Delivery Address</strong>
-                <span id="modalAddress">-</span>
-            </div>
-            <div class="info-box" style="grid-column:1/-1;">
-                <strong>Customer Notes</strong>
-                <span id="modalNotes">-</span>
-            </div>
-        </div>
-        <!-- ==================================
-             UPDATE STATUS
-        =================================== -->
-        <div class="update-area">
-            <h3>
-                Update Delivery Status
-            </h3>
-            <select id="statusSelect">
-                <option value="pending">
-                    Pending
-                </option>
-                <option value="confirmed">
-                    Confirmed
-                </option>
-                <option value="processing">
-                    Processing
-                </option>
-                <option value="shipped">
-                    Shipped
-                </option>
-                <option value="delivered">
-                    Delivered
-                </option>
-                <option value="cancelled">
-                    Cancelled
-                </option>
-            </select>
-            <textarea
-                id="statusNotes"
-                placeholder="Add a note about this status...">
-            </textarea>
-            <button
-                class="btn btn-update"
-                style="width:100%;padding:13px;"
-                onclick="saveStatus()">
-                Update Order
-            </button>
-        </div>
-        <!-- ==================================
-             DELIVERY HISTORY
-        =================================== -->
-        <div class="history">
-            <h3>
-                Delivery History
-            </h3>
-            <div id="historyContainer">
-                Loading history...
-            </div>
-        </div>
-    </div>
-</div>
-<!-- ==========================================
-     SCRIPTS
-========================================== -->
+
+
 <script src="supabase.js"></script>
+<script src="orders.js"></script>
+
 <script>
-let currentOrderId = null;
-// ==========================================
-// LOAD ORDERS
-// ==========================================
+
+let allOrders = [];
+
+
+/* =========================
+   LOAD ORDERS
+========================= */
+
 async function loadOrders() {
-    const tableBody =
-        document.getElementById("ordersTableBody");
-    tableBody.innerHTML = `
-        <tr>
-            <td colspan="8" style="text-align:center;">
-                Loading orders...
-            </td>
-        </tr>
-    `;
-    const { data, error } = await supabase
-        .from("orders")
-        .select("*")
-        .order("id", { ascending: false });
-    if (error) {
+
+    try {
+
+        const { data, error } = await supabase
+            .from('orders')
+            .select('*')
+            .order('id', { ascending: false });
+
+        if (error) throw error;
+
+        allOrders = data || [];
+
+        renderOrders(allOrders);
+
+        updateStats(allOrders);
+
+    } catch (error) {
+
         console.error(error);
-        tableBody.innerHTML = `
-            <tr>
-                <td colspan="8"
-                    style="text-align:center;color:red;">
-                    Failed to load orders.
-                </td>
-            </tr>
-        `;
-        return;
-    }
-    updateStatistics(data);
-    if (!data || data.length === 0) {
-        tableBody.innerHTML = `
-            <tr>
-                <td colspan="8"
-                    style="text-align:center;">
-                    No orders found.
-                </td>
-            </tr>
-        `;
-        return;
-    }
-    tableBody.innerHTML = "";
-    data.forEach(order => {
-        const row =
-            document.createElement("tr");
-        row.innerHTML = `
-            <td>
-                #${order.id}
-            </td>
-            <td>
-                ${escapeHTML(order.customer_name)}
-            </td>
-            <td>
-                ${escapeHTML(order.customer_phone)}
-            </td>
-            <td>
-                ${escapeHTML(order.city || "-")}
-            </td>
-            <td>
-                ${escapeHTML(order.delivery_address)}
-            </td>
-            <td>
-                ${Number(order.total_amount).toFixed(2)}
-            </td>
-            <td>
-                <span class="status ${getStatusClass(order.status)}">
-                    ${escapeHTML(order.status)}
-                </span>
-            </td>
-            <td>
-                <button
-                    class="btn btn-view"
-                    onclick="openOrder(${order.id})">
-                    View
-                </button>
-            </td>
-        `;
-        tableBody.appendChild(row);
-    });
-}
-// ==========================================
-// STATISTICS
-// ==========================================
-function updateStatistics(orders) {
-    document.getElementById("totalOrders").textContent =
-        orders.length;
-    document.getElementById("pendingOrders").textContent =
-        orders.filter(o => o.status === "pending").length;
-    document.getElementById("confirmedOrders").textContent =
-        orders.filter(o => o.status === "confirmed").length;
-    document.getElementById("deliveredOrders").textContent =
-        orders.filter(o => o.status === "delivered").length;
-}
-// ==========================================
-// OPEN ORDER
-// ==========================================
-async function openOrder(orderId) {
-    currentOrderId = orderId;
-    const { data: order, error } =
-        await supabase
-            .from("orders")
-            .select("*")
-            .eq("id", orderId)
-            .single();
-    if (error) {
-        console.error(error);
-        alert("Failed to load order.");
-        return;
-    }
-    document.getElementById("modalOrderId").textContent =
-        "#" + order.id;
-    document.getElementById("modalCustomer").textContent =
-        order.customer_name;
-    document.getElementById("modalPhone").textContent =
-        order.customer_phone;
-    document.getElementById("modalEmail").textContent =
-        order.customer_email || "-";
-    document.getElementById("modalCity").textContent =
-        order.city || "-";
-    document.getElementById("modalTotal").textContent =
-        Number(order.total_amount).toFixed(2);
-    document.getElementById("modalAddress").textContent =
-        order.delivery_address;
-    document.getElementById("modalNotes").textContent =
-        order.notes || "-";
-    document.getElementById("statusSelect").value =
-        order.status;
-    document.getElementById("statusNotes").value = "";
-    await loadHistory(orderId);
-    document
-        .getElementById("orderModal")
-        .classList.add("show");
-}
-// ==========================================
-// LOAD DELIVERY HISTORY
-// ==========================================
-async function loadHistory(orderId) {
-    const container =
-        document.getElementById("historyContainer");
-    container.innerHTML =
-        "Loading history...";
-    const { data, error } =
-        await supabase
-            .from("delivery_history")
-            .select("*")
-            .eq("order_id", orderId)
-            .order("created_at", { ascending: true });
-    if (error) {
-        console.error(error);
-        container.innerHTML =
-            "<p>Failed to load history.</p>";
-        return;
-    }
-    if (!data || data.length === 0) {
-        container.innerHTML =
-            "<p>No delivery history yet.</p>";
-        return;
-    }
-    container.innerHTML = "";
-    data.forEach(item => {
-        const div =
-            document.createElement("div");
-        div.className =
-            "history-item";
-        div.innerHTML = `
-            <strong>
-                ${escapeHTML(item.status)}
-            </strong>
-            <p>
-                ${escapeHTML(item.notes || "")}
-            </p>
-            <small>
-                ${formatDate(item.created_at)}
-            </small>
-        `;
-        container.appendChild(div);
-    });
-}
-// ==========================================
-// SAVE STATUS
-// ==========================================
-async function saveStatus() {
-    if (!currentOrderId) return;
-    const newStatus =
-        document.getElementById("statusSelect").value;
-    const notes =
-        document.getElementById("statusNotes").value.trim();
-    // Update order
-    const { error } =
-        await supabase
-            .from("orders")
-            .update({
-                status: newStatus,
-                updated_at: new Date().toISOString()
-            })
-            .eq("id", currentOrderId);
-    if (error) {
-        console.error(error);
-        alert("Failed to update order.");
-        return;
-    }
-    // Add history
-    const { error: historyError } =
-        await supabase
-            .from("delivery_history")
-            .insert([
-                {
-                    order_id: currentOrderId,
-                    status: newStatus,
-                    notes:
-                        notes ||
-                        `Order status changed to ${newStatus}`
-                }
-            ]);
-    if (historyError) {
-        console.error(historyError);
-        alert(
-            "Order updated, but delivery history failed."
+
+        showMessage(
+            "حدث خطأ أثناء تحميل الطلبات: " + error.message,
+            "error"
         );
+
+    }
+}
+
+
+/* =========================
+   RENDER ORDERS
+========================= */
+
+function renderOrders(orders) {
+
+    const table = document.getElementById('ordersTable');
+
+    if (!orders.length) {
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="8" class="empty">
+                    لا توجد طلبات
+                </td>
+            </tr>
+        `;
+
         return;
     }
-    alert("Order updated successfully!");
-    document.getElementById("statusNotes").value = "";
-    await loadHistory(currentOrderId);
-    await loadOrders();
+
+
+    table.innerHTML = orders.map(order => `
+
+        <tr>
+
+            <td>${order.id}</td>
+
+            <td>
+                <strong>${escapeHTML(order.customer_name || '')}</strong>
+            </td>
+
+            <td>
+                ${escapeHTML(order.customer_phone || '')}
+            </td>
+
+            <td>
+                ${escapeHTML(order.delivery_address || '')}
+            </td>
+
+            <td>
+                ${escapeHTML(order.city || '')}
+            </td>
+
+            <td>
+                ${order.total_amount ?? 0}
+            </td>
+
+            <td>
+
+                <select id="status-${order.id}">
+
+                    <option value="pending"
+                        ${order.status === 'pending' ? 'selected' : ''}>
+                        Pending
+                    </option>
+
+                    <option value="confirmed"
+                        ${order.status === 'confirmed' ? 'selected' : ''}>
+                        Confirmed
+                    </option>
+
+                    <option value="processing"
+                        ${order.status === 'processing' ? 'selected' : ''}>
+                        Processing
+                    </option>
+
+                    <option value="delivered"
+                        ${order.status === 'delivered' ? 'selected' : ''}>
+                        Delivered
+                    </option>
+
+                    <option value="cancelled"
+                        ${order.status === 'cancelled' ? 'selected' : ''}>
+                        Cancelled
+                    </option>
+
+                </select>
+
+            </td>
+
+            <td>
+
+                <button
+                    class="save-btn"
+                    onclick="updateOrderStatus(${order.id})">
+                    حفظ
+                </button>
+
+            </td>
+
+        </tr>
+
+    `).join('');
 }
-// ==========================================
-// CLOSE MODAL
-// ==========================================
-function closeModal() {
-    document
-        .getElementById("orderModal")
-        .classList.remove("show");
-    currentOrderId = null;
-}
-// ==========================================
-// NAVIGATION
-// ==========================================
-function showSection(sectionId) {
-    document
-        .querySelectorAll(".nav button")
-        .forEach(button => {
-            button.classList.remove("active");
-        });
-    if (sectionId === "orders-section") {
-        document
-            .getElementById("orders-section")
-            .scrollIntoView({
-                behavior: "smooth"
+
+
+/* =========================
+   UPDATE STATUS
+========================= */
+
+async function updateOrderStatus(orderId) {
+
+    const select = document.getElementById(`status-${orderId}`);
+
+    const newStatus = select.value;
+
+
+    try {
+
+        const { error } = await supabase
+            .from('orders')
+            .update({
+                status: newStatus
+            })
+            .eq('id', orderId);
+
+
+        if (error) throw error;
+
+
+        /*
+         * Add status to delivery history
+         */
+
+        const { error: historyError } = await supabase
+            .from('delivery_history')
+            .insert({
+                order_id: orderId,
+                status: newStatus,
+                notes: `Order status changed to ${newStatus}`
             });
-    } else {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+
+
+        if (historyError) {
+
+            console.error(
+                "History error:",
+                historyError
+            );
+
+        }
+
+
+        showMessage(
+            "تم تحديث حالة الطلب بنجاح",
+            "success"
+        );
+
+
+        await loadOrders();
+
+        await loadHistory();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        showMessage(
+            "فشل تحديث الطلب: " + error.message,
+            "error"
+        );
+
     }
 }
-// ==========================================
-// LOGOUT
-// ==========================================
-async function logout() {
-    const { error } =
-        await supabase.auth.signOut();
-    if (error) {
+
+
+/* =========================
+   LOAD DELIVERY HISTORY
+========================= */
+
+async function loadHistory() {
+
+    try {
+
+        const { data, error } = await supabase
+            .from('delivery_history')
+            .select('*')
+            .order('created_at', {
+                ascending: false
+            });
+
+
+        if (error) throw error;
+
+
+        const table =
+            document.getElementById('historyTable');
+
+
+        if (!data || !data.length) {
+
+            table.innerHTML = `
+                <tr>
+                    <td colspan="5" class="empty">
+                        لا يوجد سجل توصيل
+                    </td>
+                </tr>
+            `;
+
+            return;
+        }
+
+
+        table.innerHTML = data.map(item => `
+
+            <tr>
+
+                <td>${item.id}</td>
+
+                <td>
+                    #${item.order_id}
+                </td>
+
+                <td>
+
+                    <span class="status ${item.status}">
+                        ${escapeHTML(item.status)}
+                    </span>
+
+                </td>
+
+                <td>
+                    ${escapeHTML(item.notes || '')}
+                </td>
+
+                <td>
+                    ${formatDate(item.created_at)}
+                </td>
+
+            </tr>
+
+        `).join('');
+
+
+    } catch (error) {
+
         console.error(error);
-        alert("Logout failed.");
+
+        showMessage(
+            "فشل تحميل سجل التوصيل: " +
+            error.message,
+            "error"
+        );
+
+    }
+}
+
+
+/* =========================
+   STATISTICS
+========================= */
+
+function updateStats(orders) {
+
+    document.getElementById(
+        'totalOrders'
+    ).textContent = orders.length;
+
+
+    document.getElementById(
+        'pendingOrders'
+    ).textContent =
+        orders.filter(
+            order => order.status === 'pending'
+        ).length;
+
+
+    document.getElementById(
+        'confirmedOrders'
+    ).textContent =
+        orders.filter(
+            order => order.status === 'confirmed'
+        ).length;
+
+
+    document.getElementById(
+        'deliveredOrders'
+    ).textContent =
+        orders.filter(
+            order => order.status === 'delivered'
+        ).length;
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function filterOrders() {
+
+    const search =
+        document
+            .getElementById('searchInput')
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    if (!search) {
+
+        renderOrders(allOrders);
+
         return;
     }
-    window.location.href = "login.html";
-}
-// ==========================================
-// STATUS CLASS
-// ==========================================
-function getStatusClass(status) {
-    switch (status) {
-        case "pending":
-            return "status-pending";
-        case "confirmed":
-            return "status-confirmed";
-        case "processing":
-            return "status-processing";
-        case "shipped":
-            return "status-shipped";
-        case "delivered":
-            return "status-delivered";
-        case "cancelled":
-            return "status-cancelled";
-        default:
-            return "status-default";
-    }
-}
-// ==========================================
-// DATE
-// ==========================================
-function formatDate(date) {
-    if (!date) return "";
-    return new Date(date).toLocaleString();
-}
-// ==========================================
-// SECURITY
-// ==========================================
-function escapeHTML(value) {
-    if (value === null ||
-        value === undefined) {
-        return "";
-    }
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-// ==========================================
-// CLOSE MODAL WHEN CLICKING OUTSIDE
-// ==========================================
-document
-    .getElementById("orderModal")
-    .addEventListener("click", function(event) {
-        if (event.target === this) {
-            closeModal();
-        }
+
+
+    const filtered = allOrders.filter(order => {
+
+        return (
+
+            String(order.customer_name || '')
+                .toLowerCase()
+                .includes(search)
+
+            ||
+
+            String(order.customer_phone || '')
+                .toLowerCase()
+                .includes(search)
+
+            ||
+
+            String(order.delivery_address || '')
+                .toLowerCase()
+                .includes(search)
+
+            ||
+
+            String(order.city || '')
+                .toLowerCase()
+                .includes(search)
+
+            ||
+
+            String(order.id)
+                .includes(search)
+
+        );
+
     });
-// ==========================================
-// INITIAL LOAD
-// ==========================================
+
+
+    renderOrders(filtered);
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+async function logout() {
+
+    try {
+
+        await supabase.auth.signOut();
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+    window.location.href = 'login.html';
+}
+
+
+/* =========================
+   HELPERS
+========================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
+
+function formatDate(date) {
+
+    if (!date) return '-';
+
+    return new Date(date).toLocaleString(
+        'en-GB',
+        {
+            dateStyle: 'short',
+            timeStyle: 'short'
+        }
+    );
+}
+
+
+function showMessage(text, type) {
+
+    const message =
+        document.getElementById('message');
+
+    message.textContent = text;
+
+    message.className =
+        `message ${type}`;
+
+    message.style.display = 'block';
+
+
+    setTimeout(() => {
+
+        message.style.display = 'none';
+
+    }, 3500);
+}
+
+
+/* =========================
+   START
+========================= */
+
 document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-        loadOrders();
+    'DOMContentLoaded',
+    async () => {
+
+        await loadOrders();
+
+        await loadHistory();
+
     }
 );
+
 </script>
+
 </body>
 </html>
