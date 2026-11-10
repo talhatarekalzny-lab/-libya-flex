@@ -80,3 +80,15 @@ The supplied database backup contains these public tables: `admins`, `categories
 - Online card payments, WhatsApp order notifications, shipping-provider integrations, customer accounts, and loyalty points are not connected.
 - The storefront intentionally has no visible admin link. Hiding a URL is not security by itself; the server-side admin-role check and RLS policies are the security boundary.
 - The store does not claim that products are authentic or officially licensed unless the owner independently verifies that claim.
+
+
+## V3: إدارة الأقسام ورفع الصور
+- اختيار الصور مباشرة من ألبوم الآيفون للمنتجات والأقسام والبانرات.
+- الصور ترفع إلى Supabase Storage في bucket باسم `libya-flex-media`.
+- مربعات الأقسام تُنشأ ديناميكياً من جدول `categories`، ويمكن إضافة/تعديل/ترتيب/إخفاء الأقسام من لوحة الأدمن.
+- إعدادات إضافية للتحكم في شريط الإعلان والواجهة وزرها ورقم واتساب ونبذة التذييل.
+- شغّل كامل ملف `schema-upgrade.sql` في Supabase SQL Editor قبل رفع ملفات الموقع.
+- لا تضع Secret/service_role key في ملفات الموقع.
+
+## V4 Phase 2
+See `README-AR.md` for the expanded Arabic admin pages and deployment sequence. Run `phase2-admin-policies.sql` after the V4 foundation migration to enable admin management of customer profiles.

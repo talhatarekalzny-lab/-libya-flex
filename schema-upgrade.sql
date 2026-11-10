@@ -204,3 +204,34 @@ grant select, insert, update, delete on public.admins, public.categories, public
 grant usage, select on all sequences in schema public to authenticated;
 
 revoke all on public.orders, public.order_items, public.delivery_history, public.store_coupons from anon;
+
+
+-- LIBYA FLEX V3: category tiles, storefront copy and iPhone photo uploads.
+alter table public.categories add column if not exists icon text not null default '⚽';
+alter table public.categories add column if not exists sort_order integer not null default 0;
+alter table public.store_settings add column if not exists announcement_text text;
+alter table public.store_settings add column if not exists hero_title text;
+alter table public.store_settings add column if not exists hero_subtitle text;
+alter table public.store_settings add column if not exists hero_button_label text;
+alter table public.store_settings add column if not exists whatsapp_number text;
+alter table public.store_settings add column if not exists footer_about text;
+
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values ('libya-flex-media', 'libya-flex-media', true, 8388608,
+  array['image/jpeg','image/png','image/webp','image/gif','image/avif'])
+on conflict (id) do update set public = true, file_size_limit = 8388608,
+  allowed_mime_types = excluded.allowed_mime_types;
+
+drop policy if exists "LIBYA FLEX admins upload media" on storage.objects;
+create policy "LIBYA FLEX admins upload media" on storage.objects for insert to authenticated
+with check (bucket_id = 'libya-flex-media' and public.is_admin());
+drop policy if exists "LIBYA FLEX admins update media" on storage.objects;
+create policy "LIBYA FLEX admins update media" on storage.objects for update to authenticated
+using (bucket_id = 'libya-flex-media' and public.is_admin())
+with check (bucket_id = 'libya-flex-media' and public.is_admin());
+drop policy if exists "LIBYA FLEX admins delete media" on storage.objects;
+create policy "LIBYA FLEX admins delete media" on storage.objects for delete to authenticated
+using (bucket_id = 'libya-flex-media' and public.is_admin());
+drop policy if exists "LIBYA FLEX public view media" on storage.objects;
+create policy "LIBYA FLEX public view media" on storage.objects for select to anon, authenticated
+using (bucket_id = 'libya-flex-media');
