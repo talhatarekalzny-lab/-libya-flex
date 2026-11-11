@@ -35,7 +35,7 @@ input:focus,select:focus,textarea:focus{outline:none!important;border-color:#c7a
 
 .lfSocialLinks{display:flex;gap:10px;align-items:center;justify-content:center;padding:18px 0;border-top:1px solid var(--line);flex-wrap:wrap}.socialLink{display:inline-flex;align-items:center;gap:8px;padding:9px 15px;border:1px solid var(--gold2);border-radius:999px;color:var(--gold);font-size:12px;transition:.2s}.socialLink:hover{background:var(--gold);color:#1b150e}.socialIcon{width:22px;height:22px;display:block;flex:0 0 22px}.socialLink[data-brand="instagram"] .socialIcon{color:#E1306C}.socialLink[data-brand="facebook"] .socialIcon{color:#1877F2}.socialLink[data-brand="whatsapp"] .socialIcon{color:#25D366}.socialLink span{font-weight:600}.lfWhatsappFloat svg{width:29px;height:29px;display:block}.lfWhatsappFloat{position:fixed;z-index:80;right:18px;bottom:20px;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:#25D366;color:#fff;border:2px solid #fff;box-shadow:0 8px 28px #0009;font-size:27px}.lfWhatsappFloat[hidden]{display:none}@media(max-width:560px){.lfWhatsappFloat{right:14px;bottom:14px;width:50px;height:50px}}
 
-.autocomplete-wrap{position:relative;width:100%}.autocomplete-list{position:absolute;top:calc(100% + 5px);right:0;left:0;z-index:120;background:var(--panel);border:1px solid var(--gold2);border-radius:10px;box-shadow:0 12px 30px #0005;max-height:220px;overflow-y:auto;padding:5px}.autocomplete-option{display:block;width:100%;text-align:right;border:0!important;border-radius:7px!important;background:transparent!important;color:var(--text)!important;padding:11px 12px!important;min-height:42px;font-size:14px}.autocomplete-option:hover,.autocomplete-option:focus{background:var(--panel2)!important;color:var(--gold)!important}.autocomplete-empty{padding:12px;color:var(--muted);font-size:12px}
+.autocomplete-wrap{position:relative;width:100%}.autocomplete-list{position:absolute;top:calc(100% + 5px);right:0;left:0;z-index:120;background:var(--panel);border:1px solid var(--gold2);border-radius:10px;box-shadow:0 12px 30px #0005;max-height:220px;overflow-y:auto;padding:5px}.autocomplete-option{display:block;width:100%;text-align:right;border:0!important;border-radius:7px!important;background:transparent!important;color:var(--text)!important;padding:11px 12px!important;min-height:42px;font-size:14px}.autocomplete-option:hover,.autocomplete-option:focus{background:var(--panel2)!important;color:var(--gold)!important}.autocomplete-empty{padding:12px;color:var(--muted);font-size:12px}.autocomplete-list:not([hidden]){display:block!important;visibility:visible!important}.autocomplete-wrap{isolation:isolate}.autocomplete-option{touch-action:manipulation}
 </style></head><body data-theme="dark">
 <div class="announcement"><span>مجموعة الموسم الجديد وصلت — </span><b>اكتشف قمصانك المفضلة</b><span> · توصيل إلى مختلف مدن ليبيا</span></div>
 <header class="header"><div class="container nav"><a class="brand" href="#top" aria-label="LIBYA FLEX"><span class="mark">LF</span><span class="brandname">LIBYA FLEX<small>FOOTBALL SHIRTS</small></span></a><nav class="navlinks"><a href="#top">الرئيسية</a><a href="#products">المنتجات</a><a href="#categories">التصنيفات</a><a href="#story">قصتنا</a></nav><div class="navactions"><button class="themebtn" id="themeToggle">☼ الوضع الأبيض</button><button class="iconbtn" id="openSearch" aria-label="بحث">⌕</button><button class="iconbtn" id="openCart" aria-label="السلة">🛒<span class="count" id="cartCount">0</span></button></div></div></header>
@@ -68,17 +68,27 @@ function areaIsRequired(city){return ['طرابلس','بنغازي','مصرات�
 function selectedDeliveryZone(city,area){let zones=activeCityZones(city);if(!zones.length)return null;if(area)return zones.find(z=>normText(z.area)===normText(area))||null;return areaIsRequired(city)?null:cityBaseZone(city)}
 function showSuggestions(input,menu,options,onChoose){
  const query=normText(input.value);
- const unique=[...new Set(options.filter(Boolean).map(x=>String(x).trim()).filter(Boolean))];
- const matches=(query?unique.filter(x=>normText(x).startsWith(query)):unique).slice(0,40);
- const list=matches.length?matches:(!query?unique.slice(0,40):unique.filter(x=>normText(x).includes(query)).slice(0,40));
- menu.innerHTML=list.length?list.map((x,i)=>`<button type="button" class="autocomplete-option" role="option" data-suggestion-index="${i}">${safe(x)}</button>`).join(''):'<div class="autocomplete-empty">لا توجد نتائج مطابقة</div>';
- menu.hidden=false;input.setAttribute('aria-expanded','true');
+ const unique=[...new Set((options||[]).map(x=>String(x??'').trim()).filter(Boolean))];
+ const matches=query?unique.filter(x=>normText(x).startsWith(query)):unique;
+ const list=matches.slice(0,50);
+ menu.innerHTML=list.length
+  ?list.map((x,i)=>`<button type="button" class="autocomplete-option" role="option" data-suggestion-index="${i}">${safe(x)}</button>`).join('')
+  :'<div class="autocomplete-empty">لا توجد نتائج تبدأ بهذه الحروف</div>';
+ menu.hidden=false;
+ menu.style.display='block';
+ menu.style.visibility='visible';
+ input.setAttribute('aria-expanded','true');
  menu.querySelectorAll('[data-suggestion-index]').forEach((button,i)=>{
-  button.addEventListener('mousedown',e=>e.preventDefault());
-  button.addEventListener('click',()=>{input.value=list[i];menu.hidden=true;input.setAttribute('aria-expanded','false');onChoose(list[i]);});
+  const choose=e=>{
+   e.preventDefault();
+   input.value=list[i];
+   hideSuggestions(input,menu);
+   onChoose(list[i]);
+  };
+  button.addEventListener('click',choose);
  });
 }
-function hideSuggestions(input,menu){menu.hidden=true;input.setAttribute('aria-expanded','false')}
+function hideSuggestions(input,menu){menu.hidden=true;menu.style.display='none';input.setAttribute('aria-expanded','false')}
 function cityNames(){return [...new Set(shippingZones.filter(z=>z.is_active!==false&&z.city).map(z=>String(z.city).trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ar'))}
 function refreshDeliveryFields(){
  let city=canonicalCity($('cCity').value),input=$('cArea'),named=cityAreaOptions(city),required=areaIsRequired(city);
@@ -86,7 +96,7 @@ function refreshDeliveryFields(){
  $('areaLabel').textContent=required?'المنطقة / الحي *':'المنطقة / الحي (اختياري)';
  input.disabled=!city||!named.length;
  input.required=!!city&&required;
- if(!city){input.value='';$('deliveryQuote').textContent='ابحث عن المدينة أو اخترها لمعرفة رسوم التوصيل.';return}
+ if(!city){input.value='';$('deliveryQuote').textContent='ابحث عن المدينة واخترها من القائمة لمعرفة رسوم التوصيل.';return}
  if(!activeCityZones(city).length){input.value='';$('deliveryQuote').textContent='التوصيل غير متاح لهذه المدينة حالياً.';return}
  let area=named.find(z=>normText(z.area)===normText(input.value))?.area||'';
  if(input.value&&!area)input.value='';
@@ -98,12 +108,19 @@ function refreshDeliveryFields(){
  $('deliveryQuote').textContent='رسوم التوصيل: '+(free?'مجاني مبدئياً':money(fee))+(minimum>0?' · الشحن مجاني للطلبات من '+money(minimum)+' (قبل احتساب الخصم)':'');
 }
 function populateCities(){let input=$('cCity');if(!input)return;let current=canonicalCity(input.value);input.value=current;refreshDeliveryFields()}
-$('cCity').addEventListener('focus',()=>showSuggestions($('cCity'),$('citySuggest'),cityNames(),value=>{$('cArea').value='';refreshDeliveryFields();hideSuggestions($('cCity'),$('citySuggest'));}));
-$('cCity').addEventListener('input',()=>{$('cArea').value='';hideSuggestions($('cArea'),$('areaSuggest'));refreshDeliveryFields();showSuggestions($('cCity'),$('citySuggest'),cityNames(),value=>{refreshDeliveryFields();hideSuggestions($('cCity'),$('citySuggest'));});});
+$('cCity').addEventListener('focus',()=>showSuggestions($('cCity'),$('citySuggest'),cityNames(),()=>{$('cArea').value='';refreshDeliveryFields();}));
+$('cCity').addEventListener('input',()=>{
+ $('cArea').value='';hideSuggestions($('cArea'),$('areaSuggest'));
+ const typed=$('cCity').value;
+ showSuggestions($('cCity'),$('citySuggest'),cityNames(),()=>{if(canonicalCity($('cCity').value)!==$('cCity').value)$('cCity').value=canonicalCity($('cCity').value);$('cArea').value='';refreshDeliveryFields();});
+ $('cCity').value=typed;
+ refreshDeliveryFields();
+});
 $('cCity').addEventListener('keydown',e=>{if(e.key==='Escape')hideSuggestions($('cCity'),$('citySuggest'));});
-$('cArea').addEventListener('focus',()=>{let city=canonicalCity($('cCity').value);if(city)showSuggestions($('cArea'),$('areaSuggest'),cityAreaOptions(city).map(z=>z.area),refreshDeliveryFields);});
-$('cArea').addEventListener('input',()=>{refreshDeliveryFields();let city=canonicalCity($('cCity').value);if(city)showSuggestions($('cArea'),$('areaSuggest'),cityAreaOptions(city).map(z=>z.area),refreshDeliveryFields);});
+$('cArea').addEventListener('focus',()=>{let city=canonicalCity($('cCity').value);if(city)showSuggestions($('cArea'),$('areaSuggest'),cityAreaOptions(city).map(z=>z.area),()=>refreshDeliveryFields());});
+$('cArea').addEventListener('input',()=>{let city=canonicalCity($('cCity').value);if(city)showSuggestions($('cArea'),$('areaSuggest'),cityAreaOptions(city).map(z=>z.area),()=>refreshDeliveryFields());else hideSuggestions($('cArea'),$('areaSuggest'));});
 $('cArea').addEventListener('keydown',e=>{if(e.key==='Escape')hideSuggestions($('cArea'),$('areaSuggest'));});
+$('cCity').addEventListener('change',()=>{let canonical=canonicalCity($('cCity').value);if(canonical)$('cCity').value=canonical;$('cArea').value='';refreshDeliveryFields();});
 document.addEventListener('click',e=>{if(!e.target.closest('#cCity')&&!e.target.closest('#citySuggest'))hideSuggestions($('cCity'),$('citySuggest'));if(!e.target.closest('#cArea')&&!e.target.closest('#areaSuggest'))hideSuggestions($('cArea'),$('areaSuggest'));});
 $('placeOrder').onclick=async()=>{
  let msg=$('checkoutMsg');msg.hidden=false;
